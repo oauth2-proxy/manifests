@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 3.2.6
+version: 3.2.7
 apiVersion: v1
 appVersion: 5.1.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -11,6 +11,13 @@ keywords:
 - authentication
 - google
 - github
+- redis
+dependencies: 
+  - name: redis
+    version: ~10.6.0
+    repository: https://charts.bitnami.com/bitnami
+    alias: redis
+    condition: redis.enabled
 sources:
 - https://github.com/oauth2-proxy/oauth2-proxy
 - https://github.com/oauth2-proxy/manifests

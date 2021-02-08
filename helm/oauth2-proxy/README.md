@@ -117,6 +117,16 @@ Parameter | Description | Default
 `securityContext.enabled` | enable Kubernetes security context on container | `false`
 `securityContext.runAsNonRoot` | make sure that the container runs as a non-root user | `true`
 `proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
+`sessionStorage.cookie.enabled` | enable cookie based session storage | `true`
+`sessionStorage.redis.enabled` | enable redis session storage | `false`
+`sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations | `nil`
+`sessionStorage.redis.clientType` | Allows the user to select which type of client will be used for redis instance. Possible options are: `sentinel`, `cluster` or `standalone` | `standalone`
+`sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. redis://HOST[:PORT]) | `nil`
+`sessionStorage.redis.cluster.connectionUrls` | List of Redis cluster connection URLs (e.g. redis://HOST[:PORT]) | `[]`
+`sessionStorage.redis.sentinel.password` | Redis sentinel password. Used only for sentinel connection; any redis node passwords need to use `sessionStorage.redis.password` | `nil`
+`sessionStorage.redis.sentinel.masterName` | Redis sentinel master name | `nil`
+`sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. redis://HOST[:PORT]) | `[]`
+`redis.enabled` | Enable the redis subchart deployment | `false`
 
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
