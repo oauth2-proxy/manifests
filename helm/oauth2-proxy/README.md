@@ -6,7 +6,7 @@
 
 ```console
 $ helm repo add oauth2-proxy https://oauth2-proxy.github.io/manifests
-$ helm install stable/oauth2-proxy
+$ helm install oauth2-proxy/oauth2-proxy
 ```
 
 ## Introduction
