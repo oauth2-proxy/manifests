@@ -117,8 +117,7 @@ Parameter | Description | Default
 `securityContext.enabled` | enable Kubernetes security context on container | `false`
 `securityContext.runAsNonRoot` | make sure that the container runs as a non-root user | `true`
 `proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
-`sessionStorage.cookie.enabled` | enable cookie based session storage | `true`
-`sessionStorage.redis.enabled` | enable redis session storage | `false`
+`sessionStorage.type` | Session storage type which can be one of the following: cookie or redis | `cookie`
 `sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations | `nil`
 `sessionStorage.redis.clientType` | Allows the user to select which type of client will be used for redis instance. Possible options are: `sentinel`, `cluster` or `standalone` | `standalone`
 `sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. redis://HOST[:PORT]) | `nil`

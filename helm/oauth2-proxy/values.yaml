@@ -185,10 +185,9 @@ htpasswdFile:
 
 # Configure the session storage type, between cookie and redis
 sessionStorage:
-  cookie:
-    enabled: true
-  redis: 
-    enabled: false 
+  # Can be one of the supported session storage cookie/redis
+  type: cookie
+  redis:
     password: ""
     # Can be one of sentinel/cluster/standalone
     clientType: "standalone"
@@ -196,19 +195,18 @@ sessionStorage:
       connectionUrl: ""
     cluster:
       connectionUrls: []
-    sentinel: 
+    sentinel:
       password: ""
       masterName: ""
       connectionUrls:	[]
 
-# Enables and configure the automatic deployment of the redis subchart 
-redis: 
+# Enables and configure the automatic deployment of the redis subchart
+redis:
   # provision an instance of the redis sub-chart
   enabled: false
-  # Redis specific helm chart settings, please see: 
+  # Redis specific helm chart settings, please see:
   # https://github.com/bitnami/charts/tree/master/bitnami/redis#parameters
   # redisPort: 6379
   # cluster:
   #   enabled: false
   #   slaveCount: 1
-
