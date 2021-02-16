@@ -49,8 +49,6 @@ spec:
           - --http-address=0.0.0.0:4180
         {{- if .Values.config.cookieName }}
           - --cookie-name={{ .Values.config.cookieName }}
-        {{- else }}
-          - --cookie-name={{ .Release.Name | replace "-" "_"}}
         {{- end }}
         {{- range $key, $value := .Values.extraArgs }}
           {{- if $value }}
