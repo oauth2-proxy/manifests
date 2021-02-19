@@ -194,10 +194,12 @@ sessionStorage:
     standalone:
       connectionUrl: ""
     cluster:
+      # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
       connectionUrls: []
     sentinel:
       password: ""
       masterName: ""
+      # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
       connectionUrls:	[]
 
 # Enables and configure the automatic deployment of the redis subchart

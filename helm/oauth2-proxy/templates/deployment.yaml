@@ -70,6 +70,23 @@ spec:
           - --google-service-account-json=/google/service-account.json
         {{- end }}
         {{- end }}
+        {{- if eq (default "cookie" .Values.sessionStorage.type) "redis" }}
+          - --session-store-type=redis
+        {{- if .Values.sessionStorage.redis.password }}
+          - --redis-password={{ .Values.sessionStorage.redis.password }}
+        {{- end }}
+        {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
+          - --redis-connection-url={{ .Values.sessionStorage.redis.standalone.connectionUrl }}
+        {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
+          - --redis-use-cluster=true
+          - --redis-cluster-connection-urls={{ .Values.sessionStorage.redis.cluster.connectionUrls }}
+        {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "sentinel" }}
+          - --redis-use-sentinel=true
+          - --redis-sentinel-master-name={{ .Values.sessionStorage.redis.sentinel.masterName }}
+          - --redis-sentinel-connection-urls={{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
+          - --redis-sentinel-password={{ .Values.sessionStorage.redis.sentinel.password }}
+        {{- end }}
+        {{- end }}
         {{- if .Values.htpasswdFile.enabled }}
           - --htpasswd-file=/etc/oauth2_proxy/htpasswd/users.txt
         {{- end }}

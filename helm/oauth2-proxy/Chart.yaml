@@ -1,6 +1,6 @@
 name: oauth2-proxy
 version: 3.2.7
-apiVersion: v1
+apiVersion: v2
 appVersion: 5.1.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
 description: A reverse proxy that provides authentication with Google, Github or other providers
@@ -12,7 +12,7 @@ keywords:
 - google
 - github
 - redis
-dependencies: 
+dependencies:
   - name: redis
     version: ~10.6.0
     repository: https://charts.bitnami.com/bitnami
