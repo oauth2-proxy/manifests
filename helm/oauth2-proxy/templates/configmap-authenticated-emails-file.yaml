@@ -9,6 +9,7 @@ metadata:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
   name: {{ template "oauth2-proxy.fullname" . }}-accesslist
+  namespace: {{ .Release.Namespace }}
 data:
   restricted_user_access: {{ .Values.authenticatedEmailsFile.restricted_access | quote }}
 {{- end }}

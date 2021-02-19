@@ -16,6 +16,7 @@ metadata:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
   name: {{ template "oauth2-proxy.fullname" . }}
+  namespace: {{ .Release.Namespace }}
 {{- with .Values.ingress.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
