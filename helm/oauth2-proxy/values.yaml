@@ -202,7 +202,7 @@ sessionStorage:
       password: ""
       masterName: ""
       # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
-      connectionUrls:	[]
+      connectionUrls: []
 
 # Enables and configure the automatic deployment of the redis subchart
 redis:
