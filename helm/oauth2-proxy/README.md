@@ -60,7 +60,7 @@ Parameter | Description | Default
 `affinity` | node/pod affinities | None
 `authenticatedEmailsFile.enabled` | Enables authorize individual email addresses | `false`
 `authenticatedEmailsFile.persistence` | Defines how the email addresses file will be projected, via a configmap or secret | `configmap`
-`authenticatedEmailsFile.template` | Name of the configmap that is handled outside of that chart | `""`
+`authenticatedEmailsFile.template` | Name of the configmap or secret that is handled outside of that chart | `""`
 `authenticatedEmailsFile.restricted_access` | [email addresses](https://github.com/pusher/oauth2_proxy#email-authentication) list config | `""`
 `authenticatedEmailsFile.annotations` | configmap or secret annotations | `nil`
 `config.clientID` | oauth client ID | `""`
