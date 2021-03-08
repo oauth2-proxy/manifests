@@ -188,6 +188,8 @@ sessionStorage:
   # Can be one of the supported session storage cookie/redis
   type: cookie
   redis:
+    # Secret name that holds the redis-password and redis-sentinel-password values
+    existingSecret: ""
     password: ""
     # Can be one of sentinel/cluster/standalone
     clientType: "standalone"
