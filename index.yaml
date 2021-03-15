@@ -3,6 +3,31 @@ entries:
   oauth2-proxy:
   - apiVersion: v1
     appVersion: 5.1.0
+    created: "2021-03-15T12:58:58.129623137Z"
+    description: A reverse proxy that provides authentication with Google, Github or other providers
+    digest: 2455cbdd9865b1ac027727079b3ba6ddd05fdf9d88a0cf5478afb2f2b7644956
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.7/oauth2-proxy-3.2.7.tgz
+    version: 3.2.7
+  - apiVersion: v1
+    appVersion: 5.1.0
     created: "2021-02-09T11:58:31.9844259Z"
     description: A reverse proxy that provides authentication with Google, Github or other providers
     digest: 919516e6c8fb200e2762a5896431021f3f6a541b646d9b967782102d40def9cf
