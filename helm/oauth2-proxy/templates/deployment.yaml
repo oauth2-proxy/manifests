@@ -199,6 +199,23 @@ spec:
           secretName: {{ if .Values.htpasswdFile.existingSecret }}{{ .Values.htpasswdFile.existingSecret }}{{ else }} {{ template "oauth2-proxy.fullname" . }}-htpasswd-file {{ end }}
 {{- end }}
 
+{{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "secret") }}
+      - name: configaccesslist
+        secret: 
+          items:
+          - key: restricted_user_access
+{{- if .Values.authenticatedEmailsFile.template }}
+            path: {{ .Values.authenticatedEmailsFile.template }}
+{{- else }}
+            path: authenticated-emails-list
+{{- end }}
+{{- if .Values.authenticatedEmailsFile.template }}
+          secretName: {{ .Values.authenticatedEmailsFile.template }}
+{{- else }}
+          secretName: {{ template "oauth2-proxy.fullname" . }}-accesslist
+{{- end }}
+{{- end }}
+
 {{- if or .Values.config.existingConfig .Values.config.configFile }}
       - configMap:
           defaultMode: 420
@@ -208,7 +225,7 @@ spec:
 {{- if ne (len .Values.extraVolumes) 0 }}
 {{ toYaml .Values.extraVolumes | indent 6 }}
 {{- end }}
-{{- if .Values.authenticatedEmailsFile.enabled }}
+{{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "configmap") }}
       - configMap:
 {{- if .Values.authenticatedEmailsFile.template }}
           name: {{ .Values.authenticatedEmailsFile.template }}
