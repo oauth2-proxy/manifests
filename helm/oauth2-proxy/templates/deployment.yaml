@@ -20,6 +20,7 @@ spec:
         checksum/config-emails: {{ include (print $.Template.BasePath "/configmap-authenticated-emails-file.yaml") . | sha256sum }}
         checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
         checksum/google-secret: {{ include (print $.Template.BasePath "/google-secret.yaml") . | sha256sum }}
+        checksum/redis-secret: {{ include (print $.Template.BasePath "/redis-secret.yaml") . | sha256sum }}
 {{- if .Values.htpasswdFile.enabled }}
         checksum/htpasswd: {{ include (print $.Template.BasePath "/configmap-htpasswd-file.yaml") . | sha256sum }}
 {{- end }}
@@ -94,6 +95,40 @@ spec:
               name:  {{ template "oauth2-proxy.secretName" . }}
               key: cookie-secret
         {{- end }}
+        {{- if eq (default "cookie" .Values.sessionStorage.type) "redis" }}
+        - name: OAUTH2_PROXY_SESSION_STORE_TYPE
+          value: "redis"
+        {{- if .Values.sessionStorage.redis.password }}
+        - name: OAUTH2_PROXY_REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name:  {{ template "oauth2-proxy.fullname" . }}-redis-access
+              key: redis-password
+        {{- end }}
+        {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
+        - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
+          value: {{ .Values.sessionStorage.redis.standalone.connectionUrl }}
+        {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
+        - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
+          value: "true"
+        - name: OAUTH2_PROXY_REDIS_CLUSTER_CONNECTION_URLS
+          value: {{ .Values.sessionStorage.redis.cluster.connectionUrls }}
+        {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "sentinel" }}
+        - name: OAUTH2_PROXY_REDIS_USE_SENTINEL
+          value: "true"
+        - name: OAUTH2_PROXY_REDIS_SENTINEL_MASTER_NAME
+          value: {{ .Values.sessionStorage.redis.sentinel.masterName }}
+        - name: OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS
+          value: {{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
+        {{- if .Values.sessionStorage.redis.sentinel.password }}
+        - name: OAUTH2_PROXY_REDIS_SENTINEL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ if .Values.sessionStorage.redis.existingSecret }} {{ .Values.sessionStorage.redis.existingSecret }}{{ else }} {{ template "oauth2-proxy.fullname" . }}-redis-access{{ end }}
+              key: redis-sentinel-password
+        {{- end }}
+        {{- end }}
+        {{- end }}
         {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | indent 8 }}
         {{- end }}
@@ -167,6 +202,23 @@ spec:
           secretName: {{ if .Values.htpasswdFile.existingSecret }}{{ .Values.htpasswdFile.existingSecret }}{{ else }} {{ template "oauth2-proxy.fullname" . }}-htpasswd-file {{ end }}
 {{- end }}
 
+{{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "secret") }}
+      - name: configaccesslist
+        secret: 
+          items:
+          - key: restricted_user_access
+{{- if .Values.authenticatedEmailsFile.template }}
+            path: {{ .Values.authenticatedEmailsFile.template }}
+{{- else }}
+            path: authenticated-emails-list
+{{- end }}
+{{- if .Values.authenticatedEmailsFile.template }}
+          secretName: {{ .Values.authenticatedEmailsFile.template }}
+{{- else }}
+          secretName: {{ template "oauth2-proxy.fullname" . }}-accesslist
+{{- end }}
+{{- end }}
+
 {{- if or .Values.config.existingConfig .Values.config.configFile }}
       - configMap:
           defaultMode: 420
@@ -176,7 +228,7 @@ spec:
 {{- if ne (len .Values.extraVolumes) 0 }}
 {{ toYaml .Values.extraVolumes | indent 6 }}
 {{- end }}
-{{- if .Values.authenticatedEmailsFile.enabled }}
+{{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "configmap") }}
       - configMap:
 {{- if .Values.authenticatedEmailsFile.template }}
           name: {{ .Values.authenticatedEmailsFile.template }}
