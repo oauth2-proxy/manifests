@@ -1,4 +1,4 @@
-tplValue: "This is test value to for the template function"
+tplValue: "This is a test value for the template function"
 extraEnv:
   - name: TEST_ENV_VAR_1
     value: test_value_1

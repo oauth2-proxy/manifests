@@ -178,3 +178,17 @@ data:
   cert.pem: AB..==
   cert.key: CD..==
 ```
+## Extra environment variable templating
+The extraEnv value supports the tpl function which evaluate strings as templates inside the deployment template.
+This is useful to pass a template string as a value to the chart's extra environment variables and to render external configuration environment values
+
+
+```yaml
+...
+tplValue: "This is a test value for the tpl function"
+extraEnv:
+  - name: TEST_ENV_VAR_1
+    value: test_value_1
+  - name: TEST_ENV_VAR_2
+    value: '{{ .Values.tplValue }}'
+```
