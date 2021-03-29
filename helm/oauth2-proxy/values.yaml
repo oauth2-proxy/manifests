@@ -10,6 +10,9 @@ config:
   # Example:
   # existingSecret: secret
   cookieSecret: "XXXXXXXXXX"
+  # The name of the cookie that oauth2-proxy will create
+  # If left empty, it will default to the release name
+  cookieName: ""
   google: {}
     # adminEmail: xxxx
     # serviceAccountJson: xxxx

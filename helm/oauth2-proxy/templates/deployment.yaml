@@ -48,6 +48,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
           - --http-address=0.0.0.0:4180
+        {{- if .Values.config.cookieName }}
+          - --cookie-name={{ .Values.config.cookieName }}
+        {{- end }}
         {{- range $key, $value := .Values.extraArgs }}
           {{- if $value }}
           - --{{ $key }}={{ $value }}
