@@ -31,6 +31,19 @@ Create chart name and version as used by the chart label.
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{/* Generate basic labels */}}
+{{- define "oauth2-proxy.labels" }}
+app.kubernetes.io/name: {{ template "oauth2-proxy.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/version: {{ template "oauth2-proxy.chart" . }}
+app.kubernetes.io/part-of: {{ template "oauth2-proxy.name" . }} 
+helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }} 
+{{- if .Values.customLabels }}
+{{ toYaml .Values.customLabels | indent 4 }}
+{{- end }}
+{{- end }}
+
 {{/*
 Get the secret name.
 */}}

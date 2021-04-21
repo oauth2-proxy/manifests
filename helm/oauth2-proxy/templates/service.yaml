@@ -3,9 +3,7 @@ kind: Service
 metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
-    chart: {{ template "oauth2-proxy.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{- include "oauth2-proxy.labels" . | indent 4 }}
   name: {{ template "oauth2-proxy.fullname" . }}
 {{- if .Values.service.annotations }}
   annotations:
@@ -36,4 +34,4 @@ spec:
       name: {{ .Values.httpScheme }}
   selector:
     app: {{ template "oauth2-proxy.name" . }}
-    release: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ template "oauth2-proxy.chart" . }}
