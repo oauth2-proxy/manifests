@@ -45,7 +45,7 @@ image:
 extraArgs: {}
 extraEnv: []
 
-# Custom labels to add
+# -- Custom labels to add into metadata
 customLabels: {}
 
 # To authorize individual email addresses
