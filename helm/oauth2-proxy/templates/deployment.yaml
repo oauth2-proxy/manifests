@@ -102,7 +102,7 @@ spec:
         - name: OAUTH2_PROXY_REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name:  {{ template "oauth2-proxy.fullname" . }}-redis-access
+              name: {{ if .Values.sessionStorage.redis.existingSecret }} {{ .Values.sessionStorage.redis.existingSecret }}{{ else }} {{ template "oauth2-proxy.fullname" . }}-redis-access{{ end }}
               key: redis-password
         {{- end }}
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
