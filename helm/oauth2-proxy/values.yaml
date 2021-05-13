@@ -10,6 +10,9 @@ config:
   # Example:
   # existingSecret: secret
   cookieSecret: "XXXXXXXXXX"
+  # The name of the cookie that oauth2-proxy will create
+  # If left empty, it will default to the release name
+  cookieName: ""
   google: {}
     # adminEmail: xxxx
     # serviceAccountJson: xxxx
@@ -46,6 +49,8 @@ extraEnv: []
 # That is part of extraArgs but since this needs special treatment we need to do a separate section
 authenticatedEmailsFile:
   enabled: false
+  # Defines how the email addresses file will be projected, via a configmap or secret
+  persistence: configmap
   # template is the name of the configmap what contains the email user list but has been configured without this chart.
   # It's a simpler way to maintain only one configmap (user list) instead changing it for each oauth2-proxy service.
   # Be aware the value name in the extern config map in data needs to be named to "restricted_user_access".
@@ -58,6 +63,8 @@ authenticatedEmailsFile:
   # If you override the config with restricted_access it will configure a user list within this chart what takes care of the
   # config map resource.
   restricted_access: ""
+  annotations: {}
+  # helm.sh/resource-policy: keep
 
 service:
   type: ClusterIP
@@ -182,3 +189,35 @@ htpasswdFile:
   # example:
   # entries:
   #  - testuser:{SHA}EWhzdhgoYJWy0z2gyzhRYlN9DSiv
+
+# Configure the session storage type, between cookie and redis
+sessionStorage:
+  # Can be one of the supported session storage cookie/redis
+  type: cookie
+  redis:
+    # Secret name that holds the redis-password and redis-sentinel-password values
+    existingSecret: ""
+    password: ""
+    # Can be one of sentinel/cluster/standalone
+    clientType: "standalone"
+    standalone:
+      connectionUrl: ""
+    cluster:
+      # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
+      connectionUrls: []
+    sentinel:
+      password: ""
+      masterName: ""
+      # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
+      connectionUrls: []
+
+# Enables and configure the automatic deployment of the redis subchart
+redis:
+  # provision an instance of the redis sub-chart
+  enabled: false
+  # Redis specific helm chart settings, please see:
+  # https://github.com/bitnami/charts/tree/master/bitnami/redis#parameters
+  # redisPort: 6379
+  # cluster:
+  #   enabled: false
+  #   slaveCount: 1
