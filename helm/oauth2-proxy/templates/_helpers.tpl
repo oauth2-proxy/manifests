@@ -52,3 +52,12 @@ Create the name of the service account to use
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+
+{{- define "oauth2-proxy.redisStandaloneUrl" -}}
+{{- if .Values.sessionStorage.redis.standalone.connectionUrl -}}
+{{ .Values.sessionStorage.redis.standalone.connectionUrl }}
+{{- else -}}
+{{- printf "redis://%s-redis-master:6379" (include "oauth2-proxy.fullname" .) -}}
+{{- end -}}
+{{- end -}}

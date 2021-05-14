@@ -107,7 +107,7 @@ spec:
         {{- end }}
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
-          value: {{ .Values.sessionStorage.redis.standalone.connectionUrl }}
+          value: {{ include "oauth2-proxy.redisStandaloneUrl" . }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
         - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
           value: "true"

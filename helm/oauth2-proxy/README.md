@@ -125,7 +125,7 @@ Parameter | Description | Default
 `sessionStorage.redis.existingSecret` | existing Kubernetes secret to use for redis-password and redis-sentinel-password | `""`
 `sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations | `nil`
 `sessionStorage.redis.clientType` | Allows the user to select which type of client will be used for redis instance. Possible options are: `sentinel`, `cluster` or `standalone` | `standalone`
-`sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. redis://HOST[:PORT]) | `nil`
+`sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. redis://HOST[:PORT]). Automatically generated if not set. | `""`
 `sessionStorage.redis.cluster.connectionUrls` | List of Redis cluster connection URLs (e.g. redis://HOST[:PORT]) | `[]`
 `sessionStorage.redis.sentinel.password` | Redis sentinel password. Used only for sentinel connection; any redis node passwords need to use `sessionStorage.redis.password` | `nil`
 `sessionStorage.redis.sentinel.masterName` | Redis sentinel master name | `nil`

@@ -201,6 +201,7 @@ sessionStorage:
     # Can be one of sentinel/cluster/standalone
     clientType: "standalone"
     standalone:
+      # If empty and sessionStorage type is redis, will automatically be generated.
       connectionUrl: ""
     cluster:
       # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
