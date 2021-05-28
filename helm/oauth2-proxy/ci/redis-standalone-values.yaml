@@ -2,8 +2,8 @@ sessionStorage:
   type: redis
   redis:
     clientType: "standalone"
-    standalone:
-      connectionUrl: "redis://oauth2-proxy-redis-master:6379"
+    password: "foo"
 redis:
   # provision an instance of the redis sub-chart
   enabled: true
+  password: "foo"
