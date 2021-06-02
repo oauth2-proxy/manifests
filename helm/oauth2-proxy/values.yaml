@@ -9,7 +9,7 @@ config:
   # Use an existing secret for OAuth2 credentials (see secret.yaml for required fields)
   # Example:
   # existingSecret: secret
-  cookieSecret: "XXXXXXXXXX"
+  cookieSecret: "XXXXXXXXXXXXXXXX"
   # The name of the cookie that oauth2-proxy will create
   # If left empty, it will default to the release name
   cookieName: ""
@@ -32,8 +32,8 @@ config:
   # existingConfig: config
 
 image:
-  repository: "quay.io/pusher/oauth2_proxy"
-  tag: "v5.1.0"
+  repository: "quay.io/oauth2-proxy/oauth2-proxy"
+  tag: "v7.1.3"
   pullPolicy: "IfNotPresent"
 
 # Optionally specify an array of imagePullSecrets.
@@ -204,6 +204,7 @@ sessionStorage:
     # Can be one of sentinel/cluster/standalone
     clientType: "standalone"
     standalone:
+      # If empty and sessionStorage type is redis, will automatically be generated.
       connectionUrl: ""
     cluster:
       # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]

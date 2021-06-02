@@ -100,12 +100,12 @@ spec:
         - name: OAUTH2_PROXY_REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name:  {{ template "oauth2-proxy.fullname" . }}-redis-access
+              name: {{ if .Values.sessionStorage.redis.existingSecret }} {{ .Values.sessionStorage.redis.existingSecret }}{{ else }} {{ template "oauth2-proxy.fullname" . }}-redis-access{{ end }}
               key: redis-password
         {{- end }}
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
-          value: {{ .Values.sessionStorage.redis.standalone.connectionUrl }}
+          value: {{ include "oauth2-proxy.redisStandaloneUrl" . }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
         - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
           value: "true"
@@ -128,7 +128,7 @@ spec:
         {{- end }}
         {{- end }}
         {{- if .Values.extraEnv }}
-{{ toYaml .Values.extraEnv | indent 8 }}
+{{ tpl (toYaml .Values.extraEnv) . | indent 8 }}
         {{- end }}
         ports:
           - containerPort: 4180
