@@ -47,7 +47,9 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
+        {{- if not .Values.config.alphaConfigFile }}
           - --http-address=0.0.0.0:4180
+        {{- end }}
         {{- if .Values.config.cookieName }}
           - --cookie-name={{ .Values.config.cookieName }}
         {{- end }}
@@ -60,6 +62,9 @@ spec:
         {{- end }}
         {{- if or .Values.config.existingConfig .Values.config.configFile }}
           - --config=/etc/oauth2_proxy/oauth2_proxy.cfg
+        {{- end }}
+        {{- if .Values.config.alphaConfigFile }}
+          - --alpha-config=/etc/oauth2_proxy/oauth2_proxy.cfg.alpha
         {{- end }}
         {{- if .Values.authenticatedEmailsFile.enabled }}
         {{- if .Values.authenticatedEmailsFile.template }}

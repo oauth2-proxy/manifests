@@ -11,5 +11,8 @@ metadata:
   name: {{ template "oauth2-proxy.fullname" . }}
 data:
   oauth2_proxy.cfg: {{ .Values.config.configFile | quote }}
+  {{- if .Values.config.alphaConfigFile }}
+  oauth2_proxy.cfg.alpha: {{ .Values.config.alphaConfigFile | quote }}
+  {{- end }}
 {{- end }}
 {{- end }}
