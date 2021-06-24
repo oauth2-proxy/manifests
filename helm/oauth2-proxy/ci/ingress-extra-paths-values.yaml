@@ -1,6 +1,9 @@
 ingress:
   extraPaths:
   - path: /*
+    pathType: ImplementationSpecific
     backend:
-      serviceName: ssl-redirect
-      servicePort: use-annotation
+      service:
+        name: ssl-redirect
+        port:
+          name: use-annotation
