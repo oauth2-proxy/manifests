@@ -46,11 +46,19 @@ This version upgrades oauth2-proxy to v4.0.0. Please see the [changelog](https:/
 
 Version 2.0.0 of this chart introduces support for Kubernetes v1.16.x by way of addressing the deprecation of the Deployment object apiVersion `apps/v1beta2`.  See [the v1.16 API deprecations page](https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/) for more information.
 
-Due to [this issue](https://github.com/helm/helm/issues/6583) there may be errors performing a `helm upgrade`of this chart from versions earlier than 2.0.0.
+Due to [this issue](https://github.com/helm/helm/issues/6583) there may be errors performing a `helm upgrade` of this chart from versions earlier than 2.0.0.
 
 ### To 3.0.0
 
 Version 3.0.0 introduces support for [EKS IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) by adding a managed service account to the chart.  This is a breaking change since the service account is enabled by default.  To disable this behaviour set `serviceAccount.enabled` to `false`
+
+### To 4.0.0
+
+Version 4.0.0 adds support for the new Ingress apiVersion **networking.k8s.io/v1**.
+Therefore the `ingress.extraPaths` parameter needs to be updated to the new format.
+See the [v1.22 API deprecations guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#ingress-v122) for more information.
+
+For the same reason `service.port` was renamed to `service.portNumber`.
 
 ## Configuration
 
@@ -109,7 +117,7 @@ Parameter | Description | Default
 `readinessProbe.successThreshold` | number of successes | 1
 `replicaCount` | desired number of pods | `1`
 `resources` | pod resource requests & limits | `{}`
-`service.port` | port for the service | `80`
+`service.portNumber` | port number for the service | `80`
 `service.type` | type of service | `ClusterIP`
 `service.clusterIP` | cluster ip address | `nil`
 `service.loadBalancerIP` | ip of load balancer | `nil`
@@ -131,7 +139,7 @@ Parameter | Description | Default
 `sessionStorage.redis.sentinel.masterName` | Redis sentinel master name | `nil`
 `sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. redis://HOST[:PORT]) | `[]`
 `redis.enabled` | Enable the redis subchart deployment | `false`
-
+`checkDeprecation` | Enable deprecation checks | `true`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 

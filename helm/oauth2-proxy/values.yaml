@@ -73,7 +73,7 @@ service:
   # when service.type is LoadBalancer ...
   # loadBalancerIP: 198.51.100.40
   # loadBalancerSourceRanges: 203.0.113.0/24
-  port: 80
+  portNumber: 80
   annotations: {}
   # foo.io/bar: "true"
 
@@ -228,3 +228,6 @@ redis:
   # cluster:
   #   enabled: false
   #   slaveCount: 1
+
+# Enables apiVersion deprecation checks
+checkDeprecation: true
