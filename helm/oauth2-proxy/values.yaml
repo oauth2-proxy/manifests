@@ -91,6 +91,8 @@ ingress:
   path: /
   # Only used if API capabilities (networking.k8s.io/v1) allow it
   pathType: ImplementationSpecific
+  # define the ingress api version (e.g. networking.k8s.io/v1)
+  # apiVersion: networking.k8s.io/v1
   # Used to create an Ingress record.
   # hosts:
     # - chart-example.local
