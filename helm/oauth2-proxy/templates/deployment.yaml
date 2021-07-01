@@ -9,8 +9,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "oauth2-proxy.name" . }}
-      app.kubernetes.io/version: {{ template "oauth2-proxy.chart" . }}
+      {{- include "oauth2-proxy.selectorLabels" . | indent 6 }}
   template:
     metadata:
       annotations:

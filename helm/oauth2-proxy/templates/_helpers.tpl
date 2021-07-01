@@ -31,17 +31,29 @@ Create chart name and version as used by the chart label.
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{/* Generate basic labels */}}
+{{/*
+Generate basic labels
+*/}}
 {{- define "oauth2-proxy.labels" }}
-app.kubernetes.io/name: {{ template "oauth2-proxy.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+helm.sh/chart: {{ include "oauth2-proxy.chart" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app.kubernetes.io/version: {{ template "oauth2-proxy.chart" . }}
-app.kubernetes.io/part-of: {{ template "oauth2-proxy.name" . }} 
-helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }} 
+app.kubernetes.io/component: authentication proxy
+app.kubernetes.io/part-of: {{ template "oauth2-proxy.name" . }}
+{{- include "oauth2-proxy.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels | indent 4 }}
 {{- end }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "oauth2-proxy.selectorLabels" }}
+app.kubernetes.io/name: {{ include "oauth2-proxy.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*

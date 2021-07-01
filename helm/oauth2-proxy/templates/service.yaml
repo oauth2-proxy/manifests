@@ -33,5 +33,4 @@ spec:
       protocol: TCP
       name: {{ .Values.httpScheme }}
   selector:
-    app: {{ template "oauth2-proxy.name" . }}
-    app.kubernetes.io/version: {{ template "oauth2-proxy.chart" . }}
+    {{- include "oauth2-proxy.selectorLabels" . | indent 4 }}
