@@ -76,7 +76,7 @@ service:
   # when service.type is LoadBalancer ...
   # loadBalancerIP: 198.51.100.40
   # loadBalancerSourceRanges: 203.0.113.0/24
-  port: 80
+  portNumber: 80
   annotations: {}
   # foo.io/bar: "true"
 
@@ -92,15 +92,21 @@ serviceAccount:
 ingress:
   enabled: false
   path: /
+  # Only used if API capabilities (networking.k8s.io/v1) allow it
+  pathType: ImplementationSpecific
   # Used to create an Ingress record.
   # hosts:
     # - chart-example.local
   # Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
+  # Warning! The configuration is dependant on your current k8s API version capabilities (networking.k8s.io/v1)
   # extraPaths:
   # - path: /*
+  #   pathType: ImplementationSpecific
   #   backend:
-  #     serviceName: ssl-redirect
-  #     servicePort: use-annotation
+  #     service:
+  #       name: ssl-redirect
+  #       port:
+  #         name: use-annotation
   # annotations:
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
@@ -225,3 +231,6 @@ redis:
   # cluster:
   #   enabled: false
   #   slaveCount: 1
+
+# Enables apiVersion deprecation checks
+checkDeprecation: true

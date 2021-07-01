@@ -28,7 +28,7 @@ spec:
   type: {{ .Values.service.type }}
 {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.portNumber }}
       targetPort: {{ .Values.httpScheme }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
