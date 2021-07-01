@@ -9,6 +9,7 @@ metadata:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
   name: {{ template "oauth2-proxy.fullname" . }}
+  namespace: {{ .Release.Namespace }}
 data:
   oauth2_proxy.cfg: {{ .Values.config.configFile | quote }}
 {{- end }}
