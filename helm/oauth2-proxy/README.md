@@ -186,6 +186,7 @@ data:
   cert.pem: AB..==
   cert.key: CD..==
 ```
+
 ## Extra environment variable templating
 The extraEnv value supports the tpl function which evaluate strings as templates inside the deployment template.
 This is useful to pass a template string as a value to the chart's extra environment variables and to render external configuration environment values
