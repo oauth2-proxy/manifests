@@ -84,6 +84,7 @@ Parameter | Description | Default
 `config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
 `extraArgs` | key:value list of extra arguments to give the binary | `{}`
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
+`extraLabels` | key:value list of extra labels to add to all k8s objects | `{}`
 `extraVolumes` | list of extra volumes | `[]`
 `extraVolumeMounts` | list of extra volumeMounts | `[]`
 `htpasswdFile.enabled` | enable htpasswd-file option | `false`

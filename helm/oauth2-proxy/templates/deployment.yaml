@@ -2,17 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{ template "oauth2-proxy.name" . }}
-    chart: {{ template "oauth2-proxy.chart" . }}
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    {{- include "oauth2-proxy.labels" . | nindent 4 }}
   name: {{ template "oauth2-proxy.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "oauth2-proxy.name" . }}
-      release: {{ .Release.Name }}
+      {{- include "oauth2-proxy.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
@@ -28,8 +24,7 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
     {{- end }}
       labels:
-        app: {{ template "oauth2-proxy.name" . }}
-        release: "{{ .Release.Name }}"
+        {{- include "oauth2-proxy.labels" . | nindent 8 }}
       {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | indent 8 }}
       {{- end }}
@@ -204,7 +199,7 @@ spec:
 
 {{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "secret") }}
       - name: configaccesslist
-        secret: 
+        secret:
           items:
           - key: restricted_user_access
 {{- if .Values.authenticatedEmailsFile.template }}

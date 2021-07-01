@@ -3,15 +3,11 @@ apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
   labels:
-    app: {{ template "oauth2-proxy.name" . }}
-    chart: {{ template "oauth2-proxy.chart" . }}
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    {{- include "oauth2-proxy.labels" . | nindent 4 }}
   name: {{ template "oauth2-proxy.fullname" . }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "oauth2-proxy.name" . }}
-      release: {{ .Release.Name }}
+      {{- include "oauth2-proxy.selectorLabels" . | nindent 6 }}
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
 {{- end }}
