@@ -60,6 +60,10 @@ See the [v1.22 API deprecations guide](https://kubernetes.io/docs/reference/usin
 
 For the same reason `service.port` was renamed to `service.portNumber`.
 
+### To 5.0.0
+
+Version 5.0.0 introduces support for custom labels and refactor [Kubernetes recommended labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/). This is a breaking change.
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
