@@ -233,7 +233,7 @@ redis:
 checkDeprecation: true
 
 prometheus:
-  # Enables Prometheus metrics endpoint
+  # Enable Prometheus metrics endpoint
   enabled: true
   # Serve Prometheus metrics on this port
   metricsPort: 44180

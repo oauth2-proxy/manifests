@@ -141,6 +141,14 @@ Parameter | Description | Default
 `sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. redis://HOST[:PORT]) | `[]`
 `redis.enabled` | Enable the redis subchart deployment | `false`
 `checkDeprecation` | Enable deprecation checks | `true`
+`prometheus.enabled` | Enable Prometheus metrics endpoint | `true`
+`prometheus.metricsPort` | Serve Prometheus metrics on this port | `44180`
+`prometheus.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor monitoring | `false`
+`prometheus.servicemonitor.namespace` | Define namespace where to deploy the ServiceMonitor resource | `""`
+`prometheus.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`
+`prometheus.servicemonitor.interval` | Prometheus scrape interval | `60s`
+`prometheus.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
+`prometheus.servicemonitor.labels` | Add custom labels to ServiceMonitor | `{}`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
