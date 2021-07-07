@@ -242,7 +242,7 @@ prometheus:
     enabled: false
     # Define namespace where to deploy the ServiceMonitor resource
     namespace: ""
-    # Prometheus Instance definition 
+    # Prometheus Instance definition
     prometheusInstance: default
     # Prometheus scrape interval
     interval: 60s
