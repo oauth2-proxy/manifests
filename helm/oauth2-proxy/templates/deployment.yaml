@@ -48,6 +48,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
           - --http-address=0.0.0.0:4180
+        {{- if .Values.prometheus.enabled }}
+          - --metrics-address=0.0.0.0:44180
+        {{- end }}
         {{- if .Values.config.cookieName }}
           - --cookie-name={{ .Values.config.cookieName }}
         {{- end }}
@@ -136,6 +139,11 @@ spec:
           - containerPort: 4180
             name: {{ .Values.httpScheme }}
             protocol: TCP
+{{- if .Values.prometheus.enabled }}
+          - containerPort: 44180
+            protocol: TCP
+            name: metrics
+{{- end }}
 {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
           httpGet:
@@ -204,7 +212,7 @@ spec:
 
 {{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "secret") }}
       - name: configaccesslist
-        secret: 
+        secret:
           items:
           - key: restricted_user_access
 {{- if .Values.authenticatedEmailsFile.template }}

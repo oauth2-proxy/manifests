@@ -231,3 +231,22 @@ redis:
 
 # Enables apiVersion deprecation checks
 checkDeprecation: true
+
+prometheus:
+  # Enables Prometheus metrics endpoint
+  enabled: true
+  # Serve Prometheus metrics on this port
+  metricsPort: 44180
+  servicemonitor:
+    # Enable Prometheus Operator ServiceMonitor monitoring
+    enabled: false
+    # Define namespace where to deploy the ServiceMonitor resource
+    namespace: ""
+    # Prometheus Instance definition 
+    prometheusInstance: default
+    # Prometheus scrape interval
+    interval: 60s
+    # Prometheus scrape timeout
+    scrapeTimeout: 30s
+    # Add custom labels to ServiceMonitor
+    labels: {}
