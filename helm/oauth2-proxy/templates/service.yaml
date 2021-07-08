@@ -34,6 +34,12 @@ spec:
       targetPort: {{ .Values.httpScheme }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
+    {{- if and .Values.prometheus.enabled .Values.prometheus.metricsPort }}
+    - port: {{ .Values.prometheus.metricsPort }}
+      protocol: TCP
+      targetPort: metrics
+      name: metrics
+    {{- end }}
   selector:
     app: {{ template "oauth2-proxy.name" . }}
     release: {{ .Release.Name }}
