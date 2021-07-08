@@ -14,6 +14,6 @@ metadata:
 {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}-accesslist
 data:
-  restricted_user_access: {{ .Values.authenticatedEmailsFile.restricted_access | quote }}
+  {{ default "restricted_user_access" .Values.authenticatedEmailsFile.restrictedUserAccessKey }}: {{ .Values.authenticatedEmailsFile.restricted_access | quote }}
 {{- end }}
 {{- end }}

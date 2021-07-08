@@ -214,7 +214,7 @@ spec:
       - name: configaccesslist
         secret:
           items:
-          - key: restricted_user_access
+          - key: {{ default "restricted_user_access" .Values.authenticatedEmailsFile.restrictedUserAccessKey }}
 {{- if .Values.authenticatedEmailsFile.template }}
             path: {{ .Values.authenticatedEmailsFile.template }}
 {{- else }}
@@ -244,7 +244,7 @@ spec:
           name: {{ template "oauth2-proxy.fullname" . }}-accesslist
 {{- end }}
           items:
-          - key: restricted_user_access
+          - key: {{ default "restricted_user_access" .Values.authenticatedEmailsFile.restrictedUserAccessKey }}
 {{- if .Values.authenticatedEmailsFile.template }}
             path: {{ .Values.authenticatedEmailsFile.template }}
 {{- else }}
