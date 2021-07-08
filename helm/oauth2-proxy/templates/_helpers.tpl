@@ -37,7 +37,7 @@ Generate basic labels
 {{- define "oauth2-proxy.labels" }}
 helm.sh/chart: {{ include "oauth2-proxy.chart" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app.kubernetes.io/component: authentication proxy
+app.kubernetes.io/component: authentication-proxy
 app.kubernetes.io/part-of: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
