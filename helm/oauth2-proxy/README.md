@@ -74,6 +74,7 @@ Parameter | Description | Default
 `authenticatedEmailsFile.enabled` | Enables authorize individual email addresses | `false`
 `authenticatedEmailsFile.persistence` | Defines how the email addresses file will be projected, via a configmap or secret | `configmap`
 `authenticatedEmailsFile.template` | Name of the configmap or secret that is handled outside of that chart | `""`
+`authenticatedEmailsFile.restrictedUserAccessKey` | The key of the configmap or secret that holds the email addresses list | `""`
 `authenticatedEmailsFile.restricted_access` | [email addresses](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider#email-authentication) list config | `""`
 `authenticatedEmailsFile.annotations` | configmap or secret annotations | `nil`
 `config.clientID` | oauth client ID | `""`
