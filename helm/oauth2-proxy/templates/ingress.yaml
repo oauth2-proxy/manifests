@@ -27,9 +27,31 @@ metadata:
 {{- end }}
 spec:
   rules:
+    {{- if .Values.ingress.hosts }}
     {{- range $host := .Values.ingress.hosts }}
     - host: {{ $host | quote }}
       http:
+        paths:
+{{- if $extraPaths }}
+{{ toYaml $extraPaths | indent 10 }}
+{{- end }}
+          {{- if $apiV1 }}
+          - path: {{ $ingressPath }}
+            pathType: {{ $ingressPathType }}
+            backend:
+              service:
+                name: {{ $serviceName }}
+                port:
+                  number: {{ $servicePort }}
+          {{- else }}
+          - path: {{ $ingressPath }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+          {{- end }}
+    {{- end -}}
+    {{- else }}
+    - http:
         paths:
 {{- if $extraPaths }}
 {{ toYaml $extraPaths | indent 10 }}
@@ -54,3 +76,4 @@ spec:
 {{ toYaml .Values.ingress.tls | indent 4 }}
   {{- end -}}
 {{- end -}}
+
