@@ -166,8 +166,8 @@ Use ```values.yaml``` like:
 ```yaml
 ...
 extraArgs:
-  tls-cert: /path/to/cert.pem
-  tls-key: /path/to/cert.key
+  tls-cert-file: /path/to/cert.pem
+  tls-key-file: /path/to/cert.key
 
 extraVolumes:
   - name: ssl-cert
