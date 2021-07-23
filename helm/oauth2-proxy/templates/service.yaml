@@ -34,8 +34,8 @@ spec:
       targetPort: {{ .Values.httpScheme }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
-    {{- if and .Values.prometheus.enabled .Values.prometheus.metricsPort }}
-    - port: {{ .Values.prometheus.metricsPort }}
+    {{- if and .Values.metrics.enabled .Values.metrics.port }}
+    - port: {{ .Values.metrics.port }}
       protocol: TCP
       targetPort: metrics
       name: metrics

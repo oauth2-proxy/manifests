@@ -1,10 +1,10 @@
-{{- if and .Values.prometheus.enabled .Values.prometheus.servicemonitor.enabled }}
+{{- if and .Values.metrics.enabled .Values.metrics.servicemonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ template "oauth2-proxy.fullname" . }}
-{{- if .Values.prometheus.servicemonitor.namespace }}
-  namespace: {{ .Values.prometheus.servicemonitor.namespace }}
+{{- if .Values.metrics.servicemonitor.namespace }}
+  namespace: {{ .Values.metrics.servicemonitor.namespace }}
 {{- else }}
   namespace: {{ .Release.Namespace | quote }}
 {{- end }}
@@ -13,9 +13,9 @@ metadata:
     chart: {{ template "oauth2-proxy.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    prometheus: {{ .Values.prometheus.servicemonitor.prometheusInstance }}
-{{- if .Values.prometheus.servicemonitor.labels }}
-{{ toYaml .Values.prometheus.servicemonitor.labels | indent 4}}
+    prometheus: {{ .Values.metrics.servicemonitor.prometheusInstance }}
+{{- if .Values.metrics.servicemonitor.labels }}
+{{ toYaml .Values.metrics.servicemonitor.labels | indent 4}}
 {{- end }}
 spec:
   jobLabel: {{ template "oauth2-proxy.fullname" . }}
@@ -29,6 +29,6 @@ spec:
   endpoints:
   - port: metrics
     path: "/metrics"
-    interval: {{ .Values.prometheus.servicemonitor.interval }}
-    scrapeTimeout: {{ .Values.prometheus.servicemonitor.scrapeTimeout }}
+    interval: {{ .Values.metrics.servicemonitor.interval }}
+    scrapeTimeout: {{ .Values.metrics.servicemonitor.scrapeTimeout }}
 {{- end }}
