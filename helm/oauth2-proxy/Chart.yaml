@@ -1,17 +1,17 @@
 name: oauth2-proxy
-version: 4.2.0
+version: 4.2.1
 apiVersion: v2
 appVersion: 7.1.3
 home: https://oauth2-proxy.github.io/oauth2-proxy/
 description: A reverse proxy that provides authentication with Google, Github or other providers
 keywords:
-- kubernetes
-- oauth
-- oauth2
-- authentication
-- google
-- github
-- redis
+  - kubernetes
+  - oauth
+  - oauth2
+  - authentication
+  - google
+  - github
+  - redis
 dependencies:
   - name: redis
     version: ~10.6.0
@@ -19,17 +19,17 @@ dependencies:
     alias: redis
     condition: redis.enabled
 sources:
-- https://github.com/oauth2-proxy/oauth2-proxy
-- https://github.com/oauth2-proxy/manifests
+  - https://github.com/oauth2-proxy/oauth2-proxy
+  - https://github.com/oauth2-proxy/manifests
 maintainers:
-- name: desaintmartin
-  email: cedric@desaintmartin.fr
-- name: tlawrie
-- name: NickMeves
-  email: nicholas.meves@gmail.com
-- name: JoelSpeed
-  email: joel.speed@hotmail.co.uk
-- name: pierluigilenoci
-  email: pierluigi.lenoci@gmail.com
+  - name: desaintmartin
+    email: cedric@desaintmartin.fr
+  - name: tlawrie
+  - name: NickMeves
+    email: nicholas.meves@gmail.com
+  - name: JoelSpeed
+    email: joel.speed@hotmail.co.uk
+  - name: pierluigilenoci
+    email: pierluigi.lenoci@gmail.com
 engine: gotpl
 kubeVersion: ">=1.9.0-0"
