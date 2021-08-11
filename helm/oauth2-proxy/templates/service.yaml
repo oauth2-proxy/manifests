@@ -32,5 +32,11 @@ spec:
       targetPort: {{ .Values.httpScheme }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
+    {{- if and .Values.metrics.enabled .Values.metrics.port }}
+    - port: {{ .Values.metrics.port }}
+      protocol: TCP
+      targetPort: metrics
+      name: metrics
+    {{- end }}
   selector:
     {{- include "oauth2-proxy.selectorLabels" . | indent 4 }}

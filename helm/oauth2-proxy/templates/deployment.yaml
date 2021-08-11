@@ -45,6 +45,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
           - --http-address=0.0.0.0:4180
+        {{- if .Values.metrics.enabled }}
+          - --metrics-address=0.0.0.0:44180
+        {{- end }}
         {{- if .Values.config.cookieName }}
           - --cookie-name={{ .Values.config.cookieName }}
         {{- end }}
@@ -133,6 +136,11 @@ spec:
           - containerPort: 4180
             name: {{ .Values.httpScheme }}
             protocol: TCP
+{{- if .Values.metrics.enabled }}
+          - containerPort: 44180
+            protocol: TCP
+            name: metrics
+{{- end }}
 {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
           httpGet:

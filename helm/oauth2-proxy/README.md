@@ -79,7 +79,7 @@ Parameter | Description | Default
 `authenticatedEmailsFile.annotations` | configmap or secret annotations | `nil`
 `config.clientID` | oauth client ID | `""`
 `config.clientSecret` | oauth client secret | `""`
-`config.cookieSecret` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64` | `""`
+`config.cookieSecret` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 \| head -c 32 \| base64` | `""`
 `config.existingSecret` | existing Kubernetes secret to use for OAuth2 credentials. See [secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/secret.yaml) for the required values | `nil`
 `config.configFile` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings not overridable via environment nor command line | `""`
 `config.existingConfig` | existing Kubernetes configmap to use for the configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap.yaml) for the required values | `nil`
@@ -147,6 +147,14 @@ Parameter | Description | Default
 `sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. redis://HOST[:PORT]) | `[]`
 `redis.enabled` | Enable the redis subchart deployment | `false`
 `checkDeprecation` | Enable deprecation checks | `true`
+`metrics.enabled` | Enable Prometheus metrics endpoint | `true`
+`metrics.port` | Serve Prometheus metrics on this port | `44180`
+`metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
+`metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
+`metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`
+`metrics.servicemonitor.interval` | Prometheus scrape interval | `60s`
+`metrics.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
+`metrics.servicemonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
@@ -171,8 +179,8 @@ Use ```values.yaml``` like:
 ```yaml
 ...
 extraArgs:
-  tls-cert: /path/to/cert.pem
-  tls-key: /path/to/cert.key
+  tls-cert-file: /path/to/cert.pem
+  tls-key-file: /path/to/cert.key
 
 extraVolumes:
   - name: ssl-cert
