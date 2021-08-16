@@ -44,7 +44,7 @@ app.kubernetes.io/part-of: {{ template "oauth2-proxy.name" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 {{- if .Values.customLabels }}
-{{ toYaml .Values.customLabels | indent 4 }}
+{{ toYaml .Values.customLabels }}
 {{- end }}
 {{- end }}
 
