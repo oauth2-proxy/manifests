@@ -62,7 +62,13 @@ For the same reason `service.port` was renamed to `service.portNumber`.
 
 ### To 5.0.0
 
-Version 5.0.0 introduces support for custom labels and refactor [Kubernetes recommended labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/). This is a breaking change.
+Version 5.0.0 introduces support for custom labels and refactor [Kubernetes recommended labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/). This is a breaking change because many labels of all resources need to be updated to stay consistent.
+
+In order to upgrade, delete the Deployment before upgrading:
+
+```bash
+kubectl delete deployment --cascade=false my-release-oauth2-proxy
+```
 
 ## Configuration
 
