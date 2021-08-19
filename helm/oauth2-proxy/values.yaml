@@ -199,6 +199,9 @@ htpasswdFile:
   # example:
   # entries:
   #  - testuser:{SHA}EWhzdhgoYJWy0z2gyzhRYlN9DSiv
+  entriesPlain: []
+  #  - username: testuser
+  #    password: passpass
 
 # Configure the session storage type, between cookie and redis
 sessionStorage:

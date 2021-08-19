@@ -89,6 +89,7 @@ Parameter | Description | Default
 `extraVolumeMounts` | list of extra volumeMounts | `[]`
 `htpasswdFile.enabled` | enable htpasswd-file option | `false`
 `htpasswdFile.entries` | list of [SHA encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview#command-line-options) | `{}`
+`htpasswdFile.entriesPlain` | list of plain usernames / passwords. See [section below](#htpasswd---manage-credentials-for-basic-authentication)| `[]`
 `htpasswdFile.existingSecret` | existing Kubernetes secret to use for OAuth2 htpasswd file | `""`
 `httpScheme` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. | `http`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
@@ -211,3 +212,27 @@ extraEnv:
   - name: TEST_ENV_VAR_2
     value: '{{ .Values.tplValue }}'
 ```
+
+## htpasswd - Manage credentials for basic authentication
+
+Oauth2-proxy additionally let's you authenticate against a htpasswd file.
+There are two options to provide basic authentication credentials:
+
+1. Generate a bcrypt encrypted htpasswd string with `htpasswd -B` and provide it as a list of strings:
+
+   ```yaml
+   htpasswdFile:
+     enabled: true
+     entries:
+       - testuser:$2y$05$FKpfuCT1jEZvR6MsvqHnQOOxNbnm63XYQVyfeoa6GrEGZZZFmZJjy
+   ```
+
+2. Provide usernames and passwords as a list of dictionaries and let helm calculate the bcrypt hashes
+
+   ```yaml
+   htpasswdFile:
+     enabled: true
+     entriesPlain:
+       - username: testuser
+         password: testpass
+   ```
