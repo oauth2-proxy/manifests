@@ -194,7 +194,7 @@ httpScheme: http
 htpasswdFile:
   enabled: false
   existingSecret: ""
-  entries: {}
+  entries: []
   # One row for each user
   # example:
   # entries:
