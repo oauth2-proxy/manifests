@@ -198,7 +198,7 @@ htpasswdFile:
   # One row for each user
   # example:
   # entries:
-  #  - testuser:{SHA}EWhzdhgoYJWy0z2gyzhRYlN9DSiv
+  #  - testuser:$2y$05$FKpfuCT1jEZvR6MsvqHnQOOxNbnm63XYQVyfeoa6GrEGZZZFmZJjy
   entriesPlain: []
   #  - username: testuser
   #    password: passpass
