@@ -87,6 +87,9 @@ Parameter | Description | Default
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
 `extraVolumes` | list of extra volumes | `[]`
 `extraVolumeMounts` | list of extra volumeMounts | `[]`
+`hostAliases`  | provide extra ip:hostname pair for network name resolution.
+`hostAliases.ip`  | `ip` address `hostAliases.hostname` should resolve to.
+`hostAliases.hostname`  | `hostname` associated to `hostAliases.ip`.
 `htpasswdFile.enabled` | enable htpasswd-file option | `false`
 `htpasswdFile.entries` | list of [SHA encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview#command-line-options) | `{}`
 `htpasswdFile.existingSecret` | existing Kubernetes secret to use for OAuth2 htpasswd file | `""`
