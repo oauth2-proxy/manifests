@@ -138,7 +138,8 @@ extraVolumeMounts: []
 priorityClassName: ""
 
 # Host aliases, useful when working "on premise" where (public) DNS resolver does not know about my hosts.
-# hostAliases:
+hostAlias:
+  enabled: false
   # ip: "10.xxx.xxx.xxx"
   # hostname: "auth.example.com"
 

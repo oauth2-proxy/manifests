@@ -42,11 +42,11 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ template "oauth2-proxy.serviceAccountName" . }}
-      {{- if .Values.hostAliases.ip }}
+      {{- if .Values.hostAlias.enabled }}
       hostAliases:
-        - ip: {{ .Values.hostAliases.ip }}
+        - ip: {{ .Values.hostAlias.ip }}
           hostnames:
-          - {{ .Values.hostAliases.hostname }}
+          - {{ .Values.hostAlias.hostname }}
       {{- end }}
       containers:
       - name: {{ .Chart.Name }}
