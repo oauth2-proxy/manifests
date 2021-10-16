@@ -67,8 +67,16 @@ Version 5.0.0 introduces support for custom labels and refactor [Kubernetes reco
 In order to upgrade, delete the Deployment before upgrading:
 
 ```bash
-kubectl delete deployment --cascade=false my-release-oauth2-proxy
+kubectl delete deployment my-release-oauth2-proxy
 ```
+
+This will introduce a slight downtime.
+
+For users who don't want downtime, you can perform these actions:
+
+- Perform a non-cascading removal of the deployment that keeps the pods running
+- Add new labels to pods
+- Perform `helm upgrade`
 
 ## Configuration
 
