@@ -1,5 +1,7 @@
 # Oauth client configuration specifics
 config:
+  # Add config annotations
+  annotations: {}
   # OAuth client ID
   clientID: "XXXXXXX"
   # OAuth client secret
