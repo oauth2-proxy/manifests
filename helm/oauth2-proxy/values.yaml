@@ -33,7 +33,7 @@ config:
 
 image:
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
-  tag: "v7.1.3"
+  tag: "v7.2.0"
   pullPolicy: "IfNotPresent"
 
 # Optionally specify an array of imagePullSecrets.
