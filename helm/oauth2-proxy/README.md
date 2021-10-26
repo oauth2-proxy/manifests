@@ -46,11 +46,37 @@ This version upgrades oauth2-proxy to v4.0.0. Please see the [changelog](https:/
 
 Version 2.0.0 of this chart introduces support for Kubernetes v1.16.x by way of addressing the deprecation of the Deployment object apiVersion `apps/v1beta2`.  See [the v1.16 API deprecations page](https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/) for more information.
 
-Due to [this issue](https://github.com/helm/helm/issues/6583) there may be errors performing a `helm upgrade`of this chart from versions earlier than 2.0.0.
+Due to [this issue](https://github.com/helm/helm/issues/6583) there may be errors performing a `helm upgrade` of this chart from versions earlier than 2.0.0.
 
 ### To 3.0.0
 
 Version 3.0.0 introduces support for [EKS IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) by adding a managed service account to the chart.  This is a breaking change since the service account is enabled by default.  To disable this behaviour set `serviceAccount.enabled` to `false`
+
+### To 4.0.0
+
+Version 4.0.0 adds support for the new Ingress apiVersion **networking.k8s.io/v1**.
+Therefore the `ingress.extraPaths` parameter needs to be updated to the new format.
+See the [v1.22 API deprecations guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#ingress-v122) for more information.
+
+For the same reason `service.port` was renamed to `service.portNumber`.
+
+### To 5.0.0
+
+Version 5.0.0 introduces support for custom labels and refactor [Kubernetes recommended labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/). This is a breaking change because many labels of all resources need to be updated to stay consistent.
+
+In order to upgrade, delete the Deployment before upgrading:
+
+```bash
+kubectl delete deployment my-release-oauth2-proxy
+```
+
+This will introduce a slight downtime.
+
+For users who don't want downtime, you can perform these actions:
+
+- Perform a non-cascading removal of the deployment that keeps the pods running
+- Add new labels to pods
+- Perform `helm upgrade`
 
 ## Configuration
 
@@ -62,15 +88,17 @@ Parameter | Description | Default
 `authenticatedEmailsFile.enabled` | Enables authorize individual email addresses | `false`
 `authenticatedEmailsFile.persistence` | Defines how the email addresses file will be projected, via a configmap or secret | `configmap`
 `authenticatedEmailsFile.template` | Name of the configmap or secret that is handled outside of that chart | `""`
+`authenticatedEmailsFile.restrictedUserAccessKey` | The key of the configmap or secret that holds the email addresses list | `""`
 `authenticatedEmailsFile.restricted_access` | [email addresses](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider#email-authentication) list config | `""`
 `authenticatedEmailsFile.annotations` | configmap or secret annotations | `nil`
 `config.clientID` | oauth client ID | `""`
 `config.clientSecret` | oauth client secret | `""`
-`config.cookieSecret` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64` | `""`
+`config.cookieSecret` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 \| head -c 32 \| base64` | `""`
 `config.existingSecret` | existing Kubernetes secret to use for OAuth2 credentials. See [secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/secret.yaml) for the required values | `nil`
 `config.configFile` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings not overridable via environment nor command line | `""`
 `config.existingConfig` | existing Kubernetes configmap to use for the configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap.yaml) for the required values | `nil`
 `config.cookieName` | The name of the cookie that oauth2-proxy will create. | `""`
+`customLabels` | Custom labels to add into metadata | `{}` |
 `config.google.adminEmail` | user impersonated by the google service account | `""`
 `config.google.serviceAccountJson` | google service account json contents | `""`
 `config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
@@ -84,10 +112,12 @@ Parameter | Description | Default
 `httpScheme` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. | `http`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
 `image.repository` | Image repository | `quay.io/oauth2-proxy/oauth2-proxy`
-`image.tag` | Image tag | `v7.1.3`
+`image.tag` | Image tag | `v7.2.0`
 `imagePullSecrets` | Specify image pull secrets | `nil` (does not add image pull secrets to deployed pods)
 `ingress.enabled` | Enable Ingress | `false`
+`ingress.className` | name referencing IngressClass | `nil`
 `ingress.path` | Ingress accepted path | `/`
+`ingress.pathType` | Ingress [path type](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types) | `ImplementationSpecific`
 `ingress.extraPaths` | Ingress extra paths to prepend to every host configuration. Useful when configuring [custom actions with AWS ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#actions). | `[]`
 `ingress.annotations` | Ingress annotations | `nil`
 `ingress.hosts` | Ingress accepted hostnames | `nil`
@@ -109,7 +139,7 @@ Parameter | Description | Default
 `readinessProbe.successThreshold` | number of successes | 1
 `replicaCount` | desired number of pods | `1`
 `resources` | pod resource requests & limits | `{}`
-`service.port` | port for the service | `80`
+`service.portNumber` | port number for the service | `80`
 `service.type` | type of service | `ClusterIP`
 `service.clusterIP` | cluster ip address | `nil`
 `service.loadBalancerIP` | ip of load balancer | `nil`
@@ -131,7 +161,15 @@ Parameter | Description | Default
 `sessionStorage.redis.sentinel.masterName` | Redis sentinel master name | `nil`
 `sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. redis://HOST[:PORT]) | `[]`
 `redis.enabled` | Enable the redis subchart deployment | `false`
-
+`checkDeprecation` | Enable deprecation checks | `true`
+`metrics.enabled` | Enable Prometheus metrics endpoint | `true`
+`metrics.port` | Serve Prometheus metrics on this port | `44180`
+`metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
+`metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
+`metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`
+`metrics.servicemonitor.interval` | Prometheus scrape interval | `60s`
+`metrics.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
+`metrics.servicemonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
@@ -156,8 +194,8 @@ Use ```values.yaml``` like:
 ```yaml
 ...
 extraArgs:
-  tls-cert: /path/to/cert.pem
-  tls-key: /path/to/cert.key
+  tls-cert-file: /path/to/cert.pem
+  tls-key-file: /path/to/cert.key
 
 extraVolumes:
   - name: ssl-cert
@@ -177,4 +215,19 @@ With a secret called `my-ssl-secret`:
 data:
   cert.pem: AB..==
   cert.key: CD..==
+```
+
+## Extra environment variable templating
+The extraEnv value supports the tpl function which evaluate strings as templates inside the deployment template.
+This is useful to pass a template string as a value to the chart's extra environment variables and to render external configuration environment values
+
+
+```yaml
+...
+tplValue: "This is a test value for the tpl function"
+extraEnv:
+  - name: TEST_ENV_VAR_1
+    value: test_value_1
+  - name: TEST_ENV_VAR_2
+    value: '{{ .Values.tplValue }}'
 ```

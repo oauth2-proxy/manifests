@@ -1,5 +1,7 @@
 # Oauth client configuration specifics
 config:
+  # Add config annotations
+  annotations: {}
   # OAuth client ID
   clientID: "XXXXXXX"
   # OAuth client secret
@@ -33,7 +35,7 @@ config:
 
 image:
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
-  tag: "v7.1.3"
+  tag: "v7.2.0"
   pullPolicy: "IfNotPresent"
 
 # Optionally specify an array of imagePullSecrets.
@@ -45,6 +47,9 @@ image:
 extraArgs: {}
 extraEnv: []
 
+# -- Custom labels to add into metadata
+customLabels: {}
+
 # To authorize individual email addresses
 # That is part of extraArgs but since this needs special treatment we need to do a separate section
 authenticatedEmailsFile:
@@ -53,8 +58,12 @@ authenticatedEmailsFile:
   persistence: configmap
   # template is the name of the configmap what contains the email user list but has been configured without this chart.
   # It's a simpler way to maintain only one configmap (user list) instead changing it for each oauth2-proxy service.
-  # Be aware the value name in the extern config map in data needs to be named to "restricted_user_access".
+  # Be aware the value name in the extern config map in data needs to be named to "restricted_user_access" or to the
+  # provided value in restrictedUserAccessKey field.
   template: ""
+  # The configmap/secret key under which the list of email access is stored
+  # Defaults to "restricted_user_access" if not filled-in, but can be overridden to allow flexibility
+  restrictedUserAccessKey: ""
   # One email per line
   # example:
   # restricted_access: |-
@@ -73,7 +82,7 @@ service:
   # when service.type is LoadBalancer ...
   # loadBalancerIP: 198.51.100.40
   # loadBalancerSourceRanges: 203.0.113.0/24
-  port: 80
+  portNumber: 80
   annotations: {}
   # foo.io/bar: "true"
 
@@ -88,16 +97,23 @@ serviceAccount:
 
 ingress:
   enabled: false
+  # className: nginx
   path: /
+  # Only used if API capabilities (networking.k8s.io/v1) allow it
+  pathType: ImplementationSpecific
   # Used to create an Ingress record.
   # hosts:
     # - chart-example.local
   # Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
+  # Warning! The configuration is dependant on your current k8s API version capabilities (networking.k8s.io/v1)
   # extraPaths:
   # - path: /*
+  #   pathType: ImplementationSpecific
   #   backend:
-  #     serviceName: ssl-redirect
-  #     servicePort: use-annotation
+  #     service:
+  #       name: ssl-redirect
+  #       port:
+  #         name: use-annotation
   # annotations:
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
@@ -222,3 +238,25 @@ redis:
   # cluster:
   #   enabled: false
   #   slaveCount: 1
+
+# Enables apiVersion deprecation checks
+checkDeprecation: true
+
+metrics:
+  # Enable Prometheus metrics endpoint
+  enabled: true
+  # Serve Prometheus metrics on this port
+  port: 44180
+  servicemonitor:
+    # Enable Prometheus Operator ServiceMonitor
+    enabled: false
+    # Define the namespace where to deploy the ServiceMonitor resource
+    namespace: ""
+    # Prometheus Instance definition
+    prometheusInstance: default
+    # Prometheus scrape interval
+    interval: 60s
+    # Prometheus scrape timeout
+    scrapeTimeout: 30s
+    # Add custom labels to the ServiceMonitor resource
+    labels: {}

@@ -3,9 +3,7 @@ kind: Service
 metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
-    chart: {{ template "oauth2-proxy.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{- include "oauth2-proxy.labels" . | indent 4 }}
   name: {{ template "oauth2-proxy.fullname" . }}
 {{- if .Values.service.annotations }}
   annotations:
@@ -30,10 +28,15 @@ spec:
   type: {{ .Values.service.type }}
 {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.portNumber }}
       targetPort: {{ .Values.httpScheme }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
+    {{- if and .Values.metrics.enabled .Values.metrics.port }}
+    - port: {{ .Values.metrics.port }}
+      protocol: TCP
+      targetPort: metrics
+      name: metrics
+    {{- end }}
   selector:
-    app: {{ template "oauth2-proxy.name" . }}
-    release: {{ .Release.Name }}
+    {{- include "oauth2-proxy.selectorLabels" . | indent 4 }}
