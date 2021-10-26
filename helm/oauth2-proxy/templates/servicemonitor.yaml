@@ -10,10 +10,7 @@ metadata:
 {{- end }}
   labels:
     app: {{ template "oauth2-proxy.name" . }}
-    chart: {{ template "oauth2-proxy.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-    prometheus: {{ .Values.metrics.servicemonitor.prometheusInstance }}
+{{- include "oauth2-proxy.labels" . | indent 4 }}
 {{- if .Values.metrics.servicemonitor.labels }}
 {{ toYaml .Values.metrics.servicemonitor.labels | indent 4}}
 {{- end }}
