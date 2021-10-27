@@ -249,7 +249,7 @@ metrics:
   port: 44180
   servicemonitor:
     # Enable Prometheus Operator ServiceMonitor
-    enabled: true
+    enabled: false
     # Define the namespace where to deploy the ServiceMonitor resource
     namespace: ""
     # Prometheus Instance definition
