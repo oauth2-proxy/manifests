@@ -249,7 +249,7 @@ metrics:
   port: 44180
   servicemonitor:
     # Enable Prometheus Operator ServiceMonitor
-    enabled: false
+    enabled: true
     # Define the namespace where to deploy the ServiceMonitor resource
     namespace: ""
     # Prometheus Instance definition
@@ -259,4 +259,5 @@ metrics:
     # Prometheus scrape timeout
     scrapeTimeout: 30s
     # Add custom labels to the ServiceMonitor resource
-    labels: {}
+    labels:
+      prometheus: default
