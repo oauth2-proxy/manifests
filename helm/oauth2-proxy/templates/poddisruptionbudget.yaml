@@ -9,7 +9,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{ template "oauth2-proxy.name" . }}
-      release: {{ .Release.Name }}
+      {{- include "oauth2-proxy.selectorLabels" . | indent 6 }}
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
 {{- end }}
