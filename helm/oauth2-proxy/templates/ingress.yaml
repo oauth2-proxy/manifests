@@ -28,10 +28,10 @@ spec:
 {{ toYaml $extraPaths | indent 10 }}
 {{- end }}
           - path: {{ $ingressPath }}
-            {{- if eq "true" (include "ingress.supportsPathType" .) }}
+            {{- if eq "true" ( include "ingress.supportsPathType" $ ) }}
             pathType: {{ $ingressPathType }}
             {{- end }}
-            backend: {{- include "ingress.backend" (dict "serviceName" $serviceName "servicePort" $servicePort "context" $)  | nindent 14 }}
+            backend: {{- include "ingress.backend" ( dict "serviceName" $serviceName "servicePort" $servicePort "context" $ )  | nindent 14 }}
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:

@@ -39,7 +39,7 @@ service:
   port:
     {{- if typeIs "string" .servicePort }}
     name: {{ .servicePort }}
-    {{- else if typeIs "int" .servicePort }}
+    {{- else if or ( typeIs "int" .servicePort ) ( typeIs "float64" .servicePort ) }}
     number: {{ .servicePort }}
     {{- end }}
 {{- end -}}
