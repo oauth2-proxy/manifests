@@ -3,16 +3,13 @@ kind: Deployment
 metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
-    chart: {{ template "oauth2-proxy.chart" . }}
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+{{- include "oauth2-proxy.labels" . | indent 4 }}
   name: {{ template "oauth2-proxy.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "oauth2-proxy.name" . }}
-      release: {{ .Release.Name }}
+      {{- include "oauth2-proxy.selectorLabels" . | indent 6 }}
   template:
     metadata:
       annotations:
@@ -29,7 +26,7 @@ spec:
     {{- end }}
       labels:
         app: {{ template "oauth2-proxy.name" . }}
-        release: "{{ .Release.Name }}"
+        {{- include "oauth2-proxy.labels" . | indent 8 }}
       {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | indent 8 }}
       {{- end }}

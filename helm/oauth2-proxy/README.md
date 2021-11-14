@@ -60,6 +60,24 @@ See the [v1.22 API deprecations guide](https://kubernetes.io/docs/reference/usin
 
 For the same reason `service.port` was renamed to `service.portNumber`.
 
+### To 5.0.0
+
+Version 5.0.0 introduces support for custom labels and refactor [Kubernetes recommended labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/). This is a breaking change because many labels of all resources need to be updated to stay consistent.
+
+In order to upgrade, delete the Deployment before upgrading:
+
+```bash
+kubectl delete deployment my-release-oauth2-proxy
+```
+
+This will introduce a slight downtime.
+
+For users who don't want downtime, you can perform these actions:
+
+- Perform a non-cascading removal of the deployment that keeps the pods running
+- Add new labels to pods
+- Perform `helm upgrade`
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
@@ -80,6 +98,7 @@ Parameter | Description | Default
 `config.configFile` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings not overridable via environment nor command line | `""`
 `config.existingConfig` | existing Kubernetes configmap to use for the configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap.yaml) for the required values | `nil`
 `config.cookieName` | The name of the cookie that oauth2-proxy will create. | `""`
+`customLabels` | Custom labels to add into metadata | `{}` |
 `config.google.adminEmail` | user impersonated by the google service account | `""`
 `config.google.serviceAccountJson` | google service account json contents | `""`
 `config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
@@ -96,7 +115,7 @@ Parameter | Description | Default
 `httpScheme` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. | `http`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
 `image.repository` | Image repository | `quay.io/oauth2-proxy/oauth2-proxy`
-`image.tag` | Image tag | `v7.1.3`
+`image.tag` | Image tag | `v7.2.0`
 `imagePullSecrets` | Specify image pull secrets | `nil` (does not add image pull secrets to deployed pods)
 `ingress.enabled` | Enable Ingress | `false`
 `ingress.className` | name referencing IngressClass | `nil`
