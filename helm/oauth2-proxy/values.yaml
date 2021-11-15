@@ -259,5 +259,5 @@ metrics:
     # Prometheus scrape timeout
     scrapeTimeout: 30s
     # Add custom labels to the ServiceMonitor resource
-    labels:
-      prometheus: default
+    labels: {}
+      # prometheus: default
