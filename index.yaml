@@ -3,6 +3,44 @@ entries:
   oauth2-proxy:
   - apiVersion: v2
     appVersion: 7.2.0
+    created: "2021-11-17T11:31:28.098521805Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~10.6.0
+    description: A reverse proxy that provides authentication with Google, Github or other providers
+    digest: 1cad21a1226d4acf77c14f4085ab104a6b03ca04e2aabfe3217c5d91030158ca
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-5.0.4/oauth2-proxy-5.0.4.tgz
+    version: 5.0.4
+  - apiVersion: v2
+    appVersion: 7.2.0
     created: "2021-11-15T10:27:53.688157871Z"
     dependencies:
     - alias: redis
