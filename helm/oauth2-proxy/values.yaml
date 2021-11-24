@@ -1,3 +1,8 @@
+# Force the target Kubernetes version (it uses Helm `.Capabilities` if not set).
+# This is especially useful for `helm template` as capabilities are always empty
+# due to the fact that it doesn't query an actual cluster
+kubeVersion:
+
 # Oauth client configuration specifics
 config:
   # Add config annotations
