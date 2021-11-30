@@ -19,8 +19,7 @@ spec:
   jobLabel: {{ template "oauth2-proxy.fullname" . }}
   selector:
     matchLabels:
-      app: {{ template "oauth2-proxy.name" . }}
-      release: {{ .Release.Name }}
+      {{- include "oauth2-proxy.selectorLabels" . | indent 6 }}
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
