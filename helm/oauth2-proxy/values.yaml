@@ -19,7 +19,7 @@ config:
   cookieSecret: "XXXXXXXXXXXXXXXX"
   # The name of the cookie that oauth2-proxy will create
   # If left empty, it will default to the release name
-  cookieName: ""
+  cookieName: {}
   google: {}
     # adminEmail: xxxx
     # serviceAccountJson: xxxx
@@ -65,10 +65,10 @@ authenticatedEmailsFile:
   # It's a simpler way to maintain only one configmap (user list) instead changing it for each oauth2-proxy service.
   # Be aware the value name in the extern config map in data needs to be named to "restricted_user_access" or to the
   # provided value in restrictedUserAccessKey field.
-  template: ""
+  template: {}
   # The configmap/secret key under which the list of email access is stored
   # Defaults to "restricted_user_access" if not filled-in, but can be overridden to allow flexibility
-  restrictedUserAccessKey: ""
+  restrictedUserAccessKey: {}
   # One email per line
   # example:
   # restricted_access: |-
@@ -76,7 +76,7 @@ authenticatedEmailsFile:
   #   name2@domain
   # If you override the config with restricted_access it will configure a user list within this chart what takes care of the
   # config map resource.
-  restricted_access: ""
+  restricted_access: {}
   annotations: {}
   # helm.sh/resource-policy: keep
 
@@ -145,7 +145,7 @@ extraVolumeMounts: []
   # - mountPath: /etc/ssl/certs/
   #   name: ca-bundle-cert
 
-priorityClassName: ""
+priorityClassName: {}
 
 # Affinity for pod assignment
 # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
@@ -204,7 +204,7 @@ httpScheme: http
 # Alternatively supply an existing secret which contains the required information.
 htpasswdFile:
   enabled: false
-  existingSecret: ""
+  existingSecret: {}
   entries: {}
   # One row for each user
   # example:
@@ -217,19 +217,19 @@ sessionStorage:
   type: cookie
   redis:
     # Secret name that holds the redis-password and redis-sentinel-password values
-    existingSecret: ""
-    password: ""
+    existingSecret: {}
+    password: {}
     # Can be one of sentinel/cluster/standalone
     clientType: "standalone"
     standalone:
       # If empty and sessionStorage type is redis, will automatically be generated.
-      connectionUrl: ""
+      connectionUrl: {}
     cluster:
       # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
       connectionUrls: []
     sentinel:
-      password: ""
-      masterName: ""
+      password: {}
+      masterName: {}
       # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
       connectionUrls: []
 
@@ -256,7 +256,7 @@ metrics:
     # Enable Prometheus Operator ServiceMonitor
     enabled: false
     # Define the namespace where to deploy the ServiceMonitor resource
-    namespace: ""
+    namespace: {}
     # Prometheus Instance definition
     prometheusInstance: default
     # Prometheus scrape interval
