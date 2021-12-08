@@ -9,6 +9,7 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
 {{- end }}
   labels:
+    prometheus: {{ .Values.metrics.servicemonitor.prometheusInstance }}
     app: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.labels" . | indent 4 }}
 {{- if .Values.metrics.servicemonitor.labels }}
@@ -18,8 +19,7 @@ spec:
   jobLabel: {{ template "oauth2-proxy.fullname" . }}
   selector:
     matchLabels:
-      app: {{ template "oauth2-proxy.name" . }}
-      release: {{ .Release.Name }}
+      {{- include "oauth2-proxy.selectorLabels" . | indent 6 }}
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
