@@ -188,6 +188,8 @@ readinessProbe:
 securityContext:
   enabled: false
   runAsNonRoot: true
+  # allowPrivilegeEscalation: false
+  # runAsUser: 2000
 
 podAnnotations: {}
 podLabels: {}
