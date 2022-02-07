@@ -189,9 +189,10 @@ spec:
 {{ toYaml .Values.extraVolumeMounts | indent 8 }}
 {{- end }}
 {{- if .Values.securityContext.enabled }}
+{{- $securityContext := unset .Values.securityContext "enabled" }}
         securityContext:
-          runAsNonRoot: {{ .Values.securityContext.runAsNonRoot }}
-{{- end}}
+          {{- toYaml $securityContext | nindent 10 }}
+{{- end }}
       volumes:
 {{- with .Values.config.google }}
 {{- if and .adminEmail (or .serviceAccountJson .existingSecret) }}
