@@ -173,7 +173,8 @@ Parameter | Description | Default
 `metrics.servicemonitor.interval` | Prometheus scrape interval | `60s`
 `metrics.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
 `metrics.servicemonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
-
+`extraObjects` | Extra K8s manifests to deploy | `[]`
+ 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console

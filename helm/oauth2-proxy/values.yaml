@@ -271,3 +271,33 @@ metrics:
     scrapeTimeout: 30s
     # Add custom labels to the ServiceMonitor resource
     labels: {}
+
+# Extra K8s manifests to deploy
+extraObjects: []
+  # - apiVersion: secrets-store.csi.x-k8s.io/v1
+  #   kind: SecretProviderClass
+  #   metadata:
+  #     name: oauth2-proxy-secrets-store
+  #   spec:
+  #     provider: aws
+  #     parameters:
+  #       objects: |
+  #         - objectName: "oauth2-proxy"
+  #           objectType: "secretsmanager"
+  #           jmesPath:
+  #               - path: "client_id"
+  #                 objectAlias: "client-id"
+  #               - path: "client_secret"
+  #                 objectAlias: "client-secret"
+  #               - path: "cookie_secret"
+  #                 objectAlias: "cookie-secret"
+  #     secretObjects:
+  #     - data:
+  #       - key: client-id
+  #         objectName: client-id
+  #         - key: client-secret
+  #           objectName: client-secret
+  #         - key: cookie-secret
+  #         objectName: cookie-secret
+  #       secretName: oauth2-proxy-secrets-store
+  #       type: Opaque
