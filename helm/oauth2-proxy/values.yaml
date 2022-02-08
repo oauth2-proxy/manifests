@@ -147,6 +147,12 @@ extraVolumeMounts: []
 
 priorityClassName: ""
 
+# Host aliases, useful when working "on premise" where (public) DNS resolver does not know about my hosts.
+hostAlias:
+  enabled: false
+  # ip: "10.xxx.xxx.xxx"
+  # hostname: "auth.example.com"
+
 # Affinity for pod assignment
 # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 # affinity: {}
