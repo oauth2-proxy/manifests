@@ -129,6 +129,7 @@ Parameter | Description | Default
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
 `nodeSelector` | node labels for pod assignment | `{}`
+`deploymentAnnotations` | annotations to add to the deployment | `{}`
 `podAnnotations` | annotations to add to each pod | `{}`
 `podLabels` | additional labesl to add to each pod | `{}`
 `podDisruptionBudget.enabled`| Enabled creation of PodDisruptionBudget (only if replicaCount > 1) | true

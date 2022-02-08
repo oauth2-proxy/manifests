@@ -191,6 +191,7 @@ securityContext:
   # allowPrivilegeEscalation: false
   # runAsUser: 2000
 
+deploymentAnnotations: {}
 podAnnotations: {}
 podLabels: {}
 replicaCount: 1
