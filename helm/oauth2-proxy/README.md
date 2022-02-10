@@ -80,7 +80,7 @@ For users who don't want downtime, you can perform these actions:
 
 ### To 6.0.0
 
-Version 6.0.0 bumps the version of the redis subchart from ~10.6.0 to ~16.3.1. You probably need to adjust your redis config. See [here](https://github.com/bitnami/charts/tree/master/bitnami/redis#upgrading) for detailed upgrade instructions. 
+Version 6.0.0 bumps the version of the redis subchart from ~10.6.0 to ~16.4.0. You probably need to adjust your redis config. See [here](https://github.com/bitnami/charts/tree/master/bitnami/redis#upgrading) for detailed upgrade instructions. 
 
 ## Configuration
 
