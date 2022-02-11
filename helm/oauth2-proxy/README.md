@@ -78,6 +78,10 @@ For users who don't want downtime, you can perform these actions:
 - Add new labels to pods
 - Perform `helm upgrade`
 
+### To 6.0.0
+
+Version 6.0.0 bumps the version of the redis subchart from ~10.6.0 to ~16.4.0. You probably need to adjust your redis config. See [here](https://github.com/bitnami/charts/tree/master/bitnami/redis#upgrading) for detailed upgrade instructions. 
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.

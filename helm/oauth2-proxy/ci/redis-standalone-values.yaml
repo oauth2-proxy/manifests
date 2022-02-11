@@ -6,4 +6,7 @@ sessionStorage:
 redis:
   # provision an instance of the redis sub-chart
   enabled: true
-  password: "foo"
+  architecture: standalone
+  global:
+    redis:
+      password: "foo"
