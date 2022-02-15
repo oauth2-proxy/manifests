@@ -6,7 +6,7 @@ metadata:
 {{- include "oauth2-proxy.labels" . | indent 4 }}
   {{- if .Values.deploymentAnnotations }}
   annotations:
-{{ toYaml .Values.deploymentAnnotations | indent 8 }} 
+{{ toYaml .Values.deploymentAnnotations | indent 8 }}
   {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
 spec:
@@ -108,7 +108,7 @@ spec:
         {{- if eq (default "cookie" .Values.sessionStorage.type) "redis" }}
         - name: OAUTH2_PROXY_SESSION_STORE_TYPE
           value: "redis"
-        {{- if .Values.sessionStorage.redis.password }}
+        {{- if or .Values.sessionStorage.redis.password .Values.sessionStorage.redis.existingSecret }}
         - name: OAUTH2_PROXY_REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
