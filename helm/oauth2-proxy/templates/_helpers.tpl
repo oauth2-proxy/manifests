@@ -78,11 +78,21 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
-
+{{/*
+Compute the redis url if not set explicitly.
+*/}}
 {{- define "oauth2-proxy.redisStandaloneUrl" -}}
+{{- $masterPort := .Values.redis.master.service.ports.redis -}}
 {{- if .Values.sessionStorage.redis.standalone.connectionUrl -}}
 {{ .Values.sessionStorage.redis.standalone.connectionUrl }}
+{{- else if .Values.redis.fullnameOverride -}}
+{{- printf "redis://%s-master:%.0f" (.Values.redis.fullnameOverride | trunc 63 | trimSuffix "-") $masterPort -}}
 {{- else -}}
-{{- printf "redis://%s-redis-master:6379" (include "oauth2-proxy.fullname" .) -}}
+{{- $name := default "redis" .Values.redis.nameOverride -}}
+{{- if contains $name .Release.Name -}}
+{{- printf "redis://%s-master:%.0f" (.Release.Name | trunc 63 | trimSuffix "-") $masterPort -}}
+{{- else -}}
+{{- printf "redis://%s-master:%.0f" (printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-") $masterPort -}}
+{{- end -}}
 {{- end -}}
 {{- end -}}
