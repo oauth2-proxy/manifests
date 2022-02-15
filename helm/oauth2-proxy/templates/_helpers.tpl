@@ -79,20 +79,25 @@ Create the name of the service account to use
 {{- end -}}
 
 {{/*
+Redis subcharts fullname
+*/}}
+{{- define "oauth2-proxy.redis.fullname" -}}
+{{- if .Values.redis.enabled -}}
+{{- include "common.names.fullname" (dict "Chart" (dict "Name" "redis") "Release" .Release "Values" .Values.redis) -}}
+{{- else -}}
+{{ fail "attempting to use redis subcharts fullname, even though the subchart is not enabled. This will lead to misconfiguration" }}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Compute the redis url if not set explicitly.
 */}}
-{{- define "oauth2-proxy.redisStandaloneUrl" -}}
-{{- $masterPort := .Values.redis.master.service.ports.redis -}}
+{{- define "oauth2-proxy.redis.StandaloneUrl" -}}
 {{- if .Values.sessionStorage.redis.standalone.connectionUrl -}}
 {{ .Values.sessionStorage.redis.standalone.connectionUrl }}
-{{- else if .Values.redis.fullnameOverride -}}
-{{- printf "redis://%s-master:%.0f" (.Values.redis.fullnameOverride | trunc 63 | trimSuffix "-") $masterPort -}}
+{{- else if .Values.redis.enabled -}}
+{{- printf "redis://%s-master:%.0f" (include "oauth2-proxy.redis.fullname" .) .Values.redis.master.service.ports.redis -}}
 {{- else -}}
-{{- $name := default "redis" .Values.redis.nameOverride -}}
-{{- if contains $name .Release.Name -}}
-{{- printf "redis://%s-master:%.0f" (.Release.Name | trunc 63 | trimSuffix "-") $masterPort -}}
-{{- else -}}
-{{- printf "redis://%s-master:%.0f" (printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-") $masterPort -}}
-{{- end -}}
+{{ fail "please set sessionStorage.redis.standalone.connectionUrl or enable the redis subchart via redis.enabled" }}
 {{- end -}}
 {{- end -}}

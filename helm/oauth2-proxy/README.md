@@ -80,7 +80,7 @@ For users who don't want downtime, you can perform these actions:
 
 ### To 6.0.0
 
-Version 6.0.0 bumps the version of the redis subchart from ~10.6.0 to ~16.4.0. You probably need to adjust your redis config. See [here](https://github.com/bitnami/charts/tree/master/bitnami/redis#upgrading) for detailed upgrade instructions. 
+Version 6.0.0 bumps the version of the redis subchart from ~10.6.0 to ~16.4.0. You probably need to adjust your redis config. See [here](https://github.com/bitnami/charts/tree/master/bitnami/redis#upgrading) for detailed upgrade instructions.
 
 ## Configuration
 
@@ -102,6 +102,12 @@ Parameter | Description | Default
 `config.configFile` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings not overridable via environment nor command line | `""`
 `config.existingConfig` | existing Kubernetes configmap to use for the configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap.yaml) for the required values | `nil`
 `config.cookieName` | The name of the cookie that oauth2-proxy will create. | `""`
+`alphaConfig.enabled` | Flag to toggle any alpha config related logic | `false`
+`alphaConfig.annotations` | Configmap annotations | `{}`
+`alphaConfig.serverConfigData` | Arbitrary configuration data to append to the server section | `{}`
+`alphaConfig.metricsConfigData` | Arbitrary configuration data to append to the metrics section | `{}`
+`alphaConfig.configData` | Arbitrary configuration data to append | `{}`
+`alphaConfig.existingConfig` | existing Kubernetes configmap to use for the alpha configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap-alpha.yaml) for the required values  | `nil`
 `customLabels` | Custom labels to add into metadata | `{}` |
 `config.google.adminEmail` | user impersonated by the google service account | `""`
 `config.google.serviceAccountJson` | google service account json contents | `""`
@@ -161,7 +167,7 @@ Parameter | Description | Default
 `proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
 `sessionStorage.type` | Session storage type which can be one of the following: cookie or redis | `cookie`
 `sessionStorage.redis.existingSecret` | existing Kubernetes secret to use for redis-password and redis-sentinel-password | `""`
-`sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations | `nil`
+`sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations. Taken from redis subchart secret if not set. sessionStorage.redis.existingSecret takes precedence | `nil`
 `sessionStorage.redis.clientType` | Allows the user to select which type of client will be used for redis instance. Possible options are: `sentinel`, `cluster` or `standalone` | `standalone`
 `sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. redis://HOST[:PORT]). Automatically generated if not set. | `""`
 `sessionStorage.redis.cluster.connectionUrls` | List of Redis cluster connection URLs (e.g. redis://HOST[:PORT]) | `[]`
@@ -179,7 +185,7 @@ Parameter | Description | Default
 `metrics.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
 `metrics.servicemonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
 `extraObjects` | Extra K8s manifests to deploy | `[]`
- 
+
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
