@@ -54,9 +54,13 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
+        {{- if .Values.alphaConfig.enabled }}
+          - --alpha-config=/etc/oauth2_proxy/oauth2_proxy.yml
+        {{- else }}
           - --http-address=0.0.0.0:4180
         {{- if .Values.metrics.enabled }}
           - --metrics-address=0.0.0.0:44180
+        {{- end }}
         {{- end }}
         {{- if .Values.config.cookieName }}
           - --cookie-name={{ .Values.config.cookieName }}
@@ -182,8 +186,14 @@ spec:
 {{- end }}
 {{- end }}
 {{- if or .Values.config.existingConfig .Values.config.configFile }}
-        - mountPath: /etc/oauth2_proxy
+        - mountPath: /etc/oauth2_proxy/oauth2_proxy.cfg
           name: configmain
+          subPath: oauth2_proxy.cfg
+{{- end }}
+{{- if .Values.alphaConfig.enabled }}
+        - mountPath: /etc/oauth2_proxy/oauth2_proxy.yml
+          name: configalpha
+          subPath: oauth2_proxy.yml
 {{- end }}
 {{- if .Values.authenticatedEmailsFile.enabled }}
         - mountPath: /etc/oauth2-proxy
@@ -240,6 +250,12 @@ spec:
           defaultMode: 420
           name: {{ if .Values.config.existingConfig }}{{ .Values.config.existingConfig }}{{ else }}{{ template "oauth2-proxy.fullname" . }}{{ end }}
         name: configmain
+{{- end }}
+{{- if .Values.alphaConfig.enabled }}
+      - configMap:
+          defaultMode: 420
+          name: {{ if .Values.alphaConfig.existingConfig }}{{ .Values.alphaConfig.existingConfig }}{{ else }}{{ template "oauth2-proxy.fullname" . }}-alpha{{ end }}
+        name: configalpha
 {{- end }}
 {{- if ne (len .Values.extraVolumes) 0 }}
 {{ toYaml .Values.extraVolumes | indent 6 }}
