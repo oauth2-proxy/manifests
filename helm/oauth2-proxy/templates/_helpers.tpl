@@ -78,11 +78,26 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
+{{/*
+Redis subcharts fullname
+*/}}
+{{- define "oauth2-proxy.redis.fullname" -}}
+{{- if .Values.redis.enabled -}}
+{{- include "common.names.fullname" (dict "Chart" (dict "Name" "redis") "Release" .Release "Values" .Values.redis) -}}
+{{- else -}}
+{{ fail "attempting to use redis subcharts fullname, even though the subchart is not enabled. This will lead to misconfiguration" }}
+{{- end -}}
+{{- end -}}
 
-{{- define "oauth2-proxy.redisStandaloneUrl" -}}
+{{/*
+Compute the redis url if not set explicitly.
+*/}}
+{{- define "oauth2-proxy.redis.StandaloneUrl" -}}
 {{- if .Values.sessionStorage.redis.standalone.connectionUrl -}}
 {{ .Values.sessionStorage.redis.standalone.connectionUrl }}
+{{- else if .Values.redis.enabled -}}
+{{- printf "redis://%s-master:%.0f" (include "oauth2-proxy.redis.fullname" .) .Values.redis.master.service.ports.redis -}}
 {{- else -}}
-{{- printf "redis://%s-redis-master:6379" (include "oauth2-proxy.fullname" .) -}}
+{{ fail "please set sessionStorage.redis.standalone.connectionUrl or enable the redis subchart via redis.enabled" }}
 {{- end -}}
 {{- end -}}
