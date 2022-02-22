@@ -29,7 +29,11 @@ spec:
 {{- end }}
   ports:
     - port: {{ .Values.service.portNumber }}
+    {{- if .Values.service.targetPort }}
+      targetPort: {{ .Values.service.targetPort }}
+    {{- else if (empty .Values.service.targetPort)}}
       targetPort: {{ .Values.httpScheme }}
+      {{- end }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
     {{- if and .Values.metrics.enabled .Values.metrics.port }}
