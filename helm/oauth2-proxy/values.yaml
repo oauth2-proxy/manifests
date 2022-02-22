@@ -62,7 +62,10 @@ image:
 # imagePullSecrets:
   # - name: myRegistryKeySecretName
 
-#containerPort: 4180
+# Set a custom containerPort if required.
+# This will default to 4180 if this value is not set and the httpScheme set to http
+# This will default to 4443 if this value is not set and the httpScheme set to https
+# containerPort: 4180
 
 extraArgs: {}
 extraEnv: []
