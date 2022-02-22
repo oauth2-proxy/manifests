@@ -41,5 +41,9 @@ jobs:
         uses: helm/kind-action@v1.2.0
         if: steps.list-changed.outputs.changed == 'true'
 
+      - name: Install Prometheus Operator CRDs
+        id: prom
+        run: kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.54.0/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+
       - name: Run chart-testing (install)
         run: ct install --config ct.yaml
