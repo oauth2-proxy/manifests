@@ -62,6 +62,8 @@ image:
 # imagePullSecrets:
   # - name: myRegistryKeySecretName
 
+#containerPort: 4180
+
 extraArgs: {}
 extraEnv: []
 
