@@ -29,9 +29,6 @@ spec:
 {{- end }}
   ports:
     - port: {{ .Values.service.portNumber }}
-    {{- if .Values.service.targetPort }}
-      targetPort: {{ .Values.service.targetPort }}
-    {{- else if (empty .Values.service.targetPort)}}
       targetPort: {{ .Values.httpScheme }}
       {{- end }}
       protocol: TCP

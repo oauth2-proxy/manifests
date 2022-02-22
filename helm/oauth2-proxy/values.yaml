@@ -101,8 +101,6 @@ service:
   # loadBalancerIP: 198.51.100.40
   # loadBalancerSourceRanges: 203.0.113.0/24
   portNumber: 80
-  #targetPort:
-  # defaults to httpScheme if not set
   annotations: {}
   # foo.io/bar: "true"
 
