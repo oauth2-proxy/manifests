@@ -5,8 +5,8 @@
 ## TL;DR;
 
 ```console
-$ helm repo add oauth2-proxy https://oauth2-proxy.github.io/manifests
-$ helm install my-release oauth2-proxy/oauth2-proxy
+helm repo add oauth2-proxy https://oauth2-proxy.github.io/manifests
+helm install my-release oauth2-proxy/oauth2-proxy
 ```
 
 ## Introduction
@@ -18,7 +18,7 @@ This chart bootstraps an oauth2-proxy deployment on a [Kubernetes](http://kubern
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install my-release oauth2-proxy/oauth2-proxy
+helm install my-release oauth2-proxy/oauth2-proxy
 ```
 
 The command deploys oauth2-proxy on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
@@ -28,7 +28,7 @@ The command deploys oauth2-proxy on the Kubernetes cluster in the default config
 To uninstall/delete the `my-release` deployment:
 
 ```console
-$ helm uninstall my-release
+helm uninstall my-release
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
@@ -167,7 +167,7 @@ Parameter | Description | Default
 `proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
 `sessionStorage.type` | Session storage type which can be one of the following: cookie or redis | `cookie`
 `sessionStorage.redis.existingSecret` | existing Kubernetes secret to use for redis-password and redis-sentinel-password | `""`
-`sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations | `nil`
+`sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations. Taken from redis subchart secret if not set. sessionStorage.redis.existingSecret takes precedence | `nil`
 `sessionStorage.redis.clientType` | Allows the user to select which type of client will be used for redis instance. Possible options are: `sentinel`, `cluster` or `standalone` | `standalone`
 `sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. redis://HOST[:PORT]). Automatically generated if not set. | `""`
 `sessionStorage.redis.cluster.connectionUrls` | List of Redis cluster connection URLs (e.g. redis://HOST[:PORT]) | `[]`
@@ -196,7 +196,7 @@ $ helm install my-release oauth2-proxy/oauth2-proxy \
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install my-release oauth2-proxy/oauth2-proxy -f values.yaml
+helm install my-release oauth2-proxy/oauth2-proxy -f values.yaml
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
@@ -233,9 +233,9 @@ data:
 ```
 
 ## Extra environment variable templating
+
 The extraEnv value supports the tpl function which evaluate strings as templates inside the deployment template.
 This is useful to pass a template string as a value to the chart's extra environment variables and to render external configuration environment values
-
 
 ```yaml
 ...
