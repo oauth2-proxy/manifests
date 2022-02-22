@@ -30,7 +30,6 @@ spec:
   ports:
     - port: {{ .Values.service.portNumber }}
       targetPort: {{ .Values.httpScheme }}
-      {{- end }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
     {{- if and .Values.metrics.enabled .Values.metrics.port }}
