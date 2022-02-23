@@ -150,7 +150,7 @@ spec:
         {{- if (and (eq .Values.httpScheme "http") (empty .Values.containerPort)) }}
           - containerPort: 4180
         {{- else if (and (eq .Values.httpScheme "https") (empty .Values.containerPort)) }}
-          - containerPort: 4443
+          - containerPort: 443
         {{- else }}
           - containerPort: {{ .Values.containerPort }}
         {{- end}}
