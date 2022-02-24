@@ -1,0 +1,32 @@
+{{- if .Values.alphaConfig.enabled }}
+{{- if not .Values.alphaConfig.existingConfig }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+{{- if .Values.alphaConfig.annotations }}
+  annotations: {{- toYaml .Values.alphaConfig.annotations | nindent 4 }}
+{{- end }}
+  labels:
+    app: {{ template "oauth2-proxy.name" . }}
+    {{- include "oauth2-proxy.labels" . | indent 4 }}
+  name: {{ template "oauth2-proxy.fullname" . }}-alpha
+data:
+  oauth2_proxy.yml: |
+    ---
+    server:
+      BindAddress: '0.0.0.0:4180'
+    {{- if .Values.alphaConfig.serverConfigData }}
+    {{- toYaml .Values.alphaConfig.serverConfigData | nindent 6 }}
+    {{- end }}
+    {{- if .Values.metrics.enabled }}
+    metricsServer:
+      BindAddress: '0.0.0.0:44180'
+    {{- if .Values.alphaConfig.metricsConfigData }}
+    {{- toYaml .Values.alphaConfig.metricsConfigData | nindent 6 }}
+    {{- end }}
+    {{- end }}
+    {{- if .Values.alphaConfig.configData }}
+    {{- toYaml .Values.alphaConfig.configData | nindent 4 }}
+    {{- end }}
+{{- end }}
+{{- end }}

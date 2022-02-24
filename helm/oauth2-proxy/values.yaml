@@ -38,6 +38,19 @@ config:
   # Example:
   # existingConfig: config
 
+alphaConfig:
+  enabled: false
+  # Add config annotations
+  annotations: {}
+  # Arbitrary configuration data to append to the server section
+  serverConfigData: {}
+  # Arbitrary configuration data to append to the metrics section
+  metricsConfigData: {}
+  # Arbitrary configuration data to append
+  configData: {}
+  # Use an existing config map (see configmap-alpha.yaml for required fields)
+  existingConfig: ~
+
 image:
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
   tag: "v7.2.0"
@@ -147,6 +160,12 @@ extraVolumeMounts: []
 
 priorityClassName: {}
 
+# Host aliases, useful when working "on premise" where (public) DNS resolver does not know about my hosts.
+hostAlias:
+  enabled: false
+  # ip: "10.xxx.xxx.xxx"
+  # hostname: "auth.example.com"
+
 # Affinity for pod assignment
 # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 # affinity: {}
@@ -185,6 +204,7 @@ securityContext:
   # allowPrivilegeEscalation: false
   # runAsUser: 2000
 
+deploymentAnnotations: {}
 podAnnotations: {}
 podLabels: {}
 replicaCount: 1

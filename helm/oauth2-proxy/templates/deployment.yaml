@@ -4,6 +4,10 @@ metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.labels" . | indent 4 }}
+  {{- if .Values.deploymentAnnotations }}
+  annotations:
+{{ toYaml .Values.deploymentAnnotations | indent 8 }}
+  {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -39,14 +43,24 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ template "oauth2-proxy.serviceAccountName" . }}
+      {{- if .Values.hostAlias.enabled }}
+      hostAliases:
+        - ip: {{ .Values.hostAlias.ip }}
+          hostnames:
+          - {{ .Values.hostAlias.hostname }}
+      {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
+        {{- if .Values.alphaConfig.enabled }}
+          - --alpha-config=/etc/oauth2_proxy/oauth2_proxy.yml
+        {{- else }}
           - --http-address=0.0.0.0:4180
         {{- if .Values.metrics.enabled }}
           - --metrics-address=0.0.0.0:44180
+        {{- end }}
         {{- end }}
         {{- if .Values.config.cookieName }}
           - --cookie-name={{ .Values.config.cookieName }}
@@ -98,7 +112,7 @@ spec:
         {{- if eq (default "cookie" .Values.sessionStorage.type) "redis" }}
         - name: OAUTH2_PROXY_SESSION_STORE_TYPE
           value: "redis"
-        {{- if .Values.sessionStorage.redis.password }}
+        {{- if or .Values.sessionStorage.redis.password .Values.sessionStorage.redis.existingSecret }}
         - name: OAUTH2_PROXY_REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -107,7 +121,7 @@ spec:
         {{- end }}
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
-          value: {{ include "oauth2-proxy.redisStandaloneUrl" . }}
+          value: {{ include "oauth2-proxy.redis.StandaloneUrl" . }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
         - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
           value: "true"
@@ -172,8 +186,14 @@ spec:
 {{- end }}
 {{- end }}
 {{- if or .Values.config.existingConfig .Values.config.configFile }}
-        - mountPath: /etc/oauth2_proxy
+        - mountPath: /etc/oauth2_proxy/oauth2_proxy.cfg
           name: configmain
+          subPath: oauth2_proxy.cfg
+{{- end }}
+{{- if .Values.alphaConfig.enabled }}
+        - mountPath: /etc/oauth2_proxy/oauth2_proxy.yml
+          name: configalpha
+          subPath: oauth2_proxy.yml
 {{- end }}
 {{- if .Values.authenticatedEmailsFile.enabled }}
         - mountPath: /etc/oauth2-proxy
@@ -230,6 +250,12 @@ spec:
           defaultMode: 420
           name: {{ if .Values.config.existingConfig }}{{ .Values.config.existingConfig }}{{ else }}{{ template "oauth2-proxy.fullname" . }}{{ end }}
         name: configmain
+{{- end }}
+{{- if .Values.alphaConfig.enabled }}
+      - configMap:
+          defaultMode: 420
+          name: {{ if .Values.alphaConfig.existingConfig }}{{ .Values.alphaConfig.existingConfig }}{{ else }}{{ template "oauth2-proxy.fullname" . }}-alpha{{ end }}
+        name: configalpha
 {{- end }}
 {{- if ne (len .Values.extraVolumes) 0 }}
 {{ toYaml .Values.extraVolumes | indent 6 }}
