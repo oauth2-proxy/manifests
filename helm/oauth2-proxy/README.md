@@ -153,6 +153,8 @@ Parameter | Description | Default
 `readinessProbe.successThreshold` | number of successes | 1
 `replicaCount` | desired number of pods | `1`
 `resources` | pod resource requests & limits | `{}`
+`initContainers.waitForRedis.enabled` | if `redis.enabled` is true, use an init container to wait for the redis master pod to be ready. If `serviceAccount.enabled` is true, create additionally a role/binding to get, list and watch the redis master pod | `true`
+`initContainers.waitForRedis.kubectlVersion` | kubectl version to use for the init container | `printf "%s.%s" .Capabilities.KubeVersion.Major .Capabilities.KubeVersion.Minor`
 `service.portNumber` | port number for the service | `80`
 `service.type` | type of service | `ClusterIP`
 `service.clusterIP` | cluster ip address | `nil`

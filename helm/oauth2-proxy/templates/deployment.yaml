@@ -49,6 +49,21 @@ spec:
           hostnames:
           - {{ .Values.hostAlias.hostname }}
       {{- end }}
+      initContainers:
+      {{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
+      - name: wait-for-redis
+        image: "docker.io/bitnami/kubectl:{{ default (printf "%s.%s" .Capabilities.KubeVersion.Major .Capabilities.KubeVersion.Minor) .Values.initContainers.waitForRedis.kubectlVersion }}"
+        args:
+          - wait
+          - pod/{{ include "oauth2-proxy.redis.fullname" . }}-master-0
+          - --for=condition=ready
+          - --timeout=180s
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 65534
+      {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
