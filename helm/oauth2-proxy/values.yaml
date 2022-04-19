@@ -166,6 +166,10 @@ hostAlias:
   # ip: "10.xxx.xxx.xxx"
   # hostname: "auth.example.com"
 
+# [TopologySpreadConstraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) configuration.
+# Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling
+# topologySpreadConstraints: []
+
 # Affinity for pod assignment
 # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 # affinity: {}
