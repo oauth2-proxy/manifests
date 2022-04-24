@@ -87,6 +87,11 @@ spec:
           - --google-admin-email={{ .adminEmail }}
           - --google-service-account-json=/google/service-account.json
         {{- end }}
+        {{- if .groups }}
+        {{- range $group := .groups }}
+          - --google-group={{ $group }}
+        {{- end }}
+        {{- end }}
         {{- end }}
         {{- if .Values.htpasswdFile.enabled }}
           - --htpasswd-file=/etc/oauth2_proxy/htpasswd/users.txt

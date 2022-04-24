@@ -26,6 +26,10 @@ config:
     # Alternatively, use an existing secret (see google-secret.yaml for required fields)
     # Example:
     # existingSecret: google-secret
+    # groups: []
+    # Example:
+    #  - group1@example.com
+    #  - group2@example.com
   # Default configuration, to be overridden
   configFile: |-
     email_domains = [ "*" ]
