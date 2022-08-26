@@ -226,7 +226,7 @@ podSecurityContext: {}
 # whether to use http or https
 httpScheme: http
 
-# Additionally authenticate against a htpasswd file. Entries must be created with "htpasswd -s" for SHA encryption.
+# Additionally authenticate against a htpasswd file. Entries must be created with "htpasswd -B" for bcrypt encryption.
 # Alternatively supply an existing secret which contains the required information.
 htpasswdFile:
   enabled: false
@@ -235,7 +235,7 @@ htpasswdFile:
   # One row for each user
   # example:
   # entries:
-  #  - testuser:{SHA}EWhzdhgoYJWy0z2gyzhRYlN9DSiv
+  #  - testuser:$2y$05$gY6dgXqjuzFhwdhsiFe7seM9q9Tile4Y3E.CBpAZJffkeiLaC21Gy
 
 # Configure the session storage type, between cookie and redis
 sessionStorage:
