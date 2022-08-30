@@ -247,3 +247,44 @@ extraEnv:
   - name: TEST_ENV_VAR_2
     value: '{{ .Values.tplValue }}'
 ```
+
+## Custom templates configuration
+You can replace the default template files using a Kubernetes `configMap` volume. The default templates are the two files [sign_in.html](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/pkg/app/pagewriter/sign_in.html) and [error.html](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/pkg/app/pagewriter/error.html).
+
+```yaml
+config:
+  configFile: |
+    ...
+    custom_templates_dir = "/data/custom-templates"
+
+extraVolumes:
+  - name: custom-templates
+    configMap:
+      name: oauth2-proxy-custom-templates
+
+extraVolumeMounts:
+  - name: custom-templates
+    mountPath: "/data/custom-templates"
+    readOnly: true
+
+extraObjects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: oauth2-proxy-custom-templates
+    data:
+      sign_in.html: |
+        <!DOCTYPE html>
+        <html>
+        <body>sign_in</body>
+        </html>
+      error.html: |
+        <!DOCTYPE html>
+        <html>
+        <body>
+        <h1>error</h1>
+        <p>{{.StatusCode}}</p>
+        </body>
+        </html>
+```
+
