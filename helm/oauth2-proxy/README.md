@@ -112,6 +112,7 @@ Parameter | Description | Default
 `config.google.adminEmail` | user impersonated by the google service account | `""`
 `config.google.serviceAccountJson` | google service account json contents | `""`
 `config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
+`config.google.groups` | restrict logins to members of these google groups | `[]`
 `extraArgs` | key:value list of extra arguments to give the binary | `{}`
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
 `extraVolumes` | list of extra volumes | `[]`
@@ -120,12 +121,12 @@ Parameter | Description | Default
 `hostAlias.ip`  | `ip` address `hostAliases.hostname` should resolve to.
 `hostAlias.hostname`  | `hostname` associated to `hostAliases.ip`.
 `htpasswdFile.enabled` | enable htpasswd-file option | `false`
-`htpasswdFile.entries` | list of [SHA encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview#command-line-options) | `{}`
+`htpasswdFile.entries` | list of [encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview#command-line-options) | `{}`
 `htpasswdFile.existingSecret` | existing Kubernetes secret to use for OAuth2 htpasswd file | `""`
 `httpScheme` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. | `http`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
 `image.repository` | Image repository | `quay.io/oauth2-proxy/oauth2-proxy`
-`image.tag` | Image tag | `v7.2.0`
+`image.tag` | Image tag | `v7.3.0`
 `imagePullSecrets` | Specify image pull secrets | `nil` (does not add image pull secrets to deployed pods)
 `ingress.enabled` | Enable Ingress | `false`
 `ingress.className` | name referencing IngressClass | `nil`
