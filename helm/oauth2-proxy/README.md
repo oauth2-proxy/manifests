@@ -149,7 +149,7 @@ Parameter | Description | Default
 `priorityClassName` | priorityClassName | `nil`
 `readinessProbe.enabled` | enable Kubernetes readinessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
 `readinessProbe.initialDelaySeconds` | number of seconds | 0
-`readinessProbe.timeoutSeconds` | number of seconds | 1
+`readinessProbe.timeoutSeconds` | number of seconds | 5
 `readinessProbe.periodSeconds` | number of seconds | 10
 `readinessProbe.successThreshold` | number of successes | 1
 `replicaCount` | desired number of pods | `1`

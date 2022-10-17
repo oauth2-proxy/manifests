@@ -182,6 +182,9 @@ spec:
             path: /ping
             port: {{ .Values.httpScheme }}
             scheme: {{ .Values.httpScheme | upper }}
+            httpHeaders:
+            - name: X-Healthcheck
+              value: full
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
