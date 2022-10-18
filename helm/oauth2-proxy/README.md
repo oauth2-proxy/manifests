@@ -177,6 +177,7 @@ Parameter | Description | Default
 `sessionStorage.redis.sentinel.password` | Redis sentinel password. Used only for sentinel connection; any redis node passwords need to use `sessionStorage.redis.password` | `nil`
 `sessionStorage.redis.sentinel.masterName` | Redis sentinel master name | `nil`
 `sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. redis://HOST[:PORT]) | `[]`
+`topologySpreadConstraints` | List of pod topology spread constraints | `[]`
 `redis.enabled` | Enable the redis subchart deployment | `false`
 `checkDeprecation` | Enable deprecation checks | `true`
 `metrics.enabled` | Enable Prometheus metrics endpoint | `true`
