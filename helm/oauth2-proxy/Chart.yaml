@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.2.7
+version: 6.2.8
 apiVersion: v2
 appVersion: 7.3.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
