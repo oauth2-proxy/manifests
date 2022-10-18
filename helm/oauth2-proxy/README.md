@@ -100,6 +100,12 @@ Parameter | Description | Default
 `config.cookieSecret` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 \| head -c 32 \| base64` | `""`
 `config.existingSecret` | existing Kubernetes secret to use for OAuth2 credentials. See [secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/secret.yaml) for the required values | `nil`
 `config.configFile` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings not overridable via environment nor command line | `""`
+`config.configFile.cookie_secure` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings cookie_secure, "true" or "false" | `""`
+`config.configFile.cookie_domains` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings multiple cookie_domains, place to set multi-domains cookies, comma separated | `[]`
+`config.configFile.whitelist_domains` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings multiple whitelist_domains, place to set multi-domains whitelist, comma separated | `[]`
+`config.configFile.provider` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for provider settings, place to set your OAuth provider | `""`
+`config.configFile.upstreams` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for upstreams settings | `""`
+`config.configFile.email_domains` | custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for multiple email domains settings | `[]`
 `config.existingConfig` | existing Kubernetes configmap to use for the configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap.yaml) for the required values | `nil`
 `config.cookieName` | The name of the cookie that oauth2-proxy will create. | `""`
 `alphaConfig.enabled` | Flag to toggle any alpha config related logic | `false`
@@ -256,6 +262,12 @@ config:
   configFile: |
     ...
     custom_templates_dir = "/data/custom-templates"
+    email_domains = [ "*" ]
+    upstreams = [ "file:///dev/null" ]
+    cookie_secure = "false"
+    cookie_domains = [ ".domain.com", ".otherdomain.io" ]
+    whitelist_domains = [ ".domain.com", ".otherdomain.io"]
+    provider = "google"
 
 extraVolumes:
   - name: custom-templates
