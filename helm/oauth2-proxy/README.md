@@ -256,12 +256,6 @@ config:
   configFile: |
     ...
     custom_templates_dir = "/data/custom-templates"
-    email_domains = [ "*" ]
-    upstreams = [ "file:///dev/null" ]
-    cookie_secure = "false"
-    cookie_domains = [ ".domain.com", ".otherdomain.io" ]
-    whitelist_domains = [ ".domain.com", ".otherdomain.io"]
-    provider = "google"
 
 extraVolumes:
   - name: custom-templates
@@ -293,4 +287,24 @@ extraObjects:
         </body>
         </html>
 ```
+## Multi whitelist-domain configuration
+For using multi whitelist-domain configuration for one Oauth2-proxy instance, you have to use the config.configFile section.
 
+It will be overwriting the `/etc/oauth2_proxy/oauth2_proxy.cfg` configuration file.
+In this example, Google provider is used, but you can find all other provider configuration here [oauth_provider](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider/)
+
+```yaml
+config:
+  ...
+  clientID="$YOUR_GOOGLE_CLIENT_ID"
+  clientSecret="$YOUR_GOOGLE_CLIENT_SECRET"
+  cookieSecret="$YOUR_COOKIE_SECRET"
+  configFile: |
+    ...
+    email_domains = [ "*" ]
+    upstreams = [ "file:///dev/null" ]
+    cookie_secure = "false"
+    cookie_domains = [ ".domain.com", ".otherdomain.io" ]
+    whitelist_domains = [ ".domain.com", ".otherdomain.io"]
+    provider = "google"
+```
