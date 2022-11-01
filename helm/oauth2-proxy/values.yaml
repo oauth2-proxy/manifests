@@ -104,6 +104,8 @@ service:
   # when service.type is LoadBalancer ...
   # loadBalancerIP: 198.51.100.40
   # loadBalancerSourceRanges: 203.0.113.0/24
+  # when service.type is NodePort ...
+  # nodePortNumber: 80
   portNumber: 80
   annotations: {}
   # foo.io/bar: "true"
@@ -283,6 +285,8 @@ metrics:
   enabled: true
   # Serve Prometheus metrics on this port
   port: 44180
+  # when service.type is NodePort ...
+  # nodePort: 44180
   servicemonitor:
     # Enable Prometheus Operator ServiceMonitor
     enabled: false

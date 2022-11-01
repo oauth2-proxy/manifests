@@ -30,12 +30,18 @@ spec:
   ports:
     - port: {{ .Values.service.portNumber }}
       targetPort: {{ .Values.httpScheme }}
+      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePortNumber))) }}
+      nodePort: {{ .Values.service.nodePortNumber }}
+      {{- end }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
     {{- if and .Values.metrics.enabled .Values.metrics.port }}
     - port: {{ .Values.metrics.port }}
       protocol: TCP
       targetPort: metrics
+      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.metrics.nodePort))) }}
+      nodePort: {{ .Values.metrics.nodePort }}
+      {{- end }}
       name: metrics
     {{- end }}
   selector:
