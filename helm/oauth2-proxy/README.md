@@ -159,7 +159,7 @@ Parameter | Description | Default
 `service.clusterIP` | cluster ip address | `nil`
 `service.loadBalancerIP` | ip of load balancer | `nil`
 `service.loadBalancerSourceRanges` | allowed source ranges in load balancer | `nil`
-`service.nodePortNumber` | external port number for the service when service.type is `NodePort` | `nil`
+`service.nodePort` | external port number for the service when service.type is `NodePort` | `nil`
 `serviceAccount.enabled` | create a service account | `true`
 `serviceAccount.name` | the service account name | ``
 `serviceAccount.annotations` | (optional) annotations for the service account | `{}`

@@ -30,8 +30,8 @@ spec:
   ports:
     - port: {{ .Values.service.portNumber }}
       targetPort: {{ .Values.httpScheme }}
-      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePortNumber))) }}
-      nodePort: {{ .Values.service.nodePortNumber }}
+      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
+      nodePort: {{ .Values.service.nodePort }}
       {{- end }}
       protocol: TCP
       name: {{ .Values.httpScheme }}
