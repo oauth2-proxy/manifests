@@ -159,6 +159,7 @@ Parameter | Description | Default
 `service.clusterIP` | cluster ip address | `nil`
 `service.loadBalancerIP` | ip of load balancer | `nil`
 `service.loadBalancerSourceRanges` | allowed source ranges in load balancer | `nil`
+`service.nodePort` | external port number for the service when service.type is `NodePort` | `nil`
 `serviceAccount.enabled` | create a service account | `true`
 `serviceAccount.name` | the service account name | ``
 `serviceAccount.annotations` | (optional) annotations for the service account | `{}`
@@ -183,6 +184,7 @@ Parameter | Description | Default
 `checkDeprecation` | Enable deprecation checks | `true`
 `metrics.enabled` | Enable Prometheus metrics endpoint | `true`
 `metrics.port` | Serve Prometheus metrics on this port | `44180`
+`metrics.nodePort` | External port for the metrics when service.type is `NodePort` | `nil`
 `metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
 `metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
 `metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`

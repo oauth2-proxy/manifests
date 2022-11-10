@@ -59,6 +59,7 @@ spec:
           - --alpha-config=/etc/oauth2_proxy/oauth2_proxy.yml
         {{- else }}
           - --http-address=0.0.0.0:4180
+          - --https-address=0.0.0.0:4443
         {{- if .Values.metrics.enabled }}
           - --metrics-address=0.0.0.0:44180
         {{- end }}
@@ -163,7 +164,11 @@ spec:
 {{ tpl (toYaml .Values.extraEnv) . | indent 8 }}
         {{- end }}
         ports:
+          {{- if eq .Values.httpScheme "http" }}
           - containerPort: 4180
+          {{- else }}
+          - containerPort: 4443
+          {{- end }}
             name: {{ .Values.httpScheme }}
             protocol: TCP
 {{- if .Values.metrics.enabled }}
