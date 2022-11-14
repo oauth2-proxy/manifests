@@ -130,7 +130,7 @@ spec:
               {{- else }}
               name: {{ include "oauth2-proxy.redis.fullname" . }}
               {{- end }}
-              key: redis-password
+              key: {{ .Values.sessionStorage.redis.passwordKey }}
         {{- end }}
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
@@ -147,12 +147,16 @@ spec:
           value: {{ .Values.sessionStorage.redis.sentinel.masterName }}
         - name: OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS
           value: {{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
-        {{- if .Values.sessionStorage.redis.sentinel.password }}
+        {{- if or .Values.sessionStorage.redis.sentinel.existingSecret .Values.sessionStorage.redis.existingSecret .Values.sessionStorage.redis.sentinel.password }}
         - name: OAUTH2_PROXY_REDIS_SENTINEL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ if .Values.sessionStorage.redis.existingSecret }} {{ .Values.sessionStorage.redis.existingSecret }}{{ else }} {{ template "oauth2-proxy.fullname" . }}-redis-access{{ end }}
-              key: redis-sentinel-password
+              {{- if or .Values.sessionStorage.redis.sentinel.existingSecret .Values.sessionStorage.redis.existingSecret }}
+              name: {{ .Values.sessionStorage.redis.sentinel.existingSecret | default .Values.sessionStorage.redis.existingSecret }}
+              {{- else }}
+              name: {{ template "oauth2-proxy.fullname" . }}-redis-access
+              {{- end }}
+              key: {{ .Values.sessionStorage.redis.sentinel.passwordKey }}
         {{- end }}
         {{- end }}
         {{- end }}
