@@ -107,6 +107,8 @@ service:
   # when service.type is NodePort ...
   # nodePort: 80
   portNumber: 80
+  # Protocol set on the service
+  appProtocol: http
   annotations: {}
   # foo.io/bar: "true"
 
@@ -296,6 +298,9 @@ metrics:
   port: 44180
   # when service.type is NodePort ...
   # nodePort: 44180
+  # Protocol set on the service for the metrics port
+  service:
+    appProtocol: http
   servicemonitor:
     # Enable Prometheus Operator ServiceMonitor
     enabled: false
