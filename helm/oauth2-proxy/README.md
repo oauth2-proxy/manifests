@@ -113,7 +113,7 @@ Parameter | Description | Default
 `config.google.serviceAccountJson` | google service account json contents | `""`
 `config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
 `config.google.groups` | restrict logins to members of these google groups | `[]`
-`extraArgs` | key:value list of extra arguments to give the binary | `{}`
+`extraArgs` | Extra arguments to give the binary. Either as a map with key:value pairs or as a list type, which allows to configure the same flag multiple times. (e.g. `["--allowed-role=CLIENT_ID:CLIENT_ROLE_NAME_A", "--allowed-role=CLIENT_ID:CLIENT_ROLE_NAME_B"]`). | `{}` or `[]`
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
 `extraVolumes` | list of extra volumes | `[]`
 `extraVolumeMounts` | list of extra volumeMounts | `[]`
