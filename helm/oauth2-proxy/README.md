@@ -107,7 +107,7 @@ Parameter | Description | Default
 `alphaConfig.serverConfigData` | Arbitrary configuration data to append to the server section | `{}`
 `alphaConfig.metricsConfigData` | Arbitrary configuration data to append to the metrics section | `{}`
 `alphaConfig.configData` | Arbitrary configuration data to append | `{}`
-`alphaConfig.existingConfig` | existing Kubernetes configmap to use for the alpha configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap-alpha.yaml) for the required values  | `nil`
+`alphaConfig.existingConfig` | existing Kubernetes configmap to use for the alpha configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap-alpha.yaml) for the required values | `nil`
 `customLabels` | Custom labels to add into metadata | `{}` |
 `config.google.adminEmail` | user impersonated by the google service account | `""`
 `config.google.serviceAccountJson` | google service account json contents | `""`
@@ -126,7 +126,7 @@ Parameter | Description | Default
 `httpScheme` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. | `http`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
 `image.repository` | Image repository | `quay.io/oauth2-proxy/oauth2-proxy`
-`image.tag` | Image tag | `v7.3.0`
+`image.tag` | Image tag | `""` (defaults to appVersion)
 `imagePullSecrets` | Specify image pull secrets | `nil` (does not add image pull secrets to deployed pods)
 `ingress.enabled` | Enable Ingress | `false`
 `ingress.className` | name referencing IngressClass | `nil`
@@ -161,6 +161,7 @@ Parameter | Description | Default
 `service.clusterIP` | cluster ip address | `nil`
 `service.loadBalancerIP` | ip of load balancer | `nil`
 `service.loadBalancerSourceRanges` | allowed source ranges in load balancer | `nil`
+`service.nodePort` | external port number for the service when service.type is `NodePort` | `nil`
 `serviceAccount.enabled` | create a service account | `true`
 `serviceAccount.name` | the service account name | ``
 `serviceAccount.annotations` | (optional) annotations for the service account | `{}`
@@ -169,19 +170,23 @@ Parameter | Description | Default
 `securityContext.runAsNonRoot` | make sure that the container runs as a non-root user | `true`
 `proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
 `sessionStorage.type` | Session storage type which can be one of the following: cookie or redis | `cookie`
-`sessionStorage.redis.existingSecret` | existing Kubernetes secret to use for redis-password and redis-sentinel-password | `""`
+`sessionStorage.redis.existingSecret` | Name of the Kubernetes secret containing the redis & redis sentinel password values (see also `sessionStorage.redis.passwordKey`) | `""`
 `sessionStorage.redis.password` | Redis password. Applicable for all Redis configurations. Taken from redis subchart secret if not set. sessionStorage.redis.existingSecret takes precedence | `nil`
+`sessionStorage.redis.passwordKey` | Key of the Kubernetes secret data containing the redis password value | `redis-password`
 `sessionStorage.redis.clientType` | Allows the user to select which type of client will be used for redis instance. Possible options are: `sentinel`, `cluster` or `standalone` | `standalone`
-`sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. redis://HOST[:PORT]). Automatically generated if not set. | `""`
-`sessionStorage.redis.cluster.connectionUrls` | List of Redis cluster connection URLs (e.g. redis://HOST[:PORT]) | `[]`
+`sessionStorage.redis.standalone.connectionUrl` | URL of redis standalone server for redis session storage (e.g. `redis://HOST[:PORT]`). Automatically generated if not set. | `""`
+`sessionStorage.redis.cluster.connectionUrls` | List of Redis cluster connection URLs (e.g. `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`) | `[]`
+`sessionStorage.redis.sentinel.existingSecret` | Name of the Kubernetes secret containing the redis sentinel password value (see also `sessionStorage.redis.sentinel.passwordKey`). Default: `sessionStorage.redis.existingSecret` | `""`
 `sessionStorage.redis.sentinel.password` | Redis sentinel password. Used only for sentinel connection; any redis node passwords need to use `sessionStorage.redis.password` | `nil`
+`sessionStorage.redis.sentinel.passwordKey` | Key of the Kubernetes secret data containing the redis sentinel password value | `redis-sentinel-password`
 `sessionStorage.redis.sentinel.masterName` | Redis sentinel master name | `nil`
-`sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. redis://HOST[:PORT]) | `[]`
+`sessionStorage.redis.sentinel.connectionUrls` | List of Redis sentinel connection URLs (e.g. `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`) | `[]`
 `topologySpreadConstraints` | List of pod topology spread constraints | `[]`
 `redis.enabled` | Enable the redis subchart deployment | `false`
 `checkDeprecation` | Enable deprecation checks | `true`
 `metrics.enabled` | Enable Prometheus metrics endpoint | `true`
 `metrics.port` | Serve Prometheus metrics on this port | `44180`
+`metrics.nodePort` | External port for the metrics when service.type is `NodePort` | `nil`
 `metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
 `metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
 `metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`
