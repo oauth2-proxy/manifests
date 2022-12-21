@@ -157,6 +157,7 @@ Parameter | Description | Default
 `initContainers.waitForRedis.enabled` | if `redis.enabled` is true, use an init container to wait for the redis master pod to be ready. If `serviceAccount.enabled` is true, create additionally a role/binding to get, list and watch the redis master pod | `true`
 `initContainers.waitForRedis.kubectlVersion` | kubectl version to use for the init container | `printf "%s.%s" .Capabilities.KubeVersion.Major .Capabilities.KubeVersion.Minor`
 `service.portNumber` | port number for the service | `80`
+`service.appProtocol` | application protocol on the port of the service | `http`
 `service.type` | type of service | `ClusterIP`
 `service.clusterIP` | cluster ip address | `nil`
 `service.loadBalancerIP` | ip of load balancer | `nil`
@@ -187,6 +188,7 @@ Parameter | Description | Default
 `metrics.enabled` | Enable Prometheus metrics endpoint | `true`
 `metrics.port` | Serve Prometheus metrics on this port | `44180`
 `metrics.nodePort` | External port for the metrics when service.type is `NodePort` | `nil`
+`metrics.service.appProtocol` | application protocol of the metrics port in the service | `http`
 `metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
 `metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
 `metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`
