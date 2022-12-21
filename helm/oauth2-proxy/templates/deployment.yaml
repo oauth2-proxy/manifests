@@ -18,6 +18,9 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- if .Values.alphaConfig.enabled }}
+        checksum/alpha-config: {{ include (print $.Template.BasePath "/configmap-alpha.yaml") . | sha256sum }}
+        {{- end }}
         checksum/config-emails: {{ include (print $.Template.BasePath "/configmap-authenticated-emails-file.yaml") . | sha256sum }}
         checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
         checksum/google-secret: {{ include (print $.Template.BasePath "/google-secret.yaml") . | sha256sum }}
@@ -52,13 +55,14 @@ spec:
       {{- end }}
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
         {{- if .Values.alphaConfig.enabled }}
           - --alpha-config=/etc/oauth2_proxy/oauth2_proxy.yml
         {{- else }}
           - --http-address=0.0.0.0:4180
+          - --https-address=0.0.0.0:4443
         {{- if .Values.metrics.enabled }}
           - --metrics-address=0.0.0.0:44180
         {{- end }}
@@ -129,7 +133,7 @@ spec:
               {{- else }}
               name: {{ include "oauth2-proxy.redis.fullname" . }}
               {{- end }}
-              key: redis-password
+              key: {{ .Values.sessionStorage.redis.passwordKey }}
         {{- end }}
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
@@ -146,12 +150,16 @@ spec:
           value: {{ .Values.sessionStorage.redis.sentinel.masterName }}
         - name: OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS
           value: {{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
-        {{- if .Values.sessionStorage.redis.sentinel.password }}
+        {{- if or .Values.sessionStorage.redis.sentinel.existingSecret .Values.sessionStorage.redis.existingSecret .Values.sessionStorage.redis.sentinel.password }}
         - name: OAUTH2_PROXY_REDIS_SENTINEL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ if .Values.sessionStorage.redis.existingSecret }} {{ .Values.sessionStorage.redis.existingSecret }}{{ else }} {{ template "oauth2-proxy.fullname" . }}-redis-access{{ end }}
-              key: redis-sentinel-password
+              {{- if or .Values.sessionStorage.redis.sentinel.existingSecret .Values.sessionStorage.redis.existingSecret }}
+              name: {{ .Values.sessionStorage.redis.sentinel.existingSecret | default .Values.sessionStorage.redis.existingSecret }}
+              {{- else }}
+              name: {{ template "oauth2-proxy.fullname" . }}-redis-access
+              {{- end }}
+              key: {{ .Values.sessionStorage.redis.sentinel.passwordKey }}
         {{- end }}
         {{- end }}
         {{- end }}
@@ -164,7 +172,7 @@ spec:
         {{- else if (and (eq .Values.httpScheme "http") (empty .Values.containerPort)) }}
           - containerPort: 4180
         {{- else if (and (eq .Values.httpScheme "https") (empty .Values.containerPort)) }}
-          - containerPort: 443
+          - containerPort: 4443
         {{- else }}
         {{- end}}
             name: {{ .Values.httpScheme }}
@@ -314,4 +322,3 @@ spec:
       topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-

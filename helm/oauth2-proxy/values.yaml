@@ -57,7 +57,8 @@ alphaConfig:
 
 image:
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
-  tag: "v7.3.0"
+  # appVersion is used by default
+  tag: ""
   pullPolicy: "IfNotPresent"
 
 # Optionally specify an array of imagePullSecrets.
@@ -109,7 +110,11 @@ service:
   # when service.type is LoadBalancer ...
   # loadBalancerIP: 198.51.100.40
   # loadBalancerSourceRanges: 203.0.113.0/24
+  # when service.type is NodePort ...
+  # nodePort: 80
   portNumber: 80
+  # Protocol set on the service
+  appProtocol: http
   annotations: {}
   # foo.io/bar: "true"
 
@@ -249,24 +254,33 @@ htpasswdFile:
 
 # Configure the session storage type, between cookie and redis
 sessionStorage:
-  # Can be one of the supported session storage cookie/redis
+  # Can be one of the supported session storage cookie|redis
   type: cookie
   redis:
-    # Secret name that holds the redis-password and redis-sentinel-password values
+    # Name of the Kubernetes secret containing the redis & redis sentinel password values (see also `sessionStorage.redis.passwordKey`)
     existingSecret: ""
+    # Redis password value. Applicable for all Redis configurations. Taken from redis subchart secret if not set. `sessionStorage.redis.existingSecret` takes precedence
     password: ""
-    # Can be one of sentinel/cluster/standalone
+    # Key of the Kubernetes secret data containing the redis password value
+    passwordKey: "redis-password"
+    # Can be one of standalone|cluster|sentinel
     clientType: "standalone"
     standalone:
-      # If empty and sessionStorage type is redis, will automatically be generated.
+      # URL of redis standalone server for redis session storage (e.g. `redis://HOST[:PORT]`). Automatically generated if not set
       connectionUrl: ""
     cluster:
-      # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
+      # List of Redis cluster connection URLs (e.g. `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`)
       connectionUrls: []
     sentinel:
+      # Name of the Kubernetes secret containing the redis sentinel password value (see also `sessionStorage.redis.sentinel.passwordKey`). Default: `sessionStorage.redis.existingSecret`
+      existingSecret: ""
+      # Redis sentinel password. Used only for sentinel connection; any redis node passwords need to use `sessionStorage.redis.password`
       password: ""
+      # Key of the Kubernetes secret data containing the redis sentinel password value
+      passwordKey: "redis-sentinel-password"
+      # Redis sentinel master name
       masterName: ""
-      # connectionUrls: ["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]
+      # List of Redis sentinel connection URLs (e.g. `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`)
       connectionUrls: []
 
 # Enables and configure the automatic deployment of the redis subchart
@@ -288,6 +302,11 @@ metrics:
   enabled: true
   # Serve Prometheus metrics on this port
   port: 44180
+  # when service.type is NodePort ...
+  # nodePort: 44180
+  # Protocol set on the service for the metrics port
+  service:
+    appProtocol: http
   servicemonitor:
     # Enable Prometheus Operator ServiceMonitor
     enabled: false
