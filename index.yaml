@@ -3,6 +3,45 @@ entries:
   oauth2-proxy:
   - apiVersion: v2
     appVersion: 7.4.0
+    created: "2022-12-21T10:06:37.877169004Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~16.13.2
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 283bcd5df6ce463538066a4c5b046289449e14dfa4c30b9a5d1dac92bce585bf
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-6.6.2/oauth2-proxy-6.6.2.tgz
+    version: 6.6.2
+  - apiVersion: v2
+    appVersion: 7.4.0
     created: "2022-12-20T19:32:46.929163189Z"
     dependencies:
     - alias: redis
@@ -10,7 +49,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.13.2
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 02b392987a602a6ed40a40789bb4c017fa7c397d8fa4bcf0d7e084cf9f6f3811
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -48,7 +88,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.13.2
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: a3cd077f4f4168adc2e2d97eecb58db68a9181a6c84b72171182a268f81cd70e
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -86,7 +127,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.13.2
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 0795290153498c385ba84e0c66643b03711366838be570751f6359beb70ed7da
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -124,7 +166,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: bbb3db2c268c09b67f7368699c436ef10594f7db3150c006320ba8034d86cfdb
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -162,7 +205,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 3ed9e813df4781b07f1698e5ac4b184cafc7c8cb93539c2984b46314dbf711ae
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -200,7 +244,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: d87d3f159df8fbb62ba670640fd71433a9f6c3a87c8552cd59ecc73591bb59e7
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -238,7 +283,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 672a0012942d01b7a9bc9fb57870b231130ae58a45ae19ab4cab9549932f8fd0
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -276,7 +322,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 8ffec3377aa0dde29fefead9471ed2ac9e5374dc1294949a3ea53b2b97cd36bd
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -314,7 +361,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 5dd39da19f138265461303048c7a09aa2202f7c6f49bebc932d6f2ea4ece8a76
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -352,7 +400,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 7ff6c45dd3080350bfb5ee68bc4fda4ec48fc640516365620b2cbb82668c0a16
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -390,7 +439,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 63835bd0fd637807ef334e3a53287698d8f97081792d3a7a228463d6b096a7f8
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -428,7 +478,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 122d8743c9ab6d91d34ffda8c8f93f2e44c761f0db08606855ddc70064cabb48
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -466,7 +517,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 5abe518c3d7e624ba7be9873743e547688fa6cf1713ba8e3910519cf25a7aa89
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -504,7 +556,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 07709c5db67d86fb11ca796b00aa11c74149e9425cd1dbe32790f4ff2876ee91
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -542,7 +595,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 8514044c4ca15b208c48e45673c7b5f07bf21fbfd87c43ebab3766dabf0dd60f
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -580,7 +634,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: e3b9cea692a237f8e6040a47687562ce54f2a069e77bd1f1695525ac610fbfb3
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -618,7 +673,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: dcddba3a08e090773fe39741b74f22aa5d704a1f758711f3b577d16409de56b8
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -656,7 +712,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 4d627d8aa369be93a63a43bcd0f8dfa05dca3553d7838e5a8d53729b91ec246d
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -694,7 +751,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 6477b674975f4887209aa2daba536279c3971dde1fd56697a77da7b5ff739fbe
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -732,7 +790,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~16.4.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 695e79a99390010c414d7b50860f7f85046d553bead567be1edbff0700aea0b1
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -770,7 +829,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: c86ad75bb7ec0a92f11ca18de913af2c406b6fbd9d018313742be33e3481f6d1
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -808,7 +868,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 58def05ec60444f639fee01571ad1cbd7f69a7d4e4d70a2f811a48c0087da635
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -846,7 +907,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 4c7e912998ce5f2b5dff65aadff43b681fe815939c24eebb40cd41800911efe2
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -884,7 +946,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: b12e3ada49e48c5bff5d0a1193c2880edb297afa2fd71d1910196f5e94f032f9
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -922,7 +985,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: de4383fe995a87bff349ad0c2b7c1b994c60c4f2442fe803920303b16f1251bc
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -960,7 +1024,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 743a6197ac409b0cc7186e4dd8b310842f2cb727ffad9af17ec00e490ffae548
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -998,7 +1063,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 3601d12701054cfef1c94f75ace1bc2f086cb2b0931828a4947f9169fa118911
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1036,7 +1102,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 1cad21a1226d4acf77c14f4085ab104a6b03ca04e2aabfe3217c5d91030158ca
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1074,7 +1141,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 34212cf1c1c887b6ad612d81b2ed893b1ede576fbe0c458ce5b3b622a7ef62bd
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1112,7 +1180,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: ca23fc1d59625a626ee7b8dd334971763c79aef95b30c3844aea3bf6902ad726
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1150,7 +1219,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 4cb9ce2f075053bff859b191d9ed8952d76072a2f2df4c2d9e70ff1cc388b9f8
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1188,7 +1258,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: d49ed1ab084d94de1ea7ca43250fb5c681520789545bc753b38791cdde18c4f6
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1226,7 +1297,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: e8cb9734259dc7591eb9a1b9d92394279d48ba3c6bb16c7aea90e52c1ec7b062
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1264,7 +1336,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 8e7fffa2babc6038dbc52b6a3be5ab503e5e3e2e00623dd53993f36db662d034
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1302,7 +1375,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: aa162aa4a44f93102d796a9115466d6ff81416f8e75a76d76ccd6b58c1be7b2b
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1340,7 +1414,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 28cbac4988fb238b4117cf59c18a3b34b420478e6365616dfd5914da8109b0eb
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1378,7 +1453,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 7dfb8d8006c574b08cbf78be87ddb2eabb4978f54d315655e11be8a4bb41d26b
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1416,7 +1492,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 77ca2cd7085c7fac1f4b419cb90dcf2d4b17a251e4a1aafc00445853e8cc5070
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1454,7 +1531,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 0601123feeccccdb5b1da697dcf351729ccc6bac68470d769a2d9ec860690810
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1492,7 +1570,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: db536fd7ac17233acbf83116b4bd8ff6dc7f8b503d761e6c39af2b7a4888048e
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1530,7 +1609,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: bdec34de03616ca397f83416aa6403e05d76b18784a204bffadda439115760a2
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1568,7 +1648,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 6cdbb6e90fe3830efabd5cbedc72196926f398e525ec2650ce795b545c345ec8
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1606,7 +1687,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 0aa9013def730106b6878fd0403fcfa662a463be1247c452f6b4c9a00e695908
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1644,7 +1726,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: e0b61a7ee713aca1c35c052ac0ed2619803e7ec6961b92d9c246ea47137ac53e
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1682,7 +1765,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 2d1a67ce982f0936917becd309b4f723e72a90c7a40548f82f1105d081568ca9
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1720,7 +1804,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 944872c46584b06558fca836dc51359a8449f0bcb0cbb7882612303a26c680a2
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1758,7 +1843,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: e821efc2e599ccf45a6e2dbbb8e38f4e0e6ea296e68caa7297551a92ec230efa
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1794,7 +1880,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 954689b8d0a717a0635ef24ad96bc8272002243371aa9f30d68366586e965020
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1830,7 +1917,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 7c299cca34b30c80c43afe6136ef8a829aa63b96aaada421150ea0988b04918c
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1866,7 +1954,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: e774149841404fb985c29eaaceff852b3814ec32f908bbac797a3228de58bc71
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1898,7 +1987,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: ee3ec2a9fd54dfdf542619c047a3b13be7f6966d641ba7a83c5a907d9c7f7e7b
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1930,7 +2020,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 667b789f55eb9c77a1d8075d5f00969c7c9e813f59ca0f6ae2cc571251519e7a
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1962,7 +2053,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: ~10.6.0
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 209a1387f4a83020f5432ff779e7fbb5b749b81b7f7572f03684c6e6e407423d
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -1988,7 +2080,8 @@ entries:
   - apiVersion: v1
     appVersion: 5.1.0
     created: "2021-03-15T12:58:58.129623137Z"
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 2455cbdd9865b1ac027727079b3ba6ddd05fdf9d88a0cf5478afb2f2b7644956
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -2013,7 +2106,8 @@ entries:
   - apiVersion: v1
     appVersion: 5.1.0
     created: "2021-02-09T11:58:31.9844259Z"
-    description: A reverse proxy that provides authentication with Google, Github or other providers
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
     digest: 919516e6c8fb200e2762a5896431021f3f6a541b646d9b967782102d40def9cf
     home: https://oauth2-proxy.github.io/oauth2-proxy/
     keywords:
@@ -2035,4 +2129,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2021-02-09T11:58:31.886928916Z"
+generated: "2022-12-21T10:06:37.877485605Z"
