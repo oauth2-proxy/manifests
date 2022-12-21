@@ -57,7 +57,8 @@ alphaConfig:
 
 image:
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
-  tag: "v7.3.0"
+  # appVersion is used by default
+  tag: ""
   pullPolicy: "IfNotPresent"
 
 # Optionally specify an array of imagePullSecrets.
