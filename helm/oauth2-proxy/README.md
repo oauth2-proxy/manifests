@@ -113,6 +113,7 @@ Parameter | Description | Default
 `config.google.serviceAccountJson` | google service account json contents | `""`
 `config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
 `config.google.groups` | restrict logins to members of these google groups | `[]`
+`containerPort` | used to customise port on the deployment | `""`
 `extraArgs` | Extra arguments to give the binary. Either as a map with key:value pairs or as a list type, which allows to configure the same flag multiple times. (e.g. `["--allowed-role=CLIENT_ID:CLIENT_ROLE_NAME_A", "--allowed-role=CLIENT_ID:CLIENT_ROLE_NAME_B"]`). | `{}` or `[]`
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
 `extraVolumes` | list of extra volumes | `[]`
@@ -126,7 +127,7 @@ Parameter | Description | Default
 `httpScheme` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. | `http`
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
 `image.repository` | Image repository | `quay.io/oauth2-proxy/oauth2-proxy`
-`image.tag` | Image tag | `v7.3.0`
+`image.tag` | Image tag | `""` (defaults to appVersion)
 `imagePullSecrets` | Specify image pull secrets | `nil` (does not add image pull secrets to deployed pods)
 `ingress.enabled` | Enable Ingress | `false`
 `ingress.className` | name referencing IngressClass | `nil`
@@ -155,6 +156,7 @@ Parameter | Description | Default
 `replicaCount` | desired number of pods | `1`
 `resources` | pod resource requests & limits | `{}`
 `service.portNumber` | port number for the service | `80`
+`service.appProtocol` | application protocol on the port of the service | `http`
 `service.type` | type of service | `ClusterIP`
 `service.clusterIP` | cluster ip address | `nil`
 `service.loadBalancerIP` | ip of load balancer | `nil`
@@ -185,6 +187,7 @@ Parameter | Description | Default
 `metrics.enabled` | Enable Prometheus metrics endpoint | `true`
 `metrics.port` | Serve Prometheus metrics on this port | `44180`
 `metrics.nodePort` | External port for the metrics when service.type is `NodePort` | `nil`
+`metrics.service.appProtocol` | application protocol of the metrics port in the service | `http`
 `metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
 `metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
 `metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`

@@ -57,7 +57,8 @@ alphaConfig:
 
 image:
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
-  tag: "v7.3.0"
+  # appVersion is used by default
+  tag: ""
   pullPolicy: "IfNotPresent"
 
 # Optionally specify an array of imagePullSecrets.
@@ -65,6 +66,11 @@ image:
 # ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
 # imagePullSecrets:
   # - name: myRegistryKeySecretName
+
+# Set a custom containerPort if required.
+# This will default to 4180 if this value is not set and the httpScheme set to http
+# This will default to 4443 if this value is not set and the httpScheme set to https
+# containerPort: 4180
 
 extraArgs: {}
 extraEnv: []
@@ -107,6 +113,8 @@ service:
   # when service.type is NodePort ...
   # nodePort: 80
   portNumber: 80
+  # Protocol set on the service
+  appProtocol: http
   annotations: {}
   # foo.io/bar: "true"
 
@@ -296,6 +304,9 @@ metrics:
   port: 44180
   # when service.type is NodePort ...
   # nodePort: 44180
+  # Protocol set on the service for the metrics port
+  service:
+    appProtocol: http
   servicemonitor:
     # Enable Prometheus Operator ServiceMonitor
     enabled: false
