@@ -194,12 +194,9 @@ spec:
 {{- if .Values.readinessProbe.enabled }}
         readinessProbe:
           httpGet:
-            path: /ping
+            path: {{ gt .Chart.AppVersion "7.4.0" }}/ready{{ else }}/ping{{ end }}
             port: {{ .Values.httpScheme }}
             scheme: {{ .Values.httpScheme | upper }}
-            httpHeaders:
-            - name: X-Healthcheck
-              value: full
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
