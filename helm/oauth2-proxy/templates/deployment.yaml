@@ -182,11 +182,14 @@ spec:
 {{ tpl (toYaml .Values.extraEnv) . | indent 8 }}
         {{- end }}
         ports:
-          {{- if eq .Values.httpScheme "http" }}
+        {{- if .Values.containerPort }}
+          - containerPort: {{ .Values.containerPort }}
+        {{- else if (and (eq .Values.httpScheme "http") (empty .Values.containerPort)) }}
           - containerPort: 4180
-          {{- else }}
+        {{- else if (and (eq .Values.httpScheme "https") (empty .Values.containerPort)) }}
           - containerPort: 4443
-          {{- end }}
+        {{- else }}
+        {{- end}}
             name: {{ .Values.httpScheme }}
             protocol: TCP
 {{- if .Values.metrics.enabled }}
