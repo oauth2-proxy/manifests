@@ -55,7 +55,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}"
+        image: "{{ .Values.image.repository }}:v{{ include "oauth2-proxy.version" . }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
         {{- if .Values.alphaConfig.enabled }}
@@ -194,7 +194,7 @@ spec:
 {{- if .Values.readinessProbe.enabled }}
         readinessProbe:
           httpGet:
-            path: {{ gt .Chart.AppVersion "7.4.0" }}/ready{{ else }}/ping{{ end }}
+            path: {{ if gt (include "oauth2-proxy.version" .) "7.4.0" }}/ready{{ else }}/ping{{ end }}
             port: {{ .Values.httpScheme }}
             scheme: {{ .Values.httpScheme | upper }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}

@@ -101,3 +101,10 @@ Compute the redis url if not set explicitly.
 {{ fail "please set sessionStorage.redis.standalone.connectionUrl or enable the redis subchart via redis.enabled" }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Returns the version
+*/}}
+{{- define "oauth2-proxy.version" -}}
+{{ trimPrefix "v" (lower (.Values.image.tag | default (printf "v%s" .Chart.AppVersion))) }}
+{{- end -}}
