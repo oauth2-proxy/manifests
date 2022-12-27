@@ -85,11 +85,18 @@ spec:
         {{- if .Values.config.cookieName }}
           - --cookie-name={{ .Values.config.cookieName }}
         {{- end }}
-        {{- range $key, $value := .Values.extraArgs }}
+        {{- if kindIs "map" .Values.extraArgs }}
+          {{- range $key, $value := .Values.extraArgs }}
           {{- if $value }}
           - --{{ $key }}={{ $value }}
           {{- else }}
           - --{{ $key }}
+          {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if kindIs "slice" .Values.extraArgs }}
+          {{- with .Values.extraArgs }}
+            {{- toYaml . | nindent 10 }}
           {{- end }}
         {{- end }}
         {{- if or .Values.config.existingConfig .Values.config.configFile }}
