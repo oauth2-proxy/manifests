@@ -111,6 +111,7 @@ Parameter | Description | Default
 `customLabels` | Custom labels to add into metadata | `{}` |
 `config.google.adminEmail` | user impersonated by the google service account | `""`
 `config.google.useApplicationDefaultCredentials` | use the application-default credentials (i.e. Workload Identity on GKE) instead of providing a service account json | `false`
+`config.google.targetPrincipal` | service account to use/impersonate | `""`
 `config.google.serviceAccountJson` | google service account json contents | `""`
 `config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
 `config.google.groups` | restrict logins to members of these google groups | `[]`

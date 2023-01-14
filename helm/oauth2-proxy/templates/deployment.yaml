@@ -102,6 +102,9 @@ spec:
         {{- else }}
           - --google-service-account-json=/google/service-account.json
         {{- end }}
+        {{- if .targetPrincipal }}
+          - --google-target-principal={{ .targetPrincipal }}
+        {{- end }}
         {{- end }}
         {{- if .groups }}
         {{- range $group := .groups }}
