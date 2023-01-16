@@ -22,6 +22,8 @@ config:
   cookieName: ""
   google: {}
     # adminEmail: xxxx
+    # useApplicationDefaultCredentials: true
+    # targetPrincipal: xxxx
     # serviceAccountJson: xxxx
     # Alternatively, use an existing secret (see google-secret.yaml for required fields)
     # Example:

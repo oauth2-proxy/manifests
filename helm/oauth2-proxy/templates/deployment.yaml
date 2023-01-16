@@ -110,9 +110,16 @@ spec:
         {{- end }}
         {{- end }}
         {{- with .Values.config.google }}
-        {{- if and .adminEmail (or .serviceAccountJson .existingSecret) }}
+        {{- if and .adminEmail (or .serviceAccountJson .existingSecret .useApplicationDefaultCredentials) }}
           - --google-admin-email={{ .adminEmail }}
+        {{- if .useApplicationDefaultCredentials }}
+          - --google-use-application-default-credentials=true
+        {{- else }}
           - --google-service-account-json=/google/service-account.json
+        {{- end }}
+        {{- if .targetPrincipal }}
+          - --google-target-principal={{ .targetPrincipal }}
+        {{- end }}
         {{- end }}
         {{- if .groups }}
         {{- range $group := .groups }}
