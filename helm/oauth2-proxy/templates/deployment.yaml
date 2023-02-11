@@ -73,7 +73,7 @@ spec:
         {{- if kindIs "map" .Values.extraArgs }}
           {{- range $key, $value := .Values.extraArgs }}
           {{- if $value }}
-          - --{{ $key }}={{ $value }}
+          - --{{ $key }}={{ tpl $value $ }}
           {{- else }}
           - --{{ $key }}
           {{- end }}
