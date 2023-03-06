@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.9.1
+version: 6.9.2
 apiVersion: v2
 appVersion: 7.4.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,5 +31,4 @@ maintainers:
     email: joel.speed@hotmail.co.uk
   - name: pierluigilenoci
     email: pierluigi.lenoci@gmail.com
-engine: gotpl
 kubeVersion: ">=1.9.0-0"
