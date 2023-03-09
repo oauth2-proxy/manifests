@@ -21,7 +21,7 @@ spec:
   {{- end }}
   rules:
     {{- range $host := .Values.ingress.hosts }}
-    - host: {{ $host | quote }}
+    - host: {{ tpl $host $ | quote }}
       http:
         paths:
 {{- if $extraPaths }}
@@ -35,6 +35,6 @@ spec:
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
-{{ toYaml .Values.ingress.tls | indent 4 }}
+{{ tpl (toYaml .Values.ingress.tls) $ | indent 4 }}
   {{- end -}}
 {{- end -}}
