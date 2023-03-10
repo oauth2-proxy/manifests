@@ -117,10 +117,10 @@ Parameter | Description | Default
 `config.google.groups` | restrict logins to members of these google groups | `[]`
 `containerPort` | used to customise port on the deployment | `""`
 `extraArgs` | Extra arguments to give the binary. Either as a map with key:value pairs or as a list type, which allows to configure the same flag multiple times. (e.g. `["--allowed-role=CLIENT_ID:CLIENT_ROLE_NAME_A", "--allowed-role=CLIENT_ID:CLIENT_ROLE_NAME_B"]`). | `{}` or `[]`
+`extraContainers` | List of extra containers to be added to the pod | `[]`
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
 `extraVolumes` | list of extra volumes | `[]`
 `extraVolumeMounts` | list of extra volumeMounts | `[]`
-`extraContainers` | List of extra containers to be added to the pod | `[]`
 `hostAlias.enabled`  | provide extra ip:hostname alias for network name resolution.
 `hostAlias.ip`  | `ip` address `hostAliases.hostname` should resolve to.
 `hostAlias.hostname`  | `hostname` associated to `hostAliases.ip`.
