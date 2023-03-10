@@ -140,6 +140,8 @@ Parameter | Description | Default
 `ingress.annotations` | Ingress annotations | `nil`
 `ingress.hosts` | Ingress accepted hostnames | `nil`
 `ingress.tls` | Ingress TLS configuration | `nil`
+`initContainers.waitForRedis.enabled` | if `redis.enabled` is true, use an init container to wait for the redis master pod to be ready. If `serviceAccount.enabled` is true, create additionally a role/binding to get, list and watch the redis master pod | `true`
+`initContainers.waitForRedis.kubectlVersion` | kubectl version to use for the init container | `printf "%s.%s" .Capabilities.KubeVersion.Major .Capabilities.KubeVersion.Minor`
 `livenessProbe.enabled`  | enable Kubernetes livenessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
@@ -158,8 +160,7 @@ Parameter | Description | Default
 `readinessProbe.successThreshold` | number of successes | 1
 `replicaCount` | desired number of pods | `1`
 `resources` | pod resource requests & limits | `{}`
-`initContainers.waitForRedis.enabled` | if `redis.enabled` is true, use an init container to wait for the redis master pod to be ready. If `serviceAccount.enabled` is true, create additionally a role/binding to get, list and watch the redis master pod | `true`
-`initContainers.waitForRedis.kubectlVersion` | kubectl version to use for the init container | `printf "%s.%s" .Capabilities.KubeVersion.Major .Capabilities.KubeVersion.Minor`
+`revisionHistoryLimit` | maximum number of revisions maintained | 10
 `service.portNumber` | port number for the service | `80`
 `service.appProtocol` | application protocol on the port of the service | `http`
 `service.type` | type of service | `ClusterIP`
@@ -195,7 +196,7 @@ Parameter | Description | Default
 `metrics.service.appProtocol` | application protocol of the metrics port in the service | `http`
 `metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
 `metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
-`metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`
+`metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition | `default`
 `metrics.servicemonitor.interval` | Prometheus scrape interval | `60s`
 `metrics.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
 `metrics.servicemonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
