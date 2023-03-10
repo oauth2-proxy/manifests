@@ -175,6 +175,11 @@ extraVolumeMounts: []
   # - mountPath: /etc/ssl/certs/
   #   name: ca-bundle-cert
 
+# Additional containers to be added to the pod.
+extraContainers: []
+  #  - name: my-sidecar
+  #    image: nginx:latest
+
 priorityClassName: ""
 
 # Host aliases, useful when working "on premise" where (public) DNS resolver does not know about my hosts.
