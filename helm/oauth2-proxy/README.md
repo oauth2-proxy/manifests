@@ -158,6 +158,7 @@ Parameter | Description | Default
 `readinessProbe.successThreshold` | number of successes | 1
 `replicaCount` | desired number of pods | `1`
 `resources` | pod resource requests & limits | `{}`
+`revisionHistoryLimit` | maximum number of revisions maintained | 10
 `service.portNumber` | port number for the service | `80`
 `service.appProtocol` | application protocol on the port of the service | `http`
 `service.type` | type of service | `ClusterIP`
@@ -193,7 +194,7 @@ Parameter | Description | Default
 `metrics.service.appProtocol` | application protocol of the metrics port in the service | `http`
 `metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
 `metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
-`metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition  | `default`
+`metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition | `default`
 `metrics.servicemonitor.interval` | Prometheus scrape interval | `60s`
 `metrics.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
 `metrics.servicemonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
