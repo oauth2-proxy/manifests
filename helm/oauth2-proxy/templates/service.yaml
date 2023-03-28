@@ -34,15 +34,19 @@ spec:
       nodePort: {{ .Values.service.nodePort }}
       {{- end }}
       protocol: TCP
+      {{- if .Values.service.appProtocol }}
       {{- with .Values.service.appProtocol }}
       appProtocol: {{ . }}
+      {{- end }}
       {{- end }}
       name: {{ .Values.httpScheme }}
     {{- if and .Values.metrics.enabled .Values.metrics.port }}
     - port: {{ .Values.metrics.port }}
       protocol: TCP
+      {{- if .Values.metrics.service.appProtocol }}
       {{- with .Values.metrics.service.appProtocol }}
       appProtocol: {{ . }}
+      {{- end }}
       {{- end }}
       targetPort: metrics
       {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.metrics.nodePort))) }}
