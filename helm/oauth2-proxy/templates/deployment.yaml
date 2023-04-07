@@ -136,6 +136,11 @@ spec:
               name:  {{ template "oauth2-proxy.secretName" . }}
               key: cookie-secret
         {{- end }}
+        envFrom:
+        {{- with .Values.proxyVarsFromSecret }}  
+        - secretRef:
+            name: {{  . }}
+        {{- end }}
         {{- if eq (default "cookie" .Values.sessionStorage.type) "redis" }}
         - name: OAUTH2_PROXY_SESSION_STORE_TYPE
           value: "redis"
