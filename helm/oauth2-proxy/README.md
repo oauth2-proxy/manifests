@@ -143,6 +143,7 @@ Parameter | Description | Default
 `livenessProbe.enabled`  | enable Kubernetes livenessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
+`namespaceOverride` | Override the deployment namespace | `""`
 `nodeSelector` | node labels for pod assignment | `{}`
 `deploymentAnnotations` | annotations to add to the deployment | `{}`
 `podAnnotations` | annotations to add to each pod | `{}`
