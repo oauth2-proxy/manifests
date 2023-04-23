@@ -9,7 +9,10 @@ kind: Ingress
 metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
-{{- include "oauth2-proxy.labels" . | indent 4 }}
+    {{- include "oauth2-proxy.labels" . | indent 4 }}
+{{- if .Values.ingress.labels }}
+{{ toYaml .Values.ingress.labels | indent 4 }}
+{{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
 {{- with .Values.ingress.annotations }}
