@@ -1,3 +1,7 @@
+## Override the deployment namespace
+##
+namespaceOverride: ""
+
 # Force the target Kubernetes version (it uses Helm `.Capabilities` if not set).
 # This is especially useful for `helm template` as capabilities are always empty
 # due to the fact that it doesn't query an actual cluster
@@ -149,6 +153,7 @@ ingress:
   #       name: ssl-redirect
   #       port:
   #         name: use-annotation
+  labels: {}
   # annotations:
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
@@ -265,7 +270,7 @@ initContainers:
 htpasswdFile:
   enabled: false
   existingSecret: ""
-  entries: {}
+  entries: []
   # One row for each user
   # example:
   # entries:
