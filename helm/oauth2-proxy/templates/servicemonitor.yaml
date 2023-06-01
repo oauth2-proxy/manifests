@@ -6,7 +6,7 @@ metadata:
 {{- if .Values.metrics.servicemonitor.namespace }}
   namespace: {{ .Values.metrics.servicemonitor.namespace }}
 {{- else }}
-  namespace: {{ .Release.Namespace | quote }}
+  namespace: {{ template "oauth2-proxy.namespace" $ }}
 {{- end }}
   labels:
     prometheus: {{ .Values.metrics.servicemonitor.prometheusInstance }}
@@ -22,7 +22,7 @@ spec:
       {{- include "oauth2-proxy.selectorLabels" . | indent 6 }}
   namespaceSelector:
     matchNames:
-      - {{ .Release.Namespace }}
+      - {{ template "oauth2-proxy.namespace" $ }}
   endpoints:
   - port: metrics
     path: "/metrics"
