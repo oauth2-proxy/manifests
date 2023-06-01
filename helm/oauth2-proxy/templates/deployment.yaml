@@ -9,6 +9,7 @@ metadata:
 {{ toYaml .Values.deploymentAnnotations | indent 8 }}
   {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
+  namespace: {{ template "oauth2-proxy.namespace" $ }}
 spec:
   replicas: {{ .Values.replicaCount }}
   {{- if .Values.revisionHistoryLimit }}
