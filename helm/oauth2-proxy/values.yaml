@@ -153,6 +153,7 @@ ingress:
   #       name: ssl-redirect
   #       port:
   #         name: use-annotation
+  labels: {}
   # annotations:
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
@@ -265,7 +266,7 @@ httpScheme: http
 htpasswdFile:
   enabled: false
   existingSecret: ""
-  entries: {}
+  entries: []
   # One row for each user
   # example:
   # entries:
