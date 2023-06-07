@@ -107,6 +107,7 @@ Parameter | Description | Default
 `alphaConfig.serverConfigData` | Arbitrary configuration data to append to the server section | `{}`
 `alphaConfig.metricsConfigData` | Arbitrary configuration data to append to the metrics section | `{}`
 `alphaConfig.configData` | Arbitrary configuration data to append | `{}`
+`alphaConfig.configFile` | Arbitrary configuration to append, treated as a Go template and rendered with the root context | `""`
 `alphaConfig.existingConfig` | existing Kubernetes configmap to use for the alpha configuration file. See [config template](https://github.com/oauth2-proxy/manifests/blob/master/helm/oauth2-proxy/templates/configmap-alpha.yaml) for the required values | `nil`
 `customLabels` | Custom labels to add into metadata | `{}` |
 `config.google.adminEmail` | user impersonated by the google service account | `""`
