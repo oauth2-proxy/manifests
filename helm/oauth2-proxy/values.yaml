@@ -58,6 +58,9 @@ alphaConfig:
   metricsConfigData: {}
   # Arbitrary configuration data to append
   configData: {}
+  # Arbitrary configuration to append
+  # This is treated as a Go template and rendered with the root context
+  configFile: ""
   # Use an existing config map (see configmap-alpha.yaml for required fields)
   existingConfig: ~
 

@@ -29,5 +29,8 @@ data:
     {{- if .Values.alphaConfig.configData }}
     {{- toYaml .Values.alphaConfig.configData | nindent 4 }}
     {{- end }}
+    {{- if .Values.alphaConfig.configFile }}
+    {{- tpl .Values.alphaConfig.configFile $ | nindent 4 }}
+    {{- end }}
 {{- end }}
 {{- end }}
