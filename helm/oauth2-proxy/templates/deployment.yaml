@@ -300,10 +300,17 @@ spec:
         name: configmain
 {{- end }}
 {{- if .Values.alphaConfig.enabled }}
+{{- if .Values.alphaConfig.existingConfig }}
       - configMap:
           defaultMode: 420
-          name: {{ if .Values.alphaConfig.existingConfig }}{{ .Values.alphaConfig.existingConfig }}{{ else }}{{ template "oauth2-proxy.fullname" . }}-alpha{{ end }}
+          name: {{ .Values.alphaConfig.existingConfig }}
         name: configalpha
+{{- else }}
+      - secret:
+          defaultMode: 420
+          secretName: {{ if .Values.alphaConfig.existingSecret }}{{ .Values.alphaConfig.existingSecret }}{{ else }}{{ template "oauth2-proxy.fullname" . }}-alpha{{ end }}
+        name: configalpha
+{{- end }}
 {{- end }}
 {{- if ne (len .Values.extraVolumes) 0 }}
 {{ toYaml .Values.extraVolumes | indent 6 }}
