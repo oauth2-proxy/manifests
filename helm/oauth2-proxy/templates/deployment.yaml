@@ -76,7 +76,7 @@ spec:
         {{- end }}
         {{- if kindIs "map" .Values.extraArgs }}
           {{- range $key, $value := .Values.extraArgs }}
-          {{- if $value }}
+          {{- if not (kindIs "invalid" $value) }}
           - --{{ $key }}={{ tpl ($value | toString) $ }}
           {{- else }}
           - --{{ $key }}
