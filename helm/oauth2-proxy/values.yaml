@@ -61,8 +61,10 @@ alphaConfig:
   # Arbitrary configuration to append
   # This is treated as a Go template and rendered with the root context
   configFile: ""
-  # Use an existing config map (see configmap-alpha.yaml for required fields)
+  # Use an existing config map (see secret-alpha.yaml for required fields)
   existingConfig: ~
+  # Use an existing secret
+  existingSecret: ~
 
 image:
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
