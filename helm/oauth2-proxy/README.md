@@ -143,6 +143,8 @@ Parameter | Description | Default
 `ingress.annotations` | Ingress annotations | `nil`
 `ingress.hosts` | Ingress accepted hostnames | `nil`
 `ingress.tls` | Ingress TLS configuration | `nil`
+`initContainers.waitForRedis.enabled` | if `redis.enabled` is true, use an init container to wait for the redis master pod to be ready. If `serviceAccount.enabled` is true, create additionally a role/binding to get, list and watch the redis master pod | `true`
+`initContainers.waitForRedis.kubectlVersion` | kubectl version to use for the init container | `printf "%s.%s" .Capabilities.KubeVersion.Major .Capabilities.KubeVersion.Minor`
 `livenessProbe.enabled`  | enable Kubernetes livenessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
