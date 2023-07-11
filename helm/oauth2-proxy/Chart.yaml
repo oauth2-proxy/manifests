@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.15.0
+version: 6.15.1
 apiVersion: v2
 appVersion: 7.4.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -34,10 +34,10 @@ maintainers:
 kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: optional init container to wait for redis subchart's master pod to be ready
+    - kind: fixed
+      description: Created a workaround to fix the EKS bug related to Capabilities.KubeVersion.Minor in clusters with version 1.25+
       links:
         - name: Github Issue
-          url: https://github.com/oauth2-proxy/manifests/issues/91
+          url: https://github.com/oauth2-proxy/manifests/issues/155
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/92
+          url: https://github.com/oauth2-proxy/manifests/pull/157
