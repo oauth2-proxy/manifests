@@ -35,9 +35,7 @@ kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: Created a workaround to fix the EKS bug related to Capabilities.KubeVersion.Minor in clusters with version 1.25+
+      description: Drop capabilities of wait-for-redis container
       links:
-        - name: Github Issue
-          url: https://github.com/oauth2-proxy/manifests/issues/155
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/157
+          url: https://github.com/oauth2-proxy/manifests/pull/158
