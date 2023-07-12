@@ -71,6 +71,9 @@ spec:
           readOnlyRootFilesystem: true
           runAsNonRoot: true
           runAsUser: 65534
+          capabilities:
+            drop:
+            - ALL
       {{- end }}
       containers:
       - name: {{ .Chart.Name }}
