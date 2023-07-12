@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.15.2
+version: 6.15.3
 apiVersion: v2
 appVersion: 7.4.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -34,8 +34,8 @@ maintainers:
 kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Drop capabilities of wait-for-redis container
+    - kind: added
+      description: securityContext and timeout of the initContainer wait-for-redis configurable via values.
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/158
+          url: https://github.com/oauth2-proxy/manifests/pull/159
