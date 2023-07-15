@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.15.1
+version: 6.17.0
 apiVersion: v2
 appVersion: 7.4.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -35,9 +35,7 @@ kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: optional init container to wait for redis subchart's master pod to be ready
+      description: Add proxyVarsFromSecret: "" option
       links:
-        - name: Github Issue
-          url: https://github.com/oauth2-proxy/manifests/issues/91
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/92
+          url: https://github.com/oauth2-proxy/manifests/pull/141
