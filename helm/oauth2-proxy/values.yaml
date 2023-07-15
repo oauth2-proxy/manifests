@@ -279,6 +279,19 @@ initContainers:
     # uses the kubernetes version of the cluster
     # the chart is deployed on, if not set
     kubectlVersion: ""
+    securityContext:
+      enabled: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 65534
+      runAsGroup: 65534
+      seccompProfile:
+        type: RuntimeDefault
+    timeout: 180
 
 # Additionally authenticate against a htpasswd file. Entries must be created with "htpasswd -B" for bcrypt encryption.
 # Alternatively supply an existing secret which contains the required information.

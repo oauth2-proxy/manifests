@@ -119,3 +119,15 @@ Returns the version
 {{- define "oauth2-proxy.version" -}}
 {{ trimPrefix "v" (lower (.Values.image.tag | default (printf "v%s" .Chart.AppVersion))) }}
 {{- end -}}
+
+{{/*
+Returns the kubectl version
+Workaround for EKS https://github.com/aws/eks-distro/issues/1128
+*/}}
+{{- define "kubectl.version" -}}
+{{- if .Values.initContainers.waitForRedis.kubectlVersion -}}
+{{ .Values.initContainers.waitForRedis.kubectlVersion }}
+{{- else -}}
+{{- printf "%s.%s" .Capabilities.KubeVersion.Major (.Capabilities.KubeVersion.Minor | replace "+" "") -}}
+{{- end -}}
+{{- end -}}
