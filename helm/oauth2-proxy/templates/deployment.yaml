@@ -65,15 +65,12 @@ spec:
           - wait
           - pod/{{ include "oauth2-proxy.redis.fullname" . }}-master-0
           - --for=condition=ready
-          - --timeout=180s
+          - --timeout={{ .Values.initContainers.waitForRedis.timeout }}s
+      {{- if .Values.initContainers.waitForRedis.securityContext.enabled }}
+      {{- $securityContext := unset .Values.initContainers.waitForRedis.securityContext "enabled" }}
         securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
-          runAsUser: 65534
-          capabilities:
-            drop:
-            - ALL
+          {{- toYaml $securityContext | nindent 10 }}
+      {{- end }}
       {{- end }}
       containers:
       - name: {{ .Chart.Name }}
