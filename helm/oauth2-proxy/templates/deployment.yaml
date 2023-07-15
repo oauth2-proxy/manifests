@@ -57,8 +57,8 @@ spec:
           hostnames:
           - {{ .Values.hostAlias.hostname }}
       {{- end }}
-      initContainers:
       {{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
+      initContainers:
       - name: wait-for-redis
         image: "docker.io/bitnami/kubectl:{{ include "kubectl.version" . }}"
         args:
