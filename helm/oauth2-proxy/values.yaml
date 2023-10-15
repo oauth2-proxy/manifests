@@ -192,11 +192,12 @@ extraContainers: []
 
 priorityClassName: ""
 
-# Host aliases, useful when working "on premise" where (public) DNS resolver does not know about my hosts.
-hostAlias:
-  enabled: false
-  # ip: "10.xxx.xxx.xxx"
-  # hostname: "auth.example.com"
+# hostAliases is a list of aliases to be added to /etc/hosts for network name resolution
+hostAliases: []
+# - ip: 127.0.0.1
+#   hostnames:
+#     - chart-example.local
+#     - example.local
 
 # [TopologySpreadConstraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) configuration.
 # Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling
