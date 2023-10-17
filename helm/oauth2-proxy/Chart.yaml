@@ -36,3 +36,6 @@ annotations:
   artifacthub.io/changes: |
     - kind: added
       description: Redis version bump
+      links:
+        - name: Github PR
+          url: https://github.com/oauth2-proxy/manifests/pull/165
