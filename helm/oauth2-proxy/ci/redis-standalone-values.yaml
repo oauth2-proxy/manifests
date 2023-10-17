@@ -10,3 +10,6 @@ redis:
   global:
     redis:
       password: "foo"
+initContainers:
+  waitForRedis:
+    enabled: true
