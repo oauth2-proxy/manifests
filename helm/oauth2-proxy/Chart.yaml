@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.18.0
+version: 6.18.1
 apiVersion: v2
 appVersion: 7.5.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -35,7 +35,7 @@ kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Redis version bump
+      description: Fix hostAliases to add multiple entries in /etc/hosts
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/165
+          url: https://github.com/oauth2-proxy/manifests/pull/164
