@@ -144,6 +144,8 @@ Parameter | Description | Default
 `ingress.hosts` | Ingress accepted hostnames | `nil`
 `ingress.tls` | Ingress TLS configuration | `nil`
 `initContainers.waitForRedis.enabled` | if `redis.enabled` is true, use an init container to wait for the redis master pod to be ready. If `serviceAccount.enabled` is true, create additionally a role/binding to get, list and watch the redis master pod | `true`
+`initContainers.waitForRedis.image.pullPolicy` | kubectl image pull policy | `IfNotPresent`
+`initContainers.waitForRedis.image.repository` | kubectl image repository | `docker.io/bitnami/kubectl`
 `initContainers.waitForRedis.kubectlVersion` | kubectl version to use for the init container | `printf "%s.%s" .Capabilities.KubeVersion.Major (.Capabilities.KubeVersion.Minor | replace "+" "")`
 `initContainers.waitForRedis.securityContext.enabled` | enable Kubernetes security context on container | `true`
 `initContainers.waitForRedis.timeout` | number of seconds | 180
