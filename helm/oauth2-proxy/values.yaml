@@ -277,6 +277,9 @@ initContainers:
   # if service account is enabled
   waitForRedis:
     enabled: true
+    image:
+      repository: "docker.io/bitnami/kubectl"
+      pullPolicy: "IfNotPresent"
     # uses the kubernetes version of the cluster
     # the chart is deployed on, if not set
     kubectlVersion: ""
