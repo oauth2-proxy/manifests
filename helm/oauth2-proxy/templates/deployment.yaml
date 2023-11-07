@@ -60,7 +60,8 @@ spec:
       {{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
       initContainers:
       - name: wait-for-redis
-        image: "docker.io/bitnami/kubectl:{{ include "kubectl.version" . }}"
+        image: "{{ .Values.initContainers.waitForRedis.image.repository }}:{{ include "kubectl.version" . }}"
+        imagePullPolicy: {{ .Values.initContainers.waitForRedis.image.pullPolicy }}
         args:
           - wait
           - pod/{{ include "oauth2-proxy.redis.fullname" . }}-master-0
