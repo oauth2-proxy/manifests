@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.18.3
+version: 6.19.0
 apiVersion: v2
 appVersion: 7.5.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -35,7 +35,7 @@ kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Updated Redis and Prometheus Operator to the latest version.
+      description: Make serviceMonitor.scheme,serviceMonitor.bearerTokenFile,serviceMonitor.tlsConfig,serviceMonitor.targetLabels configurable
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/172
+          url: https://github.com/oauth2-proxy/manifests/pull/170

@@ -207,6 +207,12 @@ Parameter | Description | Default
 `metrics.serviceMonitor.interval` | Prometheus scrape interval | `60s`
 `metrics.serviceMonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
 `metrics.serviceMonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
+`metrics.serviceMonitor.scheme` | HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.| `""`
+`metrics.serviceMonitor.tlsConfig` | TLS configuration to use when scraping the endpoint. For example if using istio mTLS.| `{}`
+`metrics.serviceMonitor.bearerTokenFile` | Path to bearer token file.| `""`
+`metrics.serviceMonitor.annotations` | Used to pass annotations that are used by the Prometheus installed in your cluster| `{}`
+`metrics.serviceMonitor.metricRelabelings` | Metric relabel configs to apply to samples before ingestion.| `[]`
+`metrics.serviceMonitor.relabelings` | Relabel configs to apply to samples before ingestion.| `[]`
 `extraObjects` | Extra K8s manifests to deploy | `[]`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
