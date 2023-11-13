@@ -1,6 +1,6 @@
 metrics:
   enabled: true
-  serviceMonitor:
+  servicemonitor:
     enabled: true
     annotations:
       key: value
