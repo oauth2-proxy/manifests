@@ -213,7 +213,6 @@ Parameter | Description | Default
 `metrics.serviceMonitor.annotations` | Used to pass annotations that are used by the Prometheus installed in your cluster| `{}`
 `metrics.serviceMonitor.metricRelabelings` | Metric relabel configs to apply to samples before ingestion.| `[]`
 `metrics.serviceMonitor.relabelings` | Relabel configs to apply to samples before ingestion.| `[]`
-`metrics.serviceMonitor.targetLabels` | Attach labels to the ServiceMonitor resource based on Service metadata.| `[]`
 `extraObjects` | Extra K8s manifests to deploy | `[]`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,

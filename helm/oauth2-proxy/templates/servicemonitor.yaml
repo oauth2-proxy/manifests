@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  {{- with .Values.metrics.servicemonitor.annotations }}
+  {{- with .Values.metrics.serviceMonitor.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -30,27 +30,27 @@ spec:
   endpoints:
   - port: metrics
     path: "/metrics"
-    {{- with .Values.metrics.servicemonitor.interval }}
+    {{- with .Values.metrics.serviceMonitor.interval }}
     interval: {{ . }}
     {{- end }}
-    {{- with .Values.metrics.servicemonitor.scrapeTimeout }}
+    {{- with .Values.metrics.serviceMonitor.scrapeTimeout }}
     scrapeTimeout: {{ . }}
     {{- end }}
-    {{- with .Values.metrics.servicemonitor.scheme }}
+    {{- with .Values.metrics.serviceMonitor.scheme }}
     scheme: {{ . }}
     {{- end }}
-    {{- with .Values.metrics.servicemonitor.bearerTokenFile }}
+    {{- with .Values.metrics.serviceMonitor.bearerTokenFile }}
     bearerTokenFile: {{ . }}
     {{- end }}
-    {{- with .Values.metrics.servicemonitor.tlsConfig }}
+    {{- with .Values.metrics.serviceMonitor.tlsConfig }}
     tlsConfig:
       {{- toYaml .| nindent 4 }}
     {{- end }}
-    {{- with .Values.metrics.servicemonitor.metricRelabelings }}
+    {{- with .Values.metrics.serviceMonitor.metricRelabelings }}
     metricRelabelings:
       {{- toYaml . | nindent 4 }}
     {{- end }}
-    {{- with .Values.metrics.servicemonitor.relabelings }}
+    {{- with .Values.metrics.serviceMonitor.relabelings }}
     relabelings:
       {{- toYaml . | nindent 4 }}
     {{- end }}
