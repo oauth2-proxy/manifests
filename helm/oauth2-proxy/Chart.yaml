@@ -35,7 +35,7 @@ kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Define image repository & pullPolicy on the initContainer wait-for-redis
+      description: Make serviceMonitor.scheme,serviceMonitor.bearerTokenFile,serviceMonitor.tlsConfig,serviceMonitor.targetLabels configurable
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/166
+          url: https://github.com/oauth2-proxy/manifests/pull/170
