@@ -1,4 +1,4 @@
-{{- if and .Values.metrics.enabled .Values.metrics.servicemonitor.enabled }}
+{{- if and .Values.metrics.enabled .Values.metrics.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -7,17 +7,17 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
-{{- if .Values.metrics.servicemonitor.namespace }}
-  namespace: {{ .Values.metrics.servicemonitor.namespace }}
+{{- if .Values.metrics.serviceMonitor.namespace }}
+  namespace: {{ .Values.metrics.serviceMonitor.namespace }}
 {{- else }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
 {{- end }}
   labels:
-    prometheus: {{ .Values.metrics.servicemonitor.prometheusInstance }}
+    prometheus: {{ .Values.metrics.serviceMonitor.prometheusInstance }}
     app: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.labels" . | indent 4 }}
-{{- if .Values.metrics.servicemonitor.labels }}
-{{ toYaml .Values.metrics.servicemonitor.labels | indent 4}}
+{{- if .Values.metrics.serviceMonitor.labels }}
+{{ toYaml .Values.metrics.serviceMonitor.labels | indent 4}}
 {{- end }}
 spec:
   jobLabel: {{ template "oauth2-proxy.fullname" . }}
