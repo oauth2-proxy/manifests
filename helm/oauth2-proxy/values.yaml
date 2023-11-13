@@ -276,6 +276,9 @@ initContainers:
   # if service account is enabled
   waitForRedis:
     enabled: true
+    image:
+      repository: "docker.io/bitnami/kubectl"
+      pullPolicy: "IfNotPresent"
     # uses the kubernetes version of the cluster
     # the chart is deployed on, if not set
     kubectlVersion: ""
@@ -359,7 +362,7 @@ metrics:
   # Protocol set on the service for the metrics port
   service:
     appProtocol: http
-  servicemonitor:
+  serviceMonitor:
     # Enable Prometheus Operator ServiceMonitor
     enabled: false
     # Define the namespace where to deploy the ServiceMonitor resource
@@ -372,6 +375,37 @@ metrics:
     scrapeTimeout: 30s
     # Add custom labels to the ServiceMonitor resource
     labels: {}
+
+    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
+    scheme: ""
+
+    ## tlsConfig: TLS configuration to use when scraping the endpoint. For example if using istio mTLS.
+    ## Of type: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#tlsconfig
+    tlsConfig: {}
+
+    ## bearerTokenFile: Path to bearer token file.
+    bearerTokenFile: ""
+
+    ## Used to pass annotations that are used by the Prometheus installed in your cluster to select Service Monitors to work with
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
+    annotations: {}
+
+    ## Metric relabel configs to apply to samples before ingestion.
+    ## [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)
+    metricRelabelings: []
+    # - action: keep
+    #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
+    #   sourceLabels: [__name__]
+
+    ## Relabel configs to apply to samples before ingestion.
+    ## [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
+    relabelings: []
+    # - sourceLabels: [__meta_kubernetes_pod_node_name]
+    #   separator: ;
+    #   regex: ^(.*)$
+    #   targetLabel: nodename
+    #   replacement: $1
+    #   action: replace
 
 # Extra K8s manifests to deploy
 extraObjects: []
