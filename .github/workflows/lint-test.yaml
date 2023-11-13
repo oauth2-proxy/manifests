@@ -44,7 +44,7 @@ jobs:
 
       - name: Install Prometheus Operator CRDs
         id: prom
-        run: kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.54.0/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+        run: kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/release-0.69/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
