@@ -359,7 +359,7 @@ metrics:
   # Protocol set on the service for the metrics port
   service:
     appProtocol: http
-  servicemonitor:
+  serviceMonitor:
     # Enable Prometheus Operator ServiceMonitor
     enabled: false
     # Define the namespace where to deploy the ServiceMonitor resource

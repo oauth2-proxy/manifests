@@ -201,12 +201,12 @@ Parameter | Description | Default
 `metrics.port` | Serve Prometheus metrics on this port | `44180`
 `metrics.nodePort` | External port for the metrics when service.type is `NodePort` | `nil`
 `metrics.service.appProtocol` | application protocol of the metrics port in the service | `http`
-`metrics.servicemonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
-`metrics.servicemonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
-`metrics.servicemonitor.prometheusInstance` | Prometheus Instance definition | `default`
-`metrics.servicemonitor.interval` | Prometheus scrape interval | `60s`
-`metrics.servicemonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
-`metrics.servicemonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
+`metrics.serviceMonitor.enabled` | Enable Prometheus Operator ServiceMonitor | `false`
+`metrics.serviceMonitor.namespace` | Define the namespace where to deploy the ServiceMonitor resource | `""`
+`metrics.serviceMonitor.prometheusInstance` | Prometheus Instance definition | `default`
+`metrics.serviceMonitor.interval` | Prometheus scrape interval | `60s`
+`metrics.serviceMonitor.scrapeTimeout` | Prometheus scrape timeout | `30s`
+`metrics.serviceMonitor.labels` | Add custom labels to the ServiceMonitor resource| `{}`
 `extraObjects` | Extra K8s manifests to deploy | `[]`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
