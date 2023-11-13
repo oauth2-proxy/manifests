@@ -373,6 +373,16 @@ metrics:
     # Add custom labels to the ServiceMonitor resource
     labels: {}
 
+    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
+    scheme: ""
+
+    ## tlsConfig: TLS configuration to use when scraping the endpoint. For example if using istio mTLS.
+    ## Of type: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#tlsconfig
+    tlsConfig: {}
+
+    ## bearerTokenFile: Path to bearer token file.
+    bearerTokenFile: ""
+
     ## Used to pass annotations that are used by the Prometheus installed in your cluster to select Service Monitors to work with
     ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
     annotations: {}
@@ -394,6 +404,7 @@ metrics:
     #   replacement: $1
     #   action: replace
 
+    ## Attach labels to the ServiceMonitor resource based on Service metadata.
     targetLabels: []
 
 # Extra K8s manifests to deploy
