@@ -50,7 +50,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ template "oauth2-proxy.serviceAccountName" . }}
-      automountServiceAccountToken : {{ .Values.serviceAccount.automountServiceAccountToken }}
+      automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
       {{- if .Values.hostAliases }}
       hostAliases:
         {{ toYaml .Values.hostAliases | nindent 8}}
