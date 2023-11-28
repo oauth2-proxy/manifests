@@ -351,6 +351,10 @@ checkDeprecation: true
 
 # Allows graceful shutdown
 # terminationGracePeriodSeconds: 65
+# lifecycle:
+#   preStop:
+#     exec:
+#       command: [ "sh", "-c", "sleep 60" ]
 
 metrics:
   # Enable Prometheus metrics endpoint
