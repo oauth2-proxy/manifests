@@ -3,6 +3,52 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Allow specifying terminationGracePeriodSeconds and lifecycle hooks
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/174
+    apiVersion: v2
+    appVersion: 7.5.1
+    created: "2023-11-28T17:43:21.880195999Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~18.3.2
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: dad634bc079a5d49a43118afe4f19f9084c13c85d7819f87ba7c4f3a1c86ee26
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-6.20.0/oauth2-proxy-6.20.0.tgz
+    version: 6.20.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Fix typo for automountServiceAccountToken parameter
           links:
@@ -3355,4 +3401,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2023-11-17T10:23:47.763630185Z"
+generated: "2023-11-28T17:43:21.880666174Z"
