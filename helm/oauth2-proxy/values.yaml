@@ -349,6 +349,9 @@ redis:
 # Enables apiVersion deprecation checks
 checkDeprecation: true
 
+# Allows graceful shutdown
+# terminationGracePeriodSeconds: 65
+
 metrics:
   # Enable Prometheus metrics endpoint
   enabled: true

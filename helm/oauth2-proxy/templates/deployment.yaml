@@ -73,6 +73,9 @@ spec:
           {{- toYaml $securityContext | nindent 10 }}
       {{- end }}
       {{- end }}
+      {{- if .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:v{{ include "oauth2-proxy.version" . }}"
