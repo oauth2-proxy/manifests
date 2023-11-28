@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.19.1
+version: 6.20.0
 apiVersion: v2
 appVersion: 7.5.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -34,8 +34,8 @@ maintainers:
 kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Fix typo for automountServiceAccountToken parameter
+    - kind: added
+      description: Allow specifying terminationGracePeriodSeconds and lifecycle hooks
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/173
+          url: https://github.com/oauth2-proxy/manifests/pull/174
