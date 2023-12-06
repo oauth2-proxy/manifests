@@ -149,6 +149,7 @@ Parameter | Description | Default
 `initContainers.waitForRedis.kubectlVersion` | kubectl version to use for the init container | `printf "%s.%s" .Capabilities.KubeVersion.Major (.Capabilities.KubeVersion.Minor | replace "+" "")`
 `initContainers.waitForRedis.securityContext.enabled` | enable Kubernetes security context on container | `true`
 `initContainers.waitForRedis.timeout` | number of seconds | 180
+`initContainers.waitForRedis.resources` | pod resource requests & limits | `{}`
 `livenessProbe.enabled`  | enable Kubernetes livenessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
