@@ -292,6 +292,13 @@ initContainers:
       seccompProfile:
         type: RuntimeDefault
     timeout: 180
+    resources: {}
+      # limits:
+      #   cpu: 100m
+      #   memory: 300Mi
+      # requests:
+      #   cpu: 100m
+      #   memory: 300Mi
 
 # Additionally authenticate against a htpasswd file. Entries must be created with "htpasswd -B" for bcrypt encryption.
 # Alternatively supply an existing secret which contains the required information.
