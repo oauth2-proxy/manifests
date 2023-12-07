@@ -3,6 +3,52 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Add possibility to set resources for the wait-for-redis initContainer
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/176
+    apiVersion: v2
+    appVersion: 7.5.1
+    created: "2023-12-07T10:13:04.372112862Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~18.3.2
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 88b069773eb634115cb80650755d4f347795e791e48e9b44aeaec40fc1233be6
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-6.21.0/oauth2-proxy-6.21.0.tgz
+    version: 6.21.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Fixed service account role and rolebinding created in the wrong namespace
           links:
@@ -3447,4 +3493,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2023-12-04T15:45:41.362695499Z"
+generated: "2023-12-07T10:13:04.372364002Z"
