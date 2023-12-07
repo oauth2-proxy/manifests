@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 6.21.0
+version: 6.21.1
 apiVersion: v2
 appVersion: 7.5.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -34,8 +34,8 @@ maintainers:
 kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Add possibility to set resources for the wait-for-redis initContainer
+    - kind: fixed
+      description: Fix wrong formating for resources for the wait-for-redis initContainer
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/176
+          url: https://github.com/oauth2-proxy/manifests/pull/177
