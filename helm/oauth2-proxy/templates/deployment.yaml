@@ -73,7 +73,7 @@ spec:
           {{- toYaml $securityContext | nindent 10 }}
       {{- end }}
         resources:
-          {{ toYaml .Values.initContainers.waitForRedis.resources | indent 10 }}
+          {{- toYaml .Values.initContainers.waitForRedis.resources | nindent 10 }}
       {{- end }}
       {{- if .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
