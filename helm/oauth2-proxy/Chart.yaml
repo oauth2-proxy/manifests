@@ -35,7 +35,7 @@ kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: Fix wrong formating for resources for the wait-for-redis initContainer
+      description: Avoid unnecessary pod restart on each helm chart version
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/177
+          url: https://github.com/oauth2-proxy/manifests/pull/178
