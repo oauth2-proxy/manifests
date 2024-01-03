@@ -137,20 +137,20 @@ Workaround for EKS https://github.com/aws/eks-distro/issues/1128
 server:
   BindAddress: '0.0.0.0:4180'
 {{- if .Values.alphaConfig.serverConfigData }}
-{{- toYaml .Values.alphaConfig.serverConfigData | nindent 6 }}
+{{- toYaml .Values.alphaConfig.serverConfigData | nindent 2 }}
 {{- end }}
 {{- if .Values.metrics.enabled }}
 metricsServer:
   BindAddress: '0.0.0.0:44180'
 {{- if .Values.alphaConfig.metricsConfigData }}
-{{- toYaml .Values.alphaConfig.metricsConfigData | nindent 6 }}
+{{- toYaml .Values.alphaConfig.metricsConfigData | nindent 2 }}
 {{- end }}
 {{- end }}
 {{- if .Values.alphaConfig.configData }}
-{{- toYaml .Values.alphaConfig.configData | nindent 4 }}
+{{- toYaml .Values.alphaConfig.configData | nindent 0 }}
 {{- end }}
 {{- if .Values.alphaConfig.configFile }}
-{{- tpl .Values.alphaConfig.configFile $ | nindent 4 }}
+{{- tpl .Values.alphaConfig.configFile $ | nindent 0 }}
 {{- end }}
 {{- end -}}
 
