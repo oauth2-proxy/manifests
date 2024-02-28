@@ -12,9 +12,7 @@ metadata:
   namespace: {{ template "oauth2-proxy.namespace" $ }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  {{- if .Values.revisionHistoryLimit }}
   revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "oauth2-proxy.selectorLabels" . | indent 6 }}
