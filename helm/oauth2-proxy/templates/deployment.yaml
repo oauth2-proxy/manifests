@@ -160,8 +160,8 @@ spec:
               name:  {{ template "oauth2-proxy.secretName" . }}
               key: cookie-secret
         {{- end }}
-        envFrom:
         {{- with .Values.proxyVarsFromSecret }}  
+        envFrom:
         - secretRef:
             name: {{  . }}
         {{- end }}
