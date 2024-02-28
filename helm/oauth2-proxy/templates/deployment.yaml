@@ -51,11 +51,9 @@ spec:
       {{- end }}
       serviceAccountName: {{ template "oauth2-proxy.serviceAccountName" . }}
       automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
-      {{- if .Values.hostAlias.enabled }}
+      {{- if .Values.hostAliases }}
       hostAliases:
-        - ip: {{ .Values.hostAlias.ip }}
-          hostnames:
-          - {{ .Values.hostAlias.hostname }}
+        {{ toYaml .Values.hostAliases | nindent 8}}
       {{- end }}
       {{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
       initContainers:

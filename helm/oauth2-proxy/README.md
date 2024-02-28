@@ -123,9 +123,7 @@ Parameter | Description | Default
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
 `extraVolumes` | list of extra volumes | `[]`
 `extraVolumeMounts` | list of extra volumeMounts | `[]`
-`hostAlias.enabled`  | provide extra ip:hostname alias for network name resolution.
-`hostAlias.ip`  | `ip` address `hostAliases.hostname` should resolve to.
-`hostAlias.hostname`  | `hostname` associated to `hostAliases.ip`.
+`hostAliases`  | hostAliases is a list of aliases to be added to /etc/hosts for network name resolution.
 `htpasswdFile.enabled` | enable htpasswd-file option | `false`
 `htpasswdFile.entries` | list of [encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview#command-line-options) | `{}`
 `htpasswdFile.existingSecret` | existing Kubernetes secret to use for OAuth2 htpasswd file | `""`
