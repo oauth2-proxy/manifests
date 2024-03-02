@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.0.0
+version: 7.1.0
 apiVersion: v2
 appVersion: 7.6.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -35,7 +35,7 @@ kubeVersion: ">=1.9.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Fix hostAliases to add multiple entries in /etc/hosts
+      description: Make deploy.strategy configurable
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/164
+          url: https://github.com/oauth2-proxy/manifests/pull/188

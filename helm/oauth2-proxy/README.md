@@ -178,6 +178,7 @@ Parameter | Description | Default
 `serviceAccount.enabled` | create a service account | `true`
 `serviceAccount.name` | the service account name | ``
 `serviceAccount.annotations` | (optional) annotations for the service account | `{}`
+`strategy` | configure deployment strategy | `{}`
 `tolerations` | list of node taints to tolerate | `[]`
 `securityContext.enabled` | enable Kubernetes security context on container | `true`
 `proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
