@@ -259,6 +259,7 @@ podAnnotations: {}
 podLabels: {}
 replicaCount: 1
 revisionHistoryLimit: 10
+strategy: {}
 
 ## PodDisruptionBudget settings
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
