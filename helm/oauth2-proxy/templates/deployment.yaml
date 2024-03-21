@@ -82,7 +82,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:v{{ include "oauth2-proxy.version" . }}"
+        image: "{{ .Values.image.repository }}:{{ include "oauth2-proxy.version" . }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
         {{- if .Values.alphaConfig.enabled }}
