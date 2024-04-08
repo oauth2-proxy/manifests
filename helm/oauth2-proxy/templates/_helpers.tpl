@@ -117,7 +117,7 @@ Compute the redis url if not set explicitly.
 Returns the version
 */}}
 {{- define "oauth2-proxy.version" -}}
-{{ trimPrefix "v" (lower (.Values.image.tag | default (printf "v%s" .Chart.AppVersion))) }}
+{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}
 {{- end -}}
 
 {{/*
