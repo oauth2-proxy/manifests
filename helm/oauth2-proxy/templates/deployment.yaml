@@ -62,13 +62,22 @@ spec:
       {{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
       initContainers:
       - name: wait-for-redis
-        image: "{{ .Values.initContainers.waitForRedis.image.repository }}:{{ include "kubectl.version" . }}"
+        image: "{{ .Values.initContainers.waitForRedis.image.repository }}:{{ .Values.initContainers.waitForRedis.image.tag }}"
         imagePullPolicy: {{ .Values.initContainers.waitForRedis.image.pullPolicy }}
-        args:
-          - wait
-          - pod/{{ include "oauth2-proxy.redis.fullname" . }}-master-0
-          - --for=condition=ready
-          - --timeout={{ .Values.initContainers.waitForRedis.timeout }}s
+        command: ["/bin/sh", "-c", "/scripts/check-redis.sh"]    
+        env:
+        - name: TOTAL_RETRY_TIME
+          value: "{{ .Values.initContainers.waitForRedis.timeout }}"
+        {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
+        - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
+          value: {{ include "oauth2-proxy.redis.StandaloneUrl" . }}
+        {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
+        - name: OAUTH2_PROXY_REDIS_CLUSTER_CONNECTION_URLS
+          value: {{ .Values.sessionStorage.redis.cluster.connectionUrls }}
+        {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "sentinel" }}
+        - name: OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS
+          value: {{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
+        {{- end }}
       {{- if .Values.initContainers.waitForRedis.securityContext.enabled }}
       {{- $securityContext := unset .Values.initContainers.waitForRedis.securityContext "enabled" }}
         securityContext:
@@ -76,6 +85,9 @@ spec:
       {{- end }}
         resources:
           {{- toYaml .Values.initContainers.waitForRedis.resources | nindent 10 }}
+        volumeMounts:
+        - name: redis-script
+          mountPath: /scripts
       {{- end }}
       {{- if .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
@@ -319,7 +331,12 @@ spec:
           secretName: {{ template "oauth2-proxy.fullname" . }}-accesslist
 {{- end }}
 {{- end }}
-
+{{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
+      - name: redis-script
+        configMap:
+          name: {{ template "oauth2-proxy.fullname" . }}-wait-for-redis
+          defaultMode: 0775
+{{- end }}
 {{- if or .Values.config.existingConfig .Values.config.configFile }}
       - configMap:
           defaultMode: 420
