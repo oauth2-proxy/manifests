@@ -221,6 +221,9 @@ nodeSelector: {}
 # Whether to use secrets instead of environment values for setting up OAUTH2_PROXY variables
 proxyVarsAsSecrets: true
 
+# Import all environment variables from an existing secret. Not compatible with 'proxyVarsAsSecrets'.
+# proxyVarsFromSecret: my-secret-name
+
 # Configure Kubernetes liveness and readiness probes.
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 # Disable both when deploying with Istio 1.0 mTLS. https://istio.io/help/faq/security/#k8s-health-checks

@@ -146,6 +146,11 @@ spec:
         lifecycle:
 {{ toYaml .Values.lifecycle | indent 10 }}
 {{- end }}
+        {{- with .Values.proxyVarsFromSecret }}
+        envFrom:
+        - secretRef:
+            name: {{  . }}
+        {{- end }}
         env:
         {{- if .Values.proxyVarsAsSecrets }}
         - name: OAUTH2_PROXY_CLIENT_ID
