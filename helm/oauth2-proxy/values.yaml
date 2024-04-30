@@ -292,7 +292,8 @@ initContainers:
   waitForRedis:
     enabled: true
     image:
-      repository: "docker.io/bitnami/kubectl"
+      repository: "alpine"
+      tag: "latest"
       pullPolicy: "IfNotPresent"
     # uses the kubernetes version of the cluster
     # the chart is deployed on, if not set
