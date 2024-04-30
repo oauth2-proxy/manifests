@@ -86,6 +86,19 @@ image:
 extraArgs: {}
 extraEnv: []
 
+envFrom: []
+# Load environment variables from a ConfigMap(s) and/or Secret(s)
+# that already exists (created and managed by you).
+# ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables
+#
+# PS: Changes in these ConfigMaps or Secrets will not be automatically
+#     detected and you must manually restart the relevant Pods after changes.
+#
+#  - configMapRef:
+#      name: special-config
+#  - secretRef:
+#      name: special-config-secret
+
 # -- Custom labels to add into metadata
 customLabels: {}
 
