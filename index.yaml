@@ -4,6 +4,52 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Redis parameters update in values
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/issues/202
+    apiVersion: v2
+    appVersion: 7.6.0
+    created: "2024-05-01T22:36:21.701218372Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.1.0
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: a8f85c4e9fbab9f64b26d9dc9924878c23353f52955f166facc650f6d0f71e6b
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.5.3/oauth2-proxy-7.5.3.tgz
+    version: 7.5.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Support envFrom as way to configure Pod
           links:
             - name: Github PR
@@ -4229,4 +4275,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2024-04-30T15:07:38.453309271Z"
+generated: "2024-05-01T22:36:21.701548127Z"
