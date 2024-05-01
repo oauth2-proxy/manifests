@@ -44,7 +44,7 @@ spec:
     {{- end }}
     {{- with .Values.metrics.serviceMonitor.tlsConfig }}
     tlsConfig:
-      {{- toYaml .| nindent 4 }}
+      {{- toYaml .| nindent 6 }}
     {{- end }}
     {{- with .Values.metrics.serviceMonitor.metricRelabelings }}
     metricRelabelings:
