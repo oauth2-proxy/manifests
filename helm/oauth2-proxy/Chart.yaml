@@ -38,4 +38,4 @@ annotations:
       description: Redis parameters update in values
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/issues/203
+          url: https://github.com/oauth2-proxy/manifests/issues/202
