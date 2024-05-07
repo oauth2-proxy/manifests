@@ -31,12 +31,12 @@ parse_and_check() {
 }
 
 # Main
-if [ "$OAUTH2_PROXY_REDIS_USE_CLUSTER" = "true" ]; then
+if [ -n "$OAUTH2_PROXY_REDIS_CLUSTER_CONNECTION_URLS" ]; then
     echo "Checking Redis in cluster mode..."
     echo "$OAUTH2_PROXY_REDIS_CLUSTER_CONNECTION_URLS" | tr ',' '\n' | while read -r addr; do
         parse_and_check $addr || exit 1
     done
-elif [ "$OAUTH2_PROXY_REDIS_USE_SENTINEL" = "true" ]; then
+elif [ -n "$OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS" ]; then
     echo "Checking Redis in sentinel mode..."
     echo "$OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS" | tr ',' '\n' | while read -r addr; do
         parse_and_check $addr || exit 1

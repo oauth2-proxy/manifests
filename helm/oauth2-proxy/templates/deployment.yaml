@@ -72,9 +72,13 @@ spec:
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
           value: {{ include "oauth2-proxy.redis.StandaloneUrl" . }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
+        - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
+          value: "true"
         - name: OAUTH2_PROXY_REDIS_CLUSTER_CONNECTION_URLS
           value: {{ .Values.sessionStorage.redis.cluster.connectionUrls }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "sentinel" }}
+        - name: OAUTH2_PROXY_REDIS_USE_SENTINEL
+          value: "true"
         - name: OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS
           value: {{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
         {{- end }}
