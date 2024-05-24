@@ -40,7 +40,7 @@ A major chart version change (like v1.2.3 -> v2.0.0) indicates an incompatible b
 
 ### To 1.0.0
 
-This version upgrades oauth2-proxy to v4.0.0. To upgrade, please see the  [changelog](https://github.com/oauth2-proxy/oauth2-proxy/blob/v4.0.0/CHANGELOG.md#v400).
+This version upgrades oauth2-proxy to v4.0.0. To upgrade, please see the [changelog](https://github.com/oauth2-proxy/oauth2-proxy/blob/v4.0.0/CHANGELOG.md#v400).
 
 ### To 2.0.0
 
