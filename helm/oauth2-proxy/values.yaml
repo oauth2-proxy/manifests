@@ -146,7 +146,6 @@ service:
   # configure internalTrafficPolicy
   internalTrafficPolicy: Cluster
 
-
 ## Create or use ServiceAccount
 serviceAccount:
   ## Specifies whether a ServiceAccount should be created
