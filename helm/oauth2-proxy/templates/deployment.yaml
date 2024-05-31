@@ -6,7 +6,7 @@ metadata:
 {{- include "oauth2-proxy.labels" . | indent 4 }}
   {{- if .Values.deploymentAnnotations }}
   annotations:
-{{ toYaml .Values.deploymentAnnotations | indent 8 }}
+{{ toYaml .Values.deploymentAnnotations | indent 4 }}
   {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
@@ -136,7 +136,7 @@ spec:
         {{- if .Values.authenticatedEmailsFile.template }}
           - --authenticated-emails-file=/etc/oauth2-proxy/{{ .Values.authenticatedEmailsFile.template }}
         {{- else }}
-          - --authenticated-emails-file=/etc/oauth2-proxy/authenticated-emails-list
+          - --authenticated-emails-file=/etc/oauth2-proxy/{{ template "oauth2-proxy.fullname" . }}-accesslist
         {{- end }}
         {{- end }}
         {{- with .Values.config.google }}
@@ -386,7 +386,7 @@ spec:
 {{- if .Values.authenticatedEmailsFile.template }}
             path: {{ .Values.authenticatedEmailsFile.template }}
 {{- else }}
-            path: authenticated-emails-list
+            path: {{ template "oauth2-proxy.fullname" . }}-accesslist
 {{- end }}
         name: configaccesslist
 {{- end }}
