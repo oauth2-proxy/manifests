@@ -6,7 +6,7 @@ metadata:
 {{- include "oauth2-proxy.labels" . | indent 4 }}
   {{- if .Values.deploymentAnnotations }}
   annotations:
-{{ toYaml .Values.deploymentAnnotations | indent 8 }}
+{{ toYaml .Values.deploymentAnnotations | indent 4 }}
   {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
