@@ -2,4 +2,4 @@
 autoscaling:
   enabled: true
   annotations:
-    test-annotations/test: true
+    test-annotations/test: "true"
