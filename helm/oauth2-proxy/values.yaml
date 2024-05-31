@@ -142,9 +142,9 @@ service:
   annotations: {}
   # foo.io/bar: "true"
   # configure externalTrafficPolicy
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy: ""
   # configure internalTrafficPolicy
-  internalTrafficPolicy: Cluster
+  internalTrafficPolicy: ""
 
 ## Create or use ServiceAccount
 serviceAccount:
