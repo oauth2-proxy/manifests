@@ -25,7 +25,9 @@ spec:
   template:
     metadata:
       annotations:
+        {{- if .Values.config.configFile }}
         checksum/config: {{ tpl .Values.config.configFile $ | sha256sum }}
+        {{- end }}
         {{- if .Values.alphaConfig.enabled }}
         checksum/alpha-config: {{ include "oauth2-proxy.alpha-config" . | sha256sum }}
         {{- end }}
@@ -66,7 +68,7 @@ spec:
       - name: wait-for-redis
         image: "{{ .Values.initContainers.waitForRedis.image.repository }}:{{ .Values.initContainers.waitForRedis.image.tag }}"
         imagePullPolicy: {{ .Values.initContainers.waitForRedis.image.pullPolicy }}
-        command: ["/bin/sh", "-c", "/scripts/check-redis.sh"]    
+        command: ["/bin/sh", "-c", "/scripts/check-redis.sh"]
         env:
         - name: TOTAL_RETRY_TIME
           value: "{{ .Values.initContainers.waitForRedis.timeout }}"
