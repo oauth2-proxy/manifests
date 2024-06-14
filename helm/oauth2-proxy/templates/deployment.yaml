@@ -335,7 +335,7 @@ spec:
 {{- if .Values.authenticatedEmailsFile.template }}
             path: {{ .Values.authenticatedEmailsFile.template }}
 {{- else }}
-            path: authenticated-emails-list
+            path: {{ template "oauth2-proxy.fullname" . }}-accesslist
 {{- end }}
 {{- if .Values.authenticatedEmailsFile.template }}
           secretName: {{ .Values.authenticatedEmailsFile.template }}
