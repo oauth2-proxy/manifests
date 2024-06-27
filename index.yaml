@@ -4,6 +4,52 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: Updated the Redis chart to the latest version
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/221
+    apiVersion: v2
+    appVersion: 7.6.0
+    created: "2024-06-27T14:39:07.47851104Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.6.0
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 0fd506d3c2ba716159af64c816257d73da9c3d6f8337a5f9930a4d4ae9b413ed
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.7.8/oauth2-proxy-7.7.8.tgz
+    version: 7.7.8
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: Reorder metrics list in HPA to avoid reconciliation loops with Argo CD
           links:
             - name: Github PR
@@ -4919,4 +4965,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2024-06-27T12:03:06.745447623Z"
+generated: "2024-06-27T14:39:07.478878767Z"
