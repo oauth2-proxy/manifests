@@ -388,21 +388,23 @@ spec:
         name: configaccesslist
 {{- end }}
 
-      {{- with (concat .Values.imagePullSecrets .Values.global.imagePullSecrets) }}
+    {{- with (.Values.imagePullSecrets | default .Values.global.imagePullSecrets) }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-    {{- if .Values.affinity }}
+    {{- end }}
+    {{- with .Values.affinity }}
       affinity:
-{{ toYaml .Values.affinity | indent 8 }}
+        {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- if .Values.nodeSelector }}
+    {{- with .Values.nodeSelector }}
       nodeSelector:
-{{ toYaml .Values.nodeSelector | indent 8 }}
+        {{ toYaml . | nindent 8 }}
     {{- end }}
+    {{- with .Values.tolerations }}
       tolerations:
-{{ toYaml .Values.tolerations | indent 8 }}
-      {{- with .Values.topologySpreadConstraints }}
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.topologySpreadConstraints }}
       topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}
