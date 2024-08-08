@@ -388,9 +388,9 @@ spec:
         name: configaccesslist
 {{- end }}
 
-      {{- if .Values.imagePullSecrets }}
+      {{- with (concat .Values.imagePullSecrets .Values.global.imagePullSecrets) }}
       imagePullSecrets:
-{{ toYaml .Values.imagePullSecrets | indent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
     {{- if .Values.affinity }}
       affinity:
