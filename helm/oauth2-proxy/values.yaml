@@ -1,3 +1,10 @@
+global: {}
+# To help compatibility with other charts which use global.imagePullSecrets.
+# global:
+#   imagePullSecrets:
+#   - name: pullSecret1
+#   - name: pullSecret2
+
 ## Override the deployment namespace
 ##
 namespaceOverride: ""
@@ -75,7 +82,7 @@ image:
 # Optionally specify an array of imagePullSecrets.
 # Secrets must be manually created in the namespace.
 # ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
-# imagePullSecrets:
+imagePullSecrets: []
   # - name: myRegistryKeySecretName
 
 # Set a custom containerPort if required.
