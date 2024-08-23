@@ -19,3 +19,11 @@ pass_authorization_header: "true"
 
 extraArgs:
   pass-authorization-header: "{{ $.Values.pass_authorization_header }}"
+
+extraVolumes:
+  - name: "{{ $.Release.Name }}-secret"
+    secret:
+      secretName: "{{ .Release.Name }}-secret"
+      items:
+        - key: secret
+          path: secret
