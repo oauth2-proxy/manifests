@@ -374,7 +374,7 @@ spec:
 {{- end }}
 {{- end }}
 {{- if ne (len .Values.extraVolumes) 0 }}
-{{ toYaml .Values.extraVolumes | indent 6 }}
+{{ tpl (toYaml .Values.extraVolumes) . | indent 6 }}
 {{- end }}
 {{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "configmap") }}
       - configMap:
@@ -393,21 +393,23 @@ spec:
         name: configaccesslist
 {{- end }}
 
-      {{- if .Values.imagePullSecrets }}
+    {{- with (.Values.imagePullSecrets | default .Values.global.imagePullSecrets) }}
       imagePullSecrets:
-{{ toYaml .Values.imagePullSecrets | indent 8 }}
-      {{- end }}
-    {{- if .Values.affinity }}
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
       affinity:
-{{ toYaml .Values.affinity | indent 8 }}
+        {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- if .Values.nodeSelector }}
+    {{- with .Values.nodeSelector }}
       nodeSelector:
-{{ toYaml .Values.nodeSelector | indent 8 }}
+        {{ toYaml . | nindent 8 }}
     {{- end }}
+    {{- with .Values.tolerations }}
       tolerations:
-{{ toYaml .Values.tolerations | indent 8 }}
-      {{- with .Values.topologySpreadConstraints }}
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.topologySpreadConstraints }}
       topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}

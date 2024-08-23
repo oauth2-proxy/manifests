@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis
-    version: 19.6.0
+    version: 19.6.1
     repository: https://charts.bitnami.com/bitnami
     alias: redis
     condition: redis.enabled
