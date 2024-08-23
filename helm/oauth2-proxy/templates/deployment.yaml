@@ -369,7 +369,7 @@ spec:
 {{- end }}
 {{- end }}
 {{- if ne (len .Values.extraVolumes) 0 }}
-{{ toYaml .Values.extraVolumes | indent 6 }}
+{{ tpl (toYaml .Values.extraVolumes) . | indent 6 }}
 {{- end }}
 {{- if and (.Values.authenticatedEmailsFile.enabled) (eq .Values.authenticatedEmailsFile.persistence "configmap") }}
       - configMap:
