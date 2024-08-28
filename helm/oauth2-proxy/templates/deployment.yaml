@@ -104,6 +104,9 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ include "oauth2-proxy.version" . }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        {{- if .Values.image.command }}
+        command: {{ .Values.image.command | toYaml }}
+        {{- end }}
         args:
         {{- if .Values.alphaConfig.enabled }}
           - --alpha-config=/etc/oauth2_proxy/oauth2_proxy.yml
