@@ -105,7 +105,10 @@ spec:
         image: "{{ .Values.image.repository }}:{{ include "oauth2-proxy.version" . }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.image.command }}
-        command: {{ .Values.image.command | toYaml }}
+        command:
+          {{- range .Values.image.command }}
+          - {{ . | quote }}
+          {{- end }}
         {{- end }}
         args:
         {{- if .Values.alphaConfig.enabled }}
