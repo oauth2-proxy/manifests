@@ -78,6 +78,7 @@ image:
   # appVersion is used by default
   tag: ""
   pullPolicy: "IfNotPresent"
+  command: []
 
 # Optionally specify an array of imagePullSecrets.
 # Secrets must be manually created in the namespace.
