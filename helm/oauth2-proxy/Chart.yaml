@@ -1,7 +1,7 @@
 name: oauth2-proxy
-version: 7.7.25
+version: 7.7.26
 apiVersion: v2
-appVersion: 7.7.0
+appVersion: 7.7.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
 description: A reverse proxy that provides authentication with Google, Github or other providers
 keywords:
