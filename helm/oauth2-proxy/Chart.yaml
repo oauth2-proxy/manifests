@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.7.28
+version: 7.7.29
 apiVersion: v2
 appVersion: 7.7.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis
-    version: 20.2.1
+    version: 20.2.2
     repository: https://charts.bitnami.com/bitnami
     alias: redis
     condition: redis.enabled
@@ -31,11 +31,11 @@ maintainers:
     email: joel.speed@hotmail.co.uk
   - name: pierluigilenoci
     email: pierluigi.lenoci@gmail.com
-kubeVersion: ">=1.9.0-0"
+kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Added support for 'rediss://' scheme in 'check-redis.sh' script
+    - kind: fixed
+      description: Updated the Redis chart to the latest version.
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/249
+          url: https://github.com/oauth2-proxy/manifests/pull/250
