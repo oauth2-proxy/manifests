@@ -8,8 +8,6 @@ ingress:
   tls:
     - hosts:
         - "{{ $.Release.Name }}.local"
-  annotations:
-    nginx.ingress.kubernetes.io/default-backend: "{{ $.Release.Name }}-default-backend"
 oauth2-proxy:
   checkDeprecation: false
   config:
