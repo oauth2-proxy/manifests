@@ -39,4 +39,3 @@ annotations:
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/256
-
