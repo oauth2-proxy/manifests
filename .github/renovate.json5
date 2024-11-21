@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": false,
+  "assignees": [
+    "pierluigilenoci"
+  ],
+  "schedule": [
+    "before 5am every day"
+  ],
+  "packageRules": [
+    {
+      "description": "Auto-merge patch updates for all dependencies",
+      "updateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      "description": "Group all minor updates per package",
+      "updateTypes": ["minor"],
+      "groupName": "all-minor-updates"
+    },
+    {
+      "description": "Group all major updates per package",
+      "updateTypes": ["major"],
+      "groupName": "all-major-updates"
+    }
+  ],
+  "postUpdateOptions": [
+    "yarnDedupeHighest",
+    "npmDedupe",
+    "gomodTidy"
+  ],
+  "platformAutomerge": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "baseBranches": [
+    "main"
+  ]
+}
