@@ -9,7 +9,7 @@ ingress:
     - hosts:
         - "{{ $.Release.Name }}.local"
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
 oauth2-proxy:
   checkDeprecation: false
   config:
@@ -32,31 +32,31 @@ extraVolumes:
 
 authenticatedEmailsFile:
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
 
 config:
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
 
 deploymentAnnotations:
-  test: "{{ $.Release.Name }}"
+  test-annotations/test: "{{ $.Release.Name }}"
 
 autoscaling:
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
 
 alphaConfig:
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
 
 service:
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
 
 serviceAccount:
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
 
 serviceMonitor:
   annotations:
-    test: "{{ $.Release.Name }}"
+    test-annotations/test: "{{ $.Release.Name }}"
