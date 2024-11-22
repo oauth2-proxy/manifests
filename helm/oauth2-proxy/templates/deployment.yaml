@@ -4,9 +4,9 @@ metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.labels" . | indent 4 }}
-  {{- if .Values.deploymentAnnotations }}
+  {{- with .Values.deploymentAnnotations }}
   annotations:
-{{ toYaml .Values.deploymentAnnotations | indent 4 }}
+{{ tpl ( toYaml . ) $ | indent 4 }}
   {{- end }}
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
