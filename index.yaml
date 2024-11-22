@@ -3,6 +3,52 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: allow templates in annotations
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/256
+    apiVersion: v2
+    appVersion: 7.7.1
+    created: "2024-11-22T14:39:29.532574034Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.3.0
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: a6375c25b4885b99eebd3a65d550a4086f04971d376373dc29ccb5a7cfef6306
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.8.0/oauth2-proxy-7.8.0.tgz
+    version: 7.8.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Added missing executable permission for check-redis.sh
           links:
@@ -6023,4 +6069,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2024-11-21T08:15:40.557936478Z"
+generated: "2024-11-22T14:39:29.532929645Z"
