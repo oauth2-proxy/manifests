@@ -29,11 +29,6 @@
       "bumpVersion": "patch"
     }
   ],
-  "postUpdateOptions": [
-    "yarnDedupeHighest",
-    "npmDedupe",
-    "gomodTidy"
-  ],
   "platformAutomerge": true,
   "lockFileMaintenance": {
     "enabled": true
