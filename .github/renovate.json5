@@ -13,17 +13,20 @@
     {
       "description": "Auto-merge patch updates for all dependencies",
       "updateTypes": ["patch"],
-      "automerge": true
+      "groupName": "all-patch-updates"
+      "bumpVersion": "patch"
     },
     {
       "description": "Group all minor updates per package",
       "updateTypes": ["minor"],
       "groupName": "all-minor-updates"
+      "bumpVersion": "patch"
     },
     {
       "description": "Group all major updates per package",
       "updateTypes": ["major"],
       "groupName": "all-major-updates"
+      "bumpVersion": "patch"
     }
   ],
   "postUpdateOptions": [
