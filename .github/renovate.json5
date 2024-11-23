@@ -11,7 +11,7 @@
   ],
   "packageRules": [
     {
-      "description": "Auto-merge patch updates for all dependencies",
+      "description": "Group all patch updates per package",
       "updateTypes": ["patch"],
       "groupName": "all-patch-updates"
       "bumpVersion": "patch"
