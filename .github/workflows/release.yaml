@@ -22,11 +22,6 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Install Helm
-        uses: azure/setup-helm@v4
-        with:
-          version: v3.13.3
-
       - name: Add Helm repositories
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -39,7 +34,7 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_GENERATE_RELEASE_NOTES: true
 
-      # see https://github.com/helm/chart-releaser/issues/183
+      # See https://github.com/helm/chart-releaser/issues/183
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
