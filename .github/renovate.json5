@@ -1,0 +1,39 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": false,
+  "assignees": [
+    "pierluigilenoci"
+  ],
+  "schedule": [
+    "before 5am every day"
+  ],
+  "packageRules": [
+    {
+      "description": "Group all patch updates per package",
+      "updateTypes": ["patch"],
+      "groupName": "all-patch-updates"
+      "bumpVersion": "patch"
+    },
+    {
+      "description": "Group all minor updates per package",
+      "updateTypes": ["minor"],
+      "groupName": "all-minor-updates"
+      "bumpVersion": "patch"
+    },
+    {
+      "description": "Group all major updates per package",
+      "updateTypes": ["major"],
+      "groupName": "all-major-updates"
+      "bumpVersion": "patch"
+    }
+  ],
+  "platformAutomerge": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "baseBranches": [
+    "main"
+  ]
+}
