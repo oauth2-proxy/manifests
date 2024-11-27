@@ -79,12 +79,12 @@ spec:
         - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
           value: "true"
         - name: OAUTH2_PROXY_REDIS_CLUSTER_CONNECTION_URLS
-          value: {{ .Values.sessionStorage.redis.cluster.connectionUrls }}
+          value: {{ join "," .Values.sessionStorage.redis.cluster.connectionUrls }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "sentinel" }}
         - name: OAUTH2_PROXY_REDIS_USE_SENTINEL
           value: "true"
         - name: OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS
-          value: {{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
+          value: {{ join "," .Values.sessionStorage.redis.sentinel.connectionUrls }}
         {{- end }}
       {{- if .Values.initContainers.waitForRedis.securityContext.enabled }}
       {{- $securityContext := unset .Values.initContainers.waitForRedis.securityContext "enabled" }}
@@ -213,14 +213,14 @@ spec:
         - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
           value: "true"
         - name: OAUTH2_PROXY_REDIS_CLUSTER_CONNECTION_URLS
-          value: {{ .Values.sessionStorage.redis.cluster.connectionUrls }}
+          value: {{ join "," .Values.sessionStorage.redis.cluster.connectionUrls }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "sentinel" }}
         - name: OAUTH2_PROXY_REDIS_USE_SENTINEL
           value: "true"
         - name: OAUTH2_PROXY_REDIS_SENTINEL_MASTER_NAME
           value: {{ .Values.sessionStorage.redis.sentinel.masterName }}
         - name: OAUTH2_PROXY_REDIS_SENTINEL_CONNECTION_URLS
-          value: {{ .Values.sessionStorage.redis.sentinel.connectionUrls }}
+          value: {{ join "," .Values.sessionStorage.redis.sentinel.connectionUrls }}
         {{- if or .Values.sessionStorage.redis.sentinel.existingSecret .Values.sessionStorage.redis.existingSecret .Values.sessionStorage.redis.sentinel.password }}
         - name: OAUTH2_PROXY_REDIS_SENTINEL_PASSWORD
           valueFrom:
