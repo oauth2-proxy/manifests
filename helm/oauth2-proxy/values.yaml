@@ -369,8 +369,10 @@ sessionStorage:
       # URL of redis standalone server for redis session storage (e.g. `redis://HOST[:PORT]`). Automatically generated if not set
       connectionUrl: ""
     cluster:
-      # List of Redis cluster connection URLs (e.g. `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`)
+      # List of Redis cluster connection URLs. Array or single string allowed.
       connectionUrls: []
+      # - "redis://127.0.0.1:8000"
+      # - "redis://127.0.0.1:8001"
     sentinel:
       # Name of the Kubernetes secret containing the redis sentinel password value (see also `sessionStorage.redis.sentinel.passwordKey`). Default: `sessionStorage.redis.existingSecret`
       existingSecret: ""
@@ -380,8 +382,10 @@ sessionStorage:
       passwordKey: "redis-sentinel-password"
       # Redis sentinel master name
       masterName: ""
-      # List of Redis sentinel connection URLs (e.g. `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`)
+      # List of Redis cluster connection URLs. Array or single string allowed.
       connectionUrls: []
+      # - "redis://127.0.0.1:8000"
+      # - "redis://127.0.0.1:8001"
 
 # Enables and configure the automatic deployment of the redis subchart
 redis:
