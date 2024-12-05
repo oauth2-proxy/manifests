@@ -36,7 +36,7 @@ spec:
 {{- end }}
   ports:
     - port: {{ .Values.service.portNumber }}
-      targetPort: {{ .Values.httpScheme }}
+      targetPort: {{ .Values.service.targetPort | default .Values.httpScheme }}
       {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
       nodePort: {{ .Values.service.nodePort }}
       {{- end }}
