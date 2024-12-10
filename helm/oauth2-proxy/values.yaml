@@ -155,7 +155,7 @@ service:
   internalTrafficPolicy: ""
   # configure service target port
   # useful when there's need to route requests to sidecar containers first
-  targetPort: 
+  targetPort: ""
 
 ## Create or use ServiceAccount
 serviceAccount:
