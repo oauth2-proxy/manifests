@@ -4,7 +4,7 @@ For hosting manifests to allow for the deployment of OAuth2-Proxy/OAuth2-Proxy
 
 ## Helm Chart
 
-[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/oauth2-proxy)](https://artifacthub.io/packages/search?repo=oauth2-proxy)
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/oauth2-proxy)](https://artifacthub.io/packages/helm/oauth2-proxy/oauth2-proxy)
 
 __repository:__ https://oauth2-proxy.github.io/manifests
 __name:__ oauth2-proxy

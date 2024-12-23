@@ -1,0 +1,46 @@
+{
+  extends: [
+    'config:recommended',
+    ':disableDependencyDashboard',
+  ],
+  automerge: false,
+  assignees: [
+    'pierluigilenoci',
+  ],
+  schedule: [
+    'before 5am',
+  ],
+  packageRules: [
+    {
+      description: 'Group all patch updates per package',
+      matchUpdateTypes: [
+        'patch',
+      ],
+      groupName: 'all-patch-updates',
+      bumpVersion: 'patch',
+    },
+    {
+      description: 'Group all minor updates per package',
+      matchUpdateTypes: [
+        'minor',
+      ],
+      groupName: 'all-minor-updates',
+      bumpVersion: 'patch',
+    },
+    {
+      description: 'Group all major updates per package',
+      matchUpdateTypes: [
+        'major',
+      ],
+      groupName: 'all-major-updates',
+      bumpVersion: 'patch',
+    },
+  ],
+  platformAutomerge: true,
+  lockFileMaintenance: {
+    enabled: true,
+  },
+  baseBranches: [
+    'main',
+  ],
+}
