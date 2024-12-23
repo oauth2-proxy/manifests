@@ -10,6 +10,52 @@ entries:
               url: https://github.com/oauth2-proxy/manifests/pull/256
     apiVersion: v2
     appVersion: 7.7.1
+    created: "2024-12-23T09:00:24.945658126Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.6.1
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 301bedd4a82bbb124ae9477c1dd3122d42af8b4fdfcec8059773ed4cf558e5bc
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.8.3/oauth2-proxy-7.8.3.tgz
+    version: 7.8.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: allow templates in annotations
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/256
+    apiVersion: v2
+    appVersion: 7.7.1
     created: "2024-12-11T11:08:48.105202808Z"
     dependencies:
     - alias: redis
@@ -6161,4 +6207,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2024-12-11T11:08:48.105583339Z"
+generated: "2024-12-23T09:00:24.946085608Z"
