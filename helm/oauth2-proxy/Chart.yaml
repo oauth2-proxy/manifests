@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.8.3
+version: 7.9.0
 apiVersion: v2
 appVersion: 7.7.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -35,7 +35,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: allow templates in annotations
+      description: allow requests to be directed to sidecar first
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/256
+          url: https://github.com/oauth2-proxy/manifests/pull/270
