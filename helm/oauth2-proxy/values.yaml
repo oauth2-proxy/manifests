@@ -153,6 +153,8 @@ service:
   externalTrafficPolicy: ""
   # configure internalTrafficPolicy
   internalTrafficPolicy: ""
+  # configure service target port
+  targetPort: ""
 
 ## Create or use ServiceAccount
 serviceAccount:
