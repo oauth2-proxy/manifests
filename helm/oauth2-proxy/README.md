@@ -332,7 +332,7 @@ extraObjects:
         <html>
         <body>
         <h1>error</h1>
-        <p>{{.StatusCode}}</p>
+        <p>{{`{{ .StatusCode }}`}}</p>
         </body>
         </html>
 ```
