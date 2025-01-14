@@ -34,7 +34,7 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
+    - kind: changed
       description: update oauth2-proxy to v7.8.0
       links:
         - name: Github PR
