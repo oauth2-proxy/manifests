@@ -1,7 +1,7 @@
 name: oauth2-proxy
-version: 7.9.2
+version: 7.10.0
 apiVersion: v2
-appVersion: 7.7.1
+appVersion: 7.8.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
 description: A reverse proxy that provides authentication with Google, Github or other providers
 keywords:
@@ -34,8 +34,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: fixed incorrect helm template syntax in readme.md
+    - kind: changed
+      description: update oauth2-proxy to v7.8.0
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/274
+          url: https://github.com/oauth2-proxy/manifests/pull/276
