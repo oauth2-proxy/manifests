@@ -6,6 +6,7 @@
   automerge: false,
   assignees: [
     'pierluigilenoci',
+    'tuunit',
   ],
   schedule: [
     'before 5am',
