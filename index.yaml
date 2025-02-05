@@ -10,6 +10,52 @@ entries:
               url: https://github.com/oauth2-proxy/manifests/pull/279
     apiVersion: v2
     appVersion: 7.8.1
+    created: "2025-02-05T11:09:04.496636792Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.7.0
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: fc2b91eda78825d7f60eb9e52d0c7ef14d78f033bc2a22642bb4ad005419444d
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: tlawrie
+    - email: nicholas.meves@gmail.com
+      name: NickMeves
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.10.3/oauth2-proxy-7.10.3.tgz
+    version: 7.10.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: update helm release redis to v20.6.3
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/279
+    apiVersion: v2
+    appVersion: 7.8.1
     created: "2025-01-15T14:09:01.565280579Z"
     dependencies:
     - alias: redis
@@ -6483,4 +6529,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-01-15T14:09:01.56593216Z"
+generated: "2025-02-05T11:09:04.497276474Z"
