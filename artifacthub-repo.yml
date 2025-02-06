@@ -1,12 +1,10 @@
 # Artifact Hub repository metadata file
 repositoryID: 84a61f0d-c836-4a44-91ab-9c60748748df
 owners:
-- name: desaintmartin
-  email: cedric@desaintmartin.fr
-- name:  JoelSpeed
-  email: joel.speed@hotmail.co.uk
-- name: NickMeves
-  email: nicholas.meves@gmail.com
-- name: tlawrie
 - name: pierluigilenoci
   email: pierluigi.lenoci@gmail.com
+- name: tuunit
+  email: jan@larwig.com
+- name:  JoelSpeed
+  email: joel.speed@hotmail.co.uk
+  
