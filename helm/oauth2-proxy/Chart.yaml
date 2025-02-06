@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.10.4
+version: 7.10.5
 apiVersion: v2
 appVersion: 7.8.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: automatically concatenate connectionUrls with comma
+    - kind: added
+      description: Add documentation to ensure Redis password consistency between sessionStorage and Redis sub chart is well explained
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/268
+          url: https://github.com/oauth2-proxy/manifests/pull/283
