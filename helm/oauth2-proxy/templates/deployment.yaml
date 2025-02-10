@@ -172,13 +172,13 @@ spec:
         lifecycle:
 {{ toYaml .Values.lifecycle | indent 10 }}
 {{- end }}
-        {{- with .Values.proxyVarsFromSecret }}
+        {{- with .Values.envFromExistingSecret }}
         envFrom:
         - secretRef:
-            name: {{  . }}
+            name: {{ . }}
         {{- end }}
         env:
-        {{- if .Values.proxyVarsAsSecrets }}
+        {{- if and (not .Values.envFromExistingSecret) .Values.proxyVarsAsSecrets }}
         - name: OAUTH2_PROXY_CLIENT_ID
           valueFrom:
             secretKeyRef:
@@ -242,7 +242,7 @@ spec:
         {{- if .Values.extraEnv }}
 {{ tpl (toYaml .Values.extraEnv) . | indent 8 }}
         {{- end }}
-        {{- if .Values.envFrom }}
+        {{- if and (not .Values.envFromExistingSecret) .Values.envFrom }}
         envFrom:
 {{ tpl (toYaml .Values.envFrom) . | indent 8 }}
         {{- end }}

@@ -32,7 +32,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Add proxyVarsFromSecret value
+      description: Add envFromExistingSecret value for loading environment variables from an existing secret
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/196

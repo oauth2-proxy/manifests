@@ -107,6 +107,13 @@ envFrom: []
 #  - secretRef:
 #      name: special-config-secret
 
+# Import all environment variables from an existing secret. Will overwrite 'proxyVarsAsSecrets' and 'envFrom'.
+envFromExistingSecret: ""
+
+# Whether to create a secret instead of plain environment values for configuring
+# the client_id, client_secret and cookie_secret
+proxyVarsAsSecrets: true
+
 # -- Custom labels to add into metadata
 customLabels: {}
 
@@ -244,12 +251,6 @@ tolerations: []
 # Node labels for pod assignment
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
 nodeSelector: {}
-
-# Whether to use secrets instead of environment values for setting up OAUTH2_PROXY variables
-proxyVarsAsSecrets: true
-
-# Import all environment variables from an existing secret. Not compatible with 'proxyVarsAsSecrets'.
-# proxyVarsFromSecret: my-secret-name
 
 # Configure Kubernetes liveness and readiness probes.
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
