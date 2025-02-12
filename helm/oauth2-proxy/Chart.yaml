@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Add documentation to ensure Redis password consistency between sessionStorage and Redis sub chart is well explained
+    - kind: changed
+      description: Make deploy.enableServiceLinks configurable
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/283
+          url: https://github.com/oauth2-proxy/manifests/pull/284
