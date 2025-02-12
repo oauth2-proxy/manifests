@@ -58,6 +58,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ template "oauth2-proxy.serviceAccountName" . }}
+      enableServiceLinks: {{ .Values.enableServiceLinks }}
       automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
       {{- if .Values.hostAliases }}
       hostAliases:
