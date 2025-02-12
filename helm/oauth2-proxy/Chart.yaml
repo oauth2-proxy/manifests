@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.10.6
+version: 7.11.0
 apiVersion: v2
 appVersion: 7.8.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,7 +31,7 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
+    - kind: added
       description: Make deploy.enableServiceLinks configurable
       links:
         - name: Github PR
