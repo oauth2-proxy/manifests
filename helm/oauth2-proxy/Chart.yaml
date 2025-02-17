@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.11.0
+version: 7.11.1
 apiVersion: v2
 appVersion: 7.8.1
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis
-    version: 20.7.0
+    version: 20.7.1
     repository: https://charts.bitnami.com/bitnami
     alias: redis
     condition: redis.enabled
@@ -32,7 +32,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Make deploy.enableServiceLinks configurable
+      description: Updated the Redis chart to the latest version
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/284
+          url: https://github.com/oauth2-proxy/manifests/pull/285
