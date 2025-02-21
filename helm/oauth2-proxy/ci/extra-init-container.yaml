@@ -4,5 +4,4 @@ extraInitContainers:
     command:
       - sh
       - -c
-      - |
-        echo "Hello, World!"
+      - echo "Hello World!"
