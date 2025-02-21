@@ -217,6 +217,15 @@ extraContainers: []
   #  - name: my-sidecar
   #    image: nginx:latest
 
+# Additional Init containers to be added to the pod.
+extraInitContainers: []
+  #  - name: wait-for-idp
+  #    image: my-idp-wait:latest
+  #    command:
+  #    - sh
+  #    - -c
+  #    - wait-for-idp.sh
+
 priorityClassName: ""
 
 # hostAliases is a list of aliases to be added to /etc/hosts for network name resolution
