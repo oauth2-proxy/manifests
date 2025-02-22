@@ -64,8 +64,12 @@ spec:
       hostAliases:
         {{ toYaml .Values.hostAliases | nindent 8}}
       {{- end }}
-      {{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
+      {{- if or (and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled) .Values.extraInitContainers }}
       initContainers:
+        {{- if .Values.extraInitContainers }}
+        {{- toYaml .Values.extraInitContainers | nindent 6 }}
+        {{- end }}
+      {{- if and .Values.redis.enabled .Values.initContainers.waitForRedis.enabled }}
       - name: wait-for-redis
         image: "{{ .Values.initContainers.waitForRedis.image.repository }}:{{ .Values.initContainers.waitForRedis.image.tag }}"
         imagePullPolicy: {{ .Values.initContainers.waitForRedis.image.pullPolicy }}
@@ -97,6 +101,7 @@ spec:
         volumeMounts:
         - name: redis-script
           mountPath: /scripts
+      {{- end }}
       {{- end }}
       {{- if .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
