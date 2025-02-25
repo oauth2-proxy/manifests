@@ -3,6 +3,49 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Updated the Redis chart to the latest version
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/289
+    apiVersion: v2
+    appVersion: 7.8.1
+    created: "2025-02-25T13:33:52.638769576Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.9.0
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 867cda07432d9abde80871bf80fcb5c0bee244b34faa2177fbd3ce930c3b7305
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.12.1/oauth2-proxy-7.12.1.tgz
+    version: 7.12.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Add extraInitContainer option for startup customization
           links:
@@ -6787,4 +6830,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-02-22T18:12:43.191312388Z"
+generated: "2025-02-25T13:33:52.639183054Z"
