@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Add extraInitContainer option for startup customization
+    - kind: changed
+      description: Updated the Redis chart to the latest version
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/288
