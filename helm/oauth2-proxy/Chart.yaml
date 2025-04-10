@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.12.8
+version: 7.12.9
 apiVersion: v2
 appVersion: 7.8.2
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis
-    version: 20.11.4
+    version: 20.11.5
     repository: https://charts.bitnami.com/bitnami
     alias: redis
     condition: redis.enabled
@@ -32,7 +32,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Updated the OAuth2 Proxy appVersion to 7.8.2
+      description: Updated the Redis chart to the latest version
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/298
+          url: https://github.com/oauth2-proxy/manifests/pull/300
