@@ -43,10 +43,18 @@ config:
     # Example:
     #  - group1@example.com
     #  - group2@example.com
+
+  # these exist only because if alphaConfig.enabled is not set then the
+  # defaults there need to be present here. If it is set, then the defaults can
+  # not be here because they're not valid. This should go away when alphaConfig
+  # is default on.
+  # https://github.com/oauth2-proxy/manifests/issues/226
+  legacyDefaults: |-
+    upstreams = [ "file:///dev/null" ]
+
   # Default configuration, to be overridden
   configFile: |-
     email_domains = [ "*" ]
-    upstreams = [ "file:///dev/null" ]
   # Custom configuration file: oauth2_proxy.cfg
   # configFile: |-
   #   pass_basic_auth = false
@@ -64,7 +72,9 @@ alphaConfig:
   # Arbitrary configuration data to append to the metrics section
   metricsConfigData: {}
   # Arbitrary configuration data to append
-  configData: {}
+  configData:
+    upstreams:
+      - "file:///dev/null"
   # Arbitrary configuration to append
   # This is treated as a Go template and rendered with the root context
   configFile: ""

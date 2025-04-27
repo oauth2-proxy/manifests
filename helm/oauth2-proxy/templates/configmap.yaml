@@ -13,6 +13,13 @@ metadata:
   name: {{ template "oauth2-proxy.fullname" . }}
   namespace: {{ template "oauth2-proxy.namespace" $ }}
 data:
+  {{- if and (not .Values.alphaConfig.enabled) .Values.config.legacyDefaults }}
+  oauth2_proxy.cfg: |-
+{{ tpl .Values.config.legacyDefaults $ | indent 4 }}
+
+{{ tpl .Values.config.configFile $ | indent 4 }}
+  {{- else }}
   oauth2_proxy.cfg: {{ tpl .Values.config.configFile $ | quote }}
+  {{- end }}
 {{- end }}
 {{- end }}
