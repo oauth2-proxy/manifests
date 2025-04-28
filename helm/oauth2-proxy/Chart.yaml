@@ -35,4 +35,4 @@ annotations:
       description: Updated the Redis chart to the latest version
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/300
+          url: https://github.com/oauth2-proxy/manifests/pull/303
