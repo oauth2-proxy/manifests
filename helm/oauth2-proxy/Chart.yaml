@@ -32,7 +32,11 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Updated the Redis chart to the latest version
+      description: Fix deployment nodeSelector rendering in template
       links:
         - name: Github PR
+<<<<<<< HEAD
           url: https://github.com/oauth2-proxy/manifests/pull/312
+=======
+          url: https://github.com/oauth2-proxy/manifests/pull/305
+>>>>>>> ac87471 (Update Chart.yaml with changes)
