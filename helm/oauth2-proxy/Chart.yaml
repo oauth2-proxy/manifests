@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 7.12.12
+version: 7.12.13
 apiVersion: v2
 appVersion: 7.9.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis
-    version: 20.13.4
+    version: 21.0.0
     repository: https://charts.bitnami.com/bitnami
     alias: redis
     condition: redis.enabled
@@ -35,4 +35,4 @@ annotations:
       description: Updated the Redis chart to the latest version
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/306
+          url: https://github.com/oauth2-proxy/manifests/pull/308
