@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis
-    version: 21.2.3
+    version: 21.2.7
     repository: https://charts.bitnami.com/bitnami
     alias: redis
     condition: redis.enabled
