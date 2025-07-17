@@ -4,6 +4,49 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Support IPv4/IPv6 dual-stack
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/319
+    apiVersion: v2
+    appVersion: 7.9.0
+    created: "2025-07-17T14:10:35.157278524Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 21.2.12
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 5cfd5e6cf716ed02cb4db2b082dc8760ff836925fd690dc90cd974820251754e
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.14.0/oauth2-proxy-7.14.0.tgz
+    version: 7.14.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Updated the Redis chart to the latest version
           links:
             - name: Github PR
@@ -7690,4 +7733,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-07-17T08:32:56.964152484Z"
+generated: "2025-07-17T14:10:35.157979804Z"
