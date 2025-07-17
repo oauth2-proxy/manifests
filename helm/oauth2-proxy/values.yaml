@@ -303,8 +303,10 @@ enableServiceLinks: true
 
 ## PodDisruptionBudget settings
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
+## One of maxUnavailable and minAvailable must be set to null.
 podDisruptionBudget:
   enabled: true
+  maxUnavailable: null
   minAvailable: 1
 
 ## Horizontal Pod Autoscaling
