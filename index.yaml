@@ -4,6 +4,49 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Allow maxUnavailable in PodDisruptionBudget
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/317
+    apiVersion: v2
+    appVersion: 7.9.0
+    created: "2025-07-17T07:21:52.86525066Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 21.2.7
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 2c385221a12e5104113b5f753b6a7d380731e77482b3bd0b65600047ee5d0438
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.13.0/oauth2-proxy-7.13.0.tgz
+    version: 7.13.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Updated the Redis chart to the latest version
           links:
             - name: Github PR
@@ -7604,4 +7647,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-07-07T13:34:21.636158112Z"
+generated: "2025-07-17T07:21:52.865704695Z"
