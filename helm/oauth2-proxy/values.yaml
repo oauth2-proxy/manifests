@@ -155,6 +155,12 @@ service:
   internalTrafficPolicy: ""
   # configure service target port
   targetPort: ""
+  # Configures the service to use IPv4/IPv6 dual-stack.
+  # Ref: https://kubernetes.io/docs/concepts/services-networking/dual-stack/
+  ipDualStack:
+    enabled: false
+    ipFamilies: ["IPv6", "IPv4"]
+    ipFamilyPolicy: "PreferDualStack"
 
 ## Create or use ServiceAccount
 serviceAccount:
