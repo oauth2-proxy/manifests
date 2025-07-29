@@ -3,6 +3,49 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Add trafficDistribution field to service for controlling traffic distribution
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/324
+    apiVersion: v2
+    appVersion: 7.10.0
+    created: "2025-07-29T15:28:41.528652181Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 21.2.12
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: abe426206e14d1ef1cfb238860d927c4e4c6354a10144f2bd731afd4a8482476
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.15.0/oauth2-proxy-7.15.0.tgz
+    version: 7.15.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Don't render null keys inside PDB
           links:
@@ -7819,4 +7862,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-07-21T16:15:27.793022202Z"
+generated: "2025-07-29T15:28:41.529123932Z"
