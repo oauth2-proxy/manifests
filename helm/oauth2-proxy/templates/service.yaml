@@ -63,3 +63,6 @@ spec:
   ipFamilies: {{ toYaml .Values.service.ipDualStack.ipFamilies | nindent 4 }}
   ipFamilyPolicy: {{ .Values.service.ipDualStack.ipFamilyPolicy }}
 {{- end }}
+{{- if .Values.service.trafficDistribution }}
+  trafficDistribution: {{ .Values.service.trafficDistribution }}
+{{- end }}

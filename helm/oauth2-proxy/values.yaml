@@ -161,6 +161,9 @@ service:
     enabled: false
     ipFamilies: ["IPv6", "IPv4"]
     ipFamilyPolicy: "PreferDualStack"
+  # Configure traffic distribution for the service
+  # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#traffic-distribution
+  trafficDistribution: ""
 
 ## Create or use ServiceAccount
 serviceAccount:
