@@ -283,6 +283,10 @@ spec:
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
 {{- end }}
+{{- if .Values.startupProbe.enabled }}
+        startupProbe:
+{{ omit .Values.startupProbe "enabled" | toYaml | indent 10 }}
+{{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:

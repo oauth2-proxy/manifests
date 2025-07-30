@@ -281,6 +281,16 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
 
+startupProbe:
+  enabled: false
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+  httpGet: {}
+  tcpSocket: {}
+  grpc: {}
+
 # Configure Kubernetes security context for container
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 securityContext:
