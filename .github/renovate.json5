@@ -41,7 +41,7 @@
   lockFileMaintenance: {
     enabled: true,
   },
-  baseBranches: [
+  baseBranchPatterns: [
     'main',
   ],
 }
