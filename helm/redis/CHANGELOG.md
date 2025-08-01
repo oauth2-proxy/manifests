@@ -1,5 +1,15 @@
 # Changelog
 
+## 22.0.0 (2025-08-01)
+- Forked chart from `bitnami/redis` v21.2.13 → `oauth2-proxy/manifests` v22.0.0
+- Stripped Bitnami branding, annotations, `common` dependency
+- Switched images:
+  - `bitnami/redis` → `redis:8.0.3-bookworm`
+  - `bitnami/redis-sentinel` → `redis:8.0.3-bookworm`
+  - `bitnami/redis-exporter` → `oliver006/redis_exporter:v1.74.0`
+  - `bitnami/kubectl` → `rancher/kubectl:1.33.3`
+  - `bitnami/os-shell` → `debian:12`
+
 ## 21.2.13 (2025-07-16)
 
 * [bitnami/redis] Bugfix/script prestop redis external access ([#34806](https://github.com/bitnami/charts/pull/34806))
