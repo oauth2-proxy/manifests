@@ -1,5 +1,5 @@
 name: redis
-version: 21.2.13
+version: 22.0.0
 appVersion: 8.0.3
 apiVersion: v2
 home: https://github.com/oauth2-proxy/manifests/tree/main/helm/redis
