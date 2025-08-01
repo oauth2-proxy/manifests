@@ -1,0 +1,210 @@
+diff --git a/ct.yaml b/ct.yaml
+index 13c85f6..fe56dde 100644
+--- a/ct.yaml
++++ b/ct.yaml
+@@ -3,6 +3,6 @@ remote: origin
+ chart-dirs:
+   - helm
+ target-branch: main
+-# helm-extra-args: --timeout 600s
++validate-maintainers: false
+ chart-repos:
+   - bitnami=https://charts.bitnami.com/bitnami
+diff --git a/helm/redis/Chart.lock b/helm/redis/Chart.lock
+deleted file mode 100644
+index 82b0598..0000000
+--- a/helm/redis/Chart.lock
++++ /dev/null
+@@ -1,6 +0,0 @@
+-dependencies:
+-- name: common
+-  repository: oci://registry-1.docker.io/bitnamicharts
+-  version: 2.31.0
+-digest: sha256:c4c9af4e0ca23cf2c549e403b2a2bba2c53a3557cee23da09fa4cdf710044c2c
+-generated: "2025-05-06T10:59:26.624907586+02:00"
+diff --git a/helm/redis/Chart.yaml b/helm/redis/Chart.yaml
+index f4db3c5..5bcfc59 100644
+--- a/helm/redis/Chart.yaml
++++ b/helm/redis/Chart.yaml
+@@ -1,42 +1,25 @@
+-# Copyright Broadcom, Inc. All Rights Reserved.
+-# SPDX-License-Identifier: APACHE-2.0
+-
+-annotations:
+-  category: Database
+-  images: |
+-    - name: kubectl
+-      image: docker.io/bitnami/kubectl:1.33.3-debian-12-r0
+-    - name: os-shell
+-      image: docker.io/bitnami/os-shell:12-debian-12-r48
+-    - name: redis
+-      image: docker.io/bitnami/redis:8.0.3-debian-12-r1
+-    - name: redis-exporter
+-      image: docker.io/bitnami/redis-exporter:1.74.0-debian-12-r2
+-    - name: redis-sentinel
+-      image: docker.io/bitnami/redis-sentinel:8.0.3-debian-12-r1
+-  licenses: Apache-2.0
+-  tanzuCategory: service
+-apiVersion: v2
++name: redis
++version: 22.0.0
+ appVersion: 8.0.3
+-dependencies:
+-- name: common
+-  repository: oci://registry-1.docker.io/bitnamicharts
+-  tags:
+-  - bitnami-common
+-  version: 2.x.x
+-description: Redis(R) is an open source, advanced key-value store. It is often referred
++apiVersion: v2
++home: https://github.com/oauth2-proxy/manifests/tree/main/helm/redis
++description:
++  Redis(R) is an open source, advanced key-value store. It is often referred
+   to as a data structure server since keys can contain strings, hashes, lists, sets
+   and sorted sets.
+-home: https://bitnami.com
+-icon: https://dyltqmyl993wv.cloudfront.net/assets/stacks/redis/img/redis-stack-220x234.png
+ keywords:
+-- redis
+-- keyvalue
+-- database
+-maintainers:
+-- name: Broadcom, Inc. All Rights Reserved.
+-  url: https://github.com/bitnami/charts
+-name: redis
++  - redis
++  - keyvalue
++  - database
+ sources:
+-- https://github.com/bitnami/charts/tree/main/bitnami/redis
+-version: 21.2.13
++  - https://github.com/oauth2-proxy/manifests/tree/main/helm/redis
++maintainers:
++  - name: OAuth2-Proxy Maintainers
++    url: https://github.com/oauth2-proxy
++annotations:
++  artifacthub.io/changes: |
++    - kind: changed
++      description: Initial release of forked Redis chart under OAuth2-Proxy org
++      links:
++        - name: Github PR
++          url: https://github.com/oauth2-proxy/manifests/pull/330
+diff --git a/helm/redis/values.yaml b/helm/redis/values.yaml
+index 48ffce4..4a5b999 100644
+--- a/helm/redis/values.yaml
++++ b/helm/redis/values.yaml
+@@ -113,8 +113,8 @@ diagnosticMode:
+ ##
+ image:
+   registry: docker.io
+-  repository: bitnami/redis
+-  tag: 8.0.3-debian-12-r1
++  repository: redis
++  tag: 8.0.3-bookworm
+   digest: ""
+   ## Specify a imagePullPolicy
+   ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
+@@ -1185,8 +1185,8 @@ sentinel:
+   ##
+   image:
+     registry: docker.io
+-    repository: bitnami/redis-sentinel
+-    tag: 8.0.3-debian-12-r1
++    repository: redis
++    tag: 8.0.3-bookworm
+     digest: ""
+     ## Specify a imagePullPolicy
+     ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
+@@ -1582,34 +1582,39 @@ sentinel:
+     ##
+     enabled: false
+     service:
+-        ## @param sentinel.externalAccess.service.loadBalancerIPAnnotaion Name of annotation to specify fixed IP for service in.
+-        ##
+-      loadBalancerIPAnnotaion: ""
++      ## @param sentinel.externalAccess.service.loadBalancerIPAnnotaion Name of annotation to specify fixed IP for service in.
++      ##
++      loadBalancerIPAnnotaion:
++        ""
+         ## @param sentinel.externalAccess.service.type Type for the services used to expose every Pod
+         ## At this moment only LoadBalancer is supported
+         ##
+       type: LoadBalancer
+       ## @param sentinel.externalAccess.service.redisPort Port for the services used to expose redis-server
+-        ##
++      ##
+       redisPort: 6379
+ 
+       ## @param sentinel.externalAccess.service.sentinelPort Port for the services used to expose redis-sentinel
+-        ##
+-      sentinelPort: 26379
++      ##
++      sentinelPort:
++        26379
+         ## @param sentinel.externalAccess.service.loadBalancerIP Array of load balancer IPs for each Redis(R) node. Length must be the same as sentinel.replicaCount
+         ##
+-      loadBalancerIP: []
++      loadBalancerIP:
++        []
+         ## @param sentinel.externalAccess.service.loadBalancerClass Load Balancer class if service type is `LoadBalancer` (optional, cloud specific)
+         ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
+         ##
+-      loadBalancerClass: ""
++      loadBalancerClass:
++        ""
+         ## @param sentinel.externalAccess.service.loadBalancerSourceRanges Service Load Balancer sources
+         ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+         ## e.g:
+         ## loadBalancerSourceRanges:
+         ##   - 10.10.10.0/24
+         ##
+-      loadBalancerSourceRanges: []
++      loadBalancerSourceRanges:
++        []
+         ## @param sentinel.externalAccess.service.annotations Annotations to add to the services used to expose every Pod of the Redis(R) Cluster
+         ##
+       annotations: {}
+@@ -1784,8 +1789,8 @@ metrics:
+   ##
+   image:
+     registry: docker.io
+-    repository: bitnami/redis-exporter
+-    tag: 1.74.0-debian-12-r2
++    repository: oliver006/redis_exporter
++    tag: v1.74.0
+     digest: ""
+     pullPolicy: IfNotPresent
+     ## Optionally specify an array of imagePullSecrets.
+@@ -2162,8 +2167,8 @@ volumePermissions:
+   ##
+   image:
+     registry: docker.io
+-    repository: bitnami/os-shell
+-    tag: 12-debian-12-r48
++    repository: debian
++    tag: 12
+     digest: ""
+     pullPolicy: IfNotPresent
+     ## Optionally specify an array of imagePullSecrets.
+@@ -2226,8 +2231,8 @@ kubectl:
+   ##
+   image:
+     registry: docker.io
+-    repository: bitnami/kubectl
+-    tag: 1.33.3-debian-12-r0
++    repository: rancher/kubectl
++    tag: 1.33.3
+     digest: ""
+     ## Specify a imagePullPolicy
+     ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
+@@ -2295,8 +2300,8 @@ sysctl:
+   ##
+   image:
+     registry: docker.io
+-    repository: bitnami/os-shell
+-    tag: 12-debian-12-r48
++    repository: debian
++    tag: 12
+     digest: ""
+     pullPolicy: IfNotPresent
+     ## Optionally specify an array of imagePullSecrets.
