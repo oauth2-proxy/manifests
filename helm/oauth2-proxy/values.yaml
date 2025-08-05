@@ -319,8 +319,28 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
-#  targetMemoryUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
   annotations: {}
+  # Configure HPA behavior policies for scaling if needed
+  # Ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#configuring-scaling-behavior
+  behavior: {}
+    # scaleDown:
+    #   stabilizationWindowSeconds: 300
+    #   policies:
+    #   - type: Percent
+    #     value: 100
+    #     periodSeconds: 15
+    #   selectPolicy: Min
+    # scaleUp:
+    #   stabilizationWindowSeconds: 0
+    #   policies:
+    #   - type: Percent
+    #     value: 100
+    #     periodSeconds: 15
+    #   - type: Pods
+    #     value: 4
+    #     periodSeconds: 15
+    #   selectPolicy: Max
 
 # Configure Kubernetes security context for pod
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
