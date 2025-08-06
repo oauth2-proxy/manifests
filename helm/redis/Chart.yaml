@@ -1,0 +1,25 @@
+name: redis
+version: 22.0.0
+appVersion: 8.0.3
+apiVersion: v2
+home: https://github.com/oauth2-proxy/manifests/tree/main/helm/redis
+description:
+  Redis(R) is an open source, advanced key-value store. It is often referred
+  to as a data structure server since keys can contain strings, hashes, lists, sets
+  and sorted sets.
+keywords:
+  - redis
+  - keyvalue
+  - database
+sources:
+  - https://github.com/oauth2-proxy/manifests/tree/main/helm/redis
+maintainers:
+  - name: OAuth2-Proxy Maintainers
+    url: https://github.com/oauth2-proxy
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Initial release of forked Redis chart under OAuth2-Proxy org
+      links:
+        - name: Github PR
+          url: https://github.com/oauth2-proxy/manifests/pull/330
