@@ -3,6 +3,49 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Updated the Redis chart to the latest version
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/334
+    apiVersion: v2
+    appVersion: 7.11.0
+    created: "2025-08-11T16:53:13.795458086Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.0.1
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 8200f0e8186cea593837f3c9d62d6f43fed960bfb37c9470a05f8dc6a59a187a
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-7.17.1/oauth2-proxy-7.17.1.tgz
+    version: 7.17.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Added support for HPA spec.behavior configuration for fine-grained scaling policies
           links:
@@ -7991,4 +8034,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-08-06T10:48:20.540897854Z"
+generated: "2025-08-11T16:53:13.795892727Z"
