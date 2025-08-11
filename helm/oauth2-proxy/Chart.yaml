@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Added support for HPA spec.behavior configuration for fine-grained scaling policies
+    - kind: changed
+      description: Updated the Redis chart to the latest version
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/331
+          url: https://github.com/oauth2-proxy/manifests/pull/334
