@@ -8,17 +8,16 @@ sessionStorage:
       connectionUrls:
         - "redis://oauth2-proxy-redis:26379"
         - "redis://oauth2-proxy-redis:26379"
+
+# provision an instance of the redis-ha sub-chart
 redis:
-  # provision an instance of the redis sub-chart
   enabled: true
   fullnameOverride: oauth2-proxy-redis
-  architecture: replication
-  sentinel:
-    enabled: true
-    masterSet: mymaster
-  global:
-    redis:
-      password: "foo"
+  replicas: 3
+  redisPassword: "foo"
+  redis:
+    masterGroupName: mymaster
+
 initContainers:
   waitForRedis:
     enabled: true

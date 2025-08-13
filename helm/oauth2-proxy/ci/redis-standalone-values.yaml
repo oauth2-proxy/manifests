@@ -3,13 +3,14 @@ sessionStorage:
   redis:
     clientType: "standalone"
     password: "foo"
+
+# provision an instance of the redis-ha sub-chart
 redis:
-  # provision an instance of the redis sub-chart
   enabled: true
-  architecture: standalone
-  global:
-    redis:
-      password: "foo"
+  fullnameOverride: oauth2-proxy-redis
+  replicas: 1
+  redisPassword: "foo"
+
 initContainers:
   waitForRedis:
     enabled: true
