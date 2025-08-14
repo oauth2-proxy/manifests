@@ -36,3 +36,5 @@ annotations:
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/335
+        - name: Redis HA chart repository
+          url: https://github.com/DandyDeveloper/charts/tree/master/charts/redis-ha
