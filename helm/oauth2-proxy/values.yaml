@@ -311,6 +311,10 @@ podDisruptionBudget:
   enabled: true
   maxUnavailable: null
   minAvailable: 1
+  # Policy for when unhealthy pods should be considered for eviction.
+  # Valid values are "IfHealthyBudget" and "AlwaysAllow".
+  # Ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy
+  unhealthyPodEvictionPolicy: ""
 
 ## Horizontal Pod Autoscaling
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
