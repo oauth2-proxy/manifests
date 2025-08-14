@@ -199,7 +199,7 @@ spec:
         {{- if eq (default "cookie" .Values.sessionStorage.type) "redis" }}
         - name: OAUTH2_PROXY_SESSION_STORE_TYPE
           value: "redis"
-         {{- if or .Values.sessionStorage.redis.existingSecret .Values.sessionStorage.redis.password (and .Values.redis.enabled (.Values.redis.auth).enabled )}}
+         {{- if or .Values.sessionStorage.redis.existingSecret .Values.sessionStorage.redis.password (and .Values.redis.enabled (.Values.redis.auth))}}
         - name: OAUTH2_PROXY_REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
