@@ -94,6 +94,13 @@ Version 7.0.0 introduces a new implementation to support multiple hostAliases.
 You probably need to adjust your hostAliases config. 
 See [here](https://github.com/oauth2-proxy/manifests/pull/164/) for detailed information.
 
+### To 8.0.0 - Bitnami 💀
+
+Version 8.0.0 removes the dependency on the Bitnami Redis subchart and replaces it with the `dandydeveloper/redis-ha` chart. Therefore this version introduces a breaking change to the redis subchart deployment configuration. Please refer to the official [redis-ha repository](https://github.com/DandyDeveloper/charts/tree/master/charts/redis-ha) for details. Furthermore, you can reference the redis CI test value files we use [here](https://github.com/oauth2-proxy/manifests/tree/main/helm/oauth2-proxy/ci).
+
+Furthermore, you can read up on why this change was necessary in [Breaking changes in Bitnami Catalog #323](https://github.com/oauth2-proxy/manifests/issues/323)
+
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
