@@ -3,6 +3,49 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fixes how the fullname for the deployment / service of the newly introduced redis-ha subchart is generated
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/338
+    apiVersion: v2
+    appVersion: 7.11.0
+    created: "2025-08-17T21:08:43.664185984Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.33.8
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 3aef73a39484cf090d309ee8e5329312d8eacd2a345467c62385d8779c7a33b2
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-8.0.1/oauth2-proxy-8.0.1.tgz
+    version: 8.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Replace Redis chart by bitnami with dandydeveloper/redis-ha chart
           links:
@@ -8122,4 +8165,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-08-17T10:12:03.510103104Z"
+generated: "2025-08-17T21:08:43.664663947Z"
