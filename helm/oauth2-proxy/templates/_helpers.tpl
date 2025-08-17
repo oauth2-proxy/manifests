@@ -107,7 +107,7 @@ Compute the redis url if not set explicitly.
 {{- if .Values.sessionStorage.redis.standalone.connectionUrl -}}
 {{ .Values.sessionStorage.redis.standalone.connectionUrl }}
 {{- else if .Values.redis.enabled -}}
-{{- printf "redis://%s-master:%.0f" (include "oauth2-proxy.redis.fullname" .) .Values.redis.redis.port -}}
+{{- printf "redis://%s:%.0f" (include "oauth2-proxy.redis.fullname" .) .Values.redis.redis.port -}}
 {{- else -}}
 {{ fail "please set sessionStorage.redis.standalone.connectionUrl or enable the redis subchart via redis.enabled" }}
 {{- end -}}
