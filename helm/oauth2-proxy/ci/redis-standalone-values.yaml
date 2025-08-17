@@ -7,7 +7,6 @@ sessionStorage:
 # provision an instance of the redis-ha sub-chart
 redis:
   enabled: true
-  fullnameOverride: oauth2-proxy-redis
 
   redisPassword: "foo"
 
