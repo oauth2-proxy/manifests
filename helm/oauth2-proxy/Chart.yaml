@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 8.0.0
+version: 8.0.1
 apiVersion: v2
 appVersion: 7.11.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Replace Redis chart by bitnami with dandydeveloper/redis-ha chart
+    - kind: fixed
+      description: Fixes how the fullname for the deployment / service of the newly introduced redis-ha subchart is generated
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/335
+          url: https://github.com/oauth2-proxy/manifests/pull/338
