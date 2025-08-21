@@ -1,4 +1,8 @@
-{{- if and .Values.podDisruptionBudget.enabled (gt (.Values.replicaCount | int) 1) }}
+{{- $replicaCount := .Values.replicaCount | default 1 | int }}
+{{- if .Values.autoscaling.enabled }}
+  {{- $replicaCount = .Values.autoscaling.minReplicas | default 1 | int }}
+{{- end }}
+{{- if and .Values.podDisruptionBudget.enabled (gt $replicaCount 1) }}
 apiVersion: {{ include "capabilities.podDisruptionBudget.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
