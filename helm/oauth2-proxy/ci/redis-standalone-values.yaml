@@ -47,7 +47,7 @@ redis:
       timeoutSeconds: 3
       failureThreshold: 10
   splitBrainDetection:
-    interval: 0
+    interval: 60
   persistentVolume:
     enabled: false
   emptyDir: {}
