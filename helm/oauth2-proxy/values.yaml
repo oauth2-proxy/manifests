@@ -215,6 +215,14 @@ resources:
   #   cpu: 100m
   #   memory: 300Mi
 
+# Container resize policy for runtime resource updates
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/
+resizePolicy: []
+  # - resourceName: cpu
+  #   restartPolicy: NotRequired
+  # - resourceName: memory
+  #   restartPolicy: RestartContainer
+
 extraVolumes:
   []
   # - name: ca-bundle-cert

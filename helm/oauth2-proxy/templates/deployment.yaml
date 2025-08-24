@@ -285,6 +285,10 @@ spec:
 {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
+{{- if .Values.resizePolicy }}
+        resizePolicy:
+{{ toYaml .Values.resizePolicy | indent 10 }}
+{{- end }}
         volumeMounts:
 {{- with .Values.config.google }}
 {{- if and .adminEmail (or .serviceAccountJson .existingSecret) }}
