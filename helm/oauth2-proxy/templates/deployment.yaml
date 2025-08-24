@@ -285,9 +285,8 @@ spec:
 {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
-{{- if .Values.resizePolicy }}
-        resizePolicy:
-{{ toYaml .Values.resizePolicy | indent 10 }}
+{{- with .Values.resizePolicy }}
+        resizePolicy: {{ toYaml . | nindent 10 }}
 {{- end }}
         volumeMounts:
 {{- with .Values.config.google }}
