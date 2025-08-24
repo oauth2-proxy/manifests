@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added 
-      description: Add support for new container resize policy feature 
+    - kind: added
+      description: Add support for new container resize policy feature
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/346
