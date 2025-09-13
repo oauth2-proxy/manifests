@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 8.2.0
+version: 8.2.1
 apiVersion: v2
 appVersion: 7.12.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis-ha
-    version: 4.33.8
+    version: 4.34.10
     repository: https://dandydeveloper.github.io/charts
     alias: redis
     condition: redis.enabled
