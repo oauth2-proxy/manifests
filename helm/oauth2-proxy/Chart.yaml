@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 8.2.2
+version: 8.3.0
 apiVersion: v2
 appVersion: 7.12.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: security
-      description: Adding cosign keyless signing for helm chart artifact
+    - kind: added
+      description: Add NetworkPolicy manifest to the helm chart
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/356
+          url: https://github.com/oauth2-proxy/manifests/pull/357
