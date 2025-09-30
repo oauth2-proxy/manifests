@@ -54,7 +54,7 @@ jobs:
               break
             fi
             chart_name=$(echo "${pkg##*/}" | sed 's/-[0-9].*$//')
-            repo="oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"
-            helm push "${pkg}" "${repo}" |& grep Digest: | awk '{print $NF}' > digest.txt
+            repo="ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"
+            helm push "${pkg}" "oci://${repo}" |& grep Digest: | awk '{print $NF}' > digest.txt
             cosign sign --yes "${repo}/${chart_name}@$(cat digest.txt)"
           done
