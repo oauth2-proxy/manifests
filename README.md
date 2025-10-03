@@ -25,13 +25,13 @@ With the introduction of cosign for signing artifacts you can verify the
 integrity of our artifacts using the following command:
 
 ```
-VERSION=8.2.2
+VERSION=8.3.0
 cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com \
     --certificate-github-workflow-repository oauth2-proxy/manifests \
     --certificate-github-workflow-name "Release Charts" \
-    --certificate-github-workflow-ref main \
-    --certificate-identity "https://github.com/oauth2-proxy/manifests/.github/workflows/release.yaml@main" \
-    "oci://ghcr.io/oauth2-proxy/manifests/charts/oauth2-proxy@${VERSION}" | jq
+    --certificate-github-workflow-ref refs/heads/main \
+    --certificate-identity "https://github.com/oauth2-proxy/manifests/.github/workflows/release.yaml@refs/heads/main" \
+    "ghcr.io/oauth2-proxy/charts/oauth2-proxy:${VERSION}" | jq
 ```
 
 Note:
