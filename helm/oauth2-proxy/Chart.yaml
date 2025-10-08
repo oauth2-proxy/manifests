@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 8.3.0
+version: 8.3.1
 apiVersion: v2
 appVersion: 7.12.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis-ha
-    version: 4.34.10
+    version: 4.35.0
     repository: https://dandydeveloper.github.io/charts
     alias: redis
     condition: redis.enabled
@@ -32,7 +32,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Add NetworkPolicy manifest to the helm chart
+      description: Bump Redis Chart Version
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/357
+          url: https://github.com/oauth2-proxy/manifests/pull/361
