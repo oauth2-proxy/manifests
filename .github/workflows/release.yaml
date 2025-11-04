@@ -8,14 +8,18 @@ on:
 jobs:
   release:
     permissions:
-      contents: write
-      packages: write
+      contents: write # for pushing to gh-pages (HTTPS Helm repository)
+      packages: write # for pushing to GHCR     (OCI Helm repository)
+      id-token: write # for signing with keyless cosign
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+
+      - name: Setup Cosign
+        uses: sigstore/cosign-installer@v3.10.0
 
       - name: Configure Git
         run: |
@@ -42,12 +46,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push Charts to GHCR
+      - name: Push Charts to GHCR and Sign
         run: |
           shopt -s nullglob
           for pkg in .cr-release-packages/*; do
             if [ -z "${pkg:-}" ]; then
               break
             fi
-            helm push "${pkg}" oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts
+            chart_name=$(echo "${pkg##*/}" | sed 's/-[0-9].*$//')
+            repo="ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"
+            helm push "${pkg}" "oci://${repo}" |& grep Digest: | awk '{print $NF}' > digest.txt
+            cosign sign --yes "${repo}/${chart_name}@$(cat digest.txt)"
           done

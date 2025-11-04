@@ -177,6 +177,12 @@ serviceAccount:
   automountServiceAccountToken: true
   annotations: {}
 
+# Network policy settings.
+networkPolicy:
+  create: false
+  ingress: []
+  egress: []
+
 ingress:
   enabled: false
   # className: nginx
