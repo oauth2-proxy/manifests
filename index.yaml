@@ -3,6 +3,49 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Updated OAuth2-Proxy image to v7.13.0
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/366
+    apiVersion: v2
+    appVersion: 7.13.0
+    created: "2025-11-08T13:58:20.035303789Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.0
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: cc4d8f3bfb4bebcb295d1b72778655bc39450e77dcfa154fdec7608e4c0f4e87
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-8.3.3/oauth2-proxy-8.3.3.tgz
+    version: 8.3.3
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Adds backwards compatibility with Kubernetes 1.20 by selecting the HPA apiVersion of autoscaling/v2beta2
           links:
@@ -8509,4 +8552,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-10-30T21:10:15.439902168Z"
+generated: "2025-11-08T13:58:20.035734171Z"
