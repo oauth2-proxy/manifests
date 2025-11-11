@@ -5,6 +5,7 @@ For hosting manifests to allow for the deployment of OAuth2-Proxy/OAuth2-Proxy
 ## Helm Chart
 
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/oauth2-proxy)](https://artifacthub.io/packages/helm/oauth2-proxy/oauth2-proxy)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Foauth2-proxy%2Fmanifests.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Foauth2-proxy%2Fmanifests?ref=badge_shield&issueType=license)
 
 __repository:__ https://oauth2-proxy.github.io/manifests
 __name:__ oauth2-proxy
@@ -48,7 +49,7 @@ Participation in the OAuth2-Proxy project is governed by the [CNCF Code of Condu
 
 OAuth2-Proxy is distributed under [The MIT License](https://github.com/oauth2-proxy/oauth2-proxy/tree/master/LICENSE).
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Foauth2-proxy%2Foauth2-proxy.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Foauth2-proxy%2Foauth2-proxy?ref=badge_large&issueType=license)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Foauth2-proxy%2Fmanifests.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Foauth2-proxy%2Fmanifests?ref=badge_large&issueType=license)
 
 The OAuth2-Proxy helm chart is distributed under [Apache License 2.0](https://github.com/oauth2-proxy/manifests/tree/main/LICENSE).
 
