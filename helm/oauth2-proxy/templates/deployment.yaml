@@ -108,7 +108,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ include "oauth2-proxy.version" . }}"
+        image: "{{ .Values.global.imageRegistry | default .Values.image.registry }}/{{ .Values.image.repository }}:{{ include "oauth2-proxy.version" . }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.image.command }}
         command:
