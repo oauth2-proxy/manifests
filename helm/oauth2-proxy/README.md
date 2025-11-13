@@ -85,13 +85,13 @@ For users who don't want downtime, you can perform these actions:
 ### To 6.0.0
 
 Version 6.0.0 bumps the version of the Redis subchart from ~10.6.0 to ~16.4.0. 
-You probably need to adjust your Redis configuration. 
+You probably need to adjust your Redis configuration.
 See [here](https://github.com/bitnami/charts/tree/master/bitnami/redis#upgrading) for detailed upgrade instructions.
 
 ### To 7.0.0
 
-Version 7.0.0 introduces a new implementation to support multiple hostAliases. 
-You probably need to adjust your hostAliases config. 
+Version 7.0.0 introduces a new implementation to support multiple hostAliases.
+You probably need to adjust your hostAliases config.
 See [here](https://github.com/oauth2-proxy/manifests/pull/164/) for detailed information.
 
 ### To 8.0.0 - Bitnami 💀
@@ -100,6 +100,11 @@ Version 8.0.0 removes the dependency on the Bitnami Redis subchart and replaces 
 
 Furthermore, you can read up on why this change was necessary in [Breaking changes in Bitnami Catalog #323](https://github.com/oauth2-proxy/manifests/issues/323)
 
+### To 9.0.0
+
+Version 9.0.0 introduces the `.global.imageRegistry` value that allows to centrally override the image registry that is used to pull images.
+The `image.repository` value is split into `image.registry` and `image.repository` in order to support that.
+This means that if you were using an override for `image.repository` (to pull from a different artifact repository), you will likely have to adjust it for the new `image.registry` value. See [#367](https://github.com/oauth2-proxy/manifests/pull/367) for detailed information.
 
 ## Configuration
 
