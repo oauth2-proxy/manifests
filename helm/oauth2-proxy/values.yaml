@@ -178,7 +178,7 @@ serviceAccount:
   annotations: {}
   ## imagePullSecrets for the service account
   imagePullSecrets: []
-  # - name: myRegistryKeySecretName
+    # - name: myRegistryKeySecretName
 
 # Network policy settings.
 networkPolicy:
