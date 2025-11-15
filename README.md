@@ -1,6 +1,6 @@
 # manifests
 
-For hosting manifests to allow for the deployment of OAuth2-Proxy/OAuth2-Proxy
+For hosting manifests to allow for the deployment of [OAuth2 Proxy](https://github.com/oauth2-proxy/oauth2-proxy)
 
 ## Helm Chart
 
@@ -19,6 +19,11 @@ Linting/validation uses the [helm/chart-testing tool](https://github.com/helm/ch
 ct lint --all --config ct.yaml
 ct install --all --config ct.yaml
 ```
+
+## Contributing
+
+If you want to contribute to this project, please make yourself familiar with the [CONTRIBUTING.md](https://github.com/oauth2-proxy/manifests/tree/main/CONTRIBUTING.md) guide before opening a PR or issue.
+Be aware this is just the Helm chart / manifest repository. Actual problems with the application OAuth2 Proxy itself should be reported in the main project repository.
 
 ## Verify Signed Helm Charts
 
@@ -43,19 +48,19 @@ more about how keyless signing is done, visit the official documentation about
 
 
 ## Code of Conduct
-Participation in the OAuth2-Proxy project is governed by the [CNCF Code of Conduct](https://github.com/oauth2-proxy/oauth2-proxy/tree/master/CODE_OF_CONDUCT.md).
+Participation in the OAuth2 Proxy project is governed by the [CNCF Code of Conduct](https://github.com/oauth2-proxy/oauth2-proxy/tree/master/CODE_OF_CONDUCT.md).
 
 ## License
 
-OAuth2-Proxy is distributed under [The MIT License](https://github.com/oauth2-proxy/oauth2-proxy/tree/master/LICENSE).
+OAuth2 Proxy is distributed under [The MIT License](https://github.com/oauth2-proxy/oauth2-proxy/tree/master/LICENSE).
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Foauth2-proxy%2Fmanifests.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Foauth2-proxy%2Fmanifests?ref=badge_large&issueType=license)
 
-The OAuth2-Proxy helm chart is distributed under [Apache License 2.0](https://github.com/oauth2-proxy/manifests/tree/main/LICENSE).
+The OAuth2 Proxy helm chart is distributed under [Apache License 2.0](https://github.com/oauth2-proxy/manifests/tree/main/LICENSE).
 
 ## Trademarks
 
-OAuth2-Proxy is a [Cloud Native Computing Foundation](https://cncf.io) Sandbox project.
+OAuth2 Proxy is a [Cloud Native Computing Foundation](https://cncf.io) Sandbox project.
 
 ![CNCF](https://www.cncf.io/wp-content/uploads/2023/04/cncf-main-site-logo.svg)
 
