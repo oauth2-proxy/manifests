@@ -1,9 +1,10 @@
-global: {}
-# To help compatibility with other charts which use global.imagePullSecrets.
-# global:
-#   imagePullSecrets:
-#   - name: pullSecret1
-#   - name: pullSecret2
+global:
+  # Global registry to pull the images from
+  imageRegistry: ""
+  # To help compatibility with other charts which use global.imagePullSecrets.
+  imagePullSecrets: []
+  #   - name: pullSecret1
+  #   - name: pullSecret2
 
 ## Override the deployment namespace
 ##
@@ -74,7 +75,8 @@ alphaConfig:
   existingSecret: ~
 
 image:
-  repository: "quay.io/oauth2-proxy/oauth2-proxy"
+  registry: "quay.io"
+  repository: "oauth2-proxy/oauth2-proxy"
   # appVersion is used by default
   tag: ""
   pullPolicy: "IfNotPresent"
