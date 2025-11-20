@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 8.5.1
+version: 9.0.0
 apiVersion: v2
 appVersion: 7.13.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Add HTTPRoutes for Gateway API support
+    - kind: changed
+      description: Breaking change: Separate image.repository into (image.registry / image.repository) and support .global.imageRegistry
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/369
+          url: https://github.com/oauth2-proxy/manifests/pull/367
