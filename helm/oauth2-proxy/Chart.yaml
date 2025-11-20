@@ -31,8 +31,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Add .global.imageRegistry key to override image.registry
+    - kind: changed
+      description: Breaking change: Separate image.repository into (image.registry / image.repository) and support .global.imageRegistry
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/367
