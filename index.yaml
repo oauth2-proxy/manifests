@@ -3,6 +3,49 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Breaking change: Separate image.repository into (image.registry / image.repository) and support .global.imageRegistry
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/367
+    apiVersion: v2
+    appVersion: 7.13.0
+    created: "2025-11-20T13:38:36.88822847Z"
+    dependencies:
+    - alias: redis
+      condition: redis.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.3
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 3bb8c610b01a7052f365cf991cf801b771585d4392ed9590280cc07b24336f85
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-9.0.0/oauth2-proxy-9.0.0.tgz
+    version: 9.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Add HTTPRoutes for Gateway API support
           links:
@@ -8681,4 +8724,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2025-11-20T09:01:08.900680233Z"
+generated: "2025-11-20T13:38:36.888729235Z"
