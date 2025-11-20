@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Cosign
-        uses: sigstore/cosign-installer@v3.10.0
+        uses: sigstore/cosign-installer@v4.0.0
 
       - name: Configure Git
         run: |
