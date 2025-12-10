@@ -31,11 +31,6 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Breaking change: Separate image.repository into (image.registry / image.repository) and support .global.imageRegistry
-      links:
-        - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/367
-    - kind: changed
       description: Breaking change: Removed alias for the Redis HA subchart dependency (use redis-ha path to configure redis)
       links:
         - name: Github PR
