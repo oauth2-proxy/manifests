@@ -102,7 +102,7 @@ Redis subcharts fullname
 {{- define "oauth2-proxy.redis.fullname" -}}
 {{- if eq (include "oauth2-proxy.redis.enabled" .) "true" -}}
 {{- $redisValues := index .Values "redis-ha" | default dict -}}
-{{- include "redis-ha.fullname" (dict "Chart" (dict "Name" "redis") "Release" .Release "Values" $redisValues) -}}
+{{- include "redis-ha.fullname" (dict "Chart" (dict "Name" "redis-ha") "Release" .Release "Values" $redisValues) -}}
 {{- else -}}
 {{ fail "attempting to use redis subcharts fullname, even though the subchart is not enabled. This will lead to misconfiguration" }}
 {{- end -}}
