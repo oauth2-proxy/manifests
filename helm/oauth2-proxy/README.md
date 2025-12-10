@@ -107,12 +107,48 @@ custom registries. Furthermore, it introduces the `global.imageRegistry` value t
 
 This means if you were using an override for `image.repository` (to pull from a different artifact repository), you will likely have to adjust it for the new `image.registry` value. See [#367](https://github.com/oauth2-proxy/manifests/pull/367) for detailed information.
 
+### To 10.0.0
+
+Version 10.0.0 removes the alias for the Redis HA subchart dependency due to compatibility issues with Helm 3. Helm 3 does not support transitive conditional aliases, meaning that even when values were provided in the parent chart to disable the subchart, the aliased values were not respected correctly.
+
+**Breaking Change**: If you were previously using the redis alias to configure the Redis HA subchart, you must now use the actual chart name redis-ha for all configuration values.
+
+Before:
+
+```yaml
+redis:
+  enabled: true
+  # ... other redis configuration
+```
+
+After:
+
+```yaml
+redis-ha:
+  enabled: true
+  # ... other redis-ha configuration
+```
+
+Please update your values files accordingly. Refer to the official [redis-ha repository](https://github.com/DandyDeveloper/charts/tree/master/charts/redis-ha) for available configuration options.
+
+Due to alias removal redis resources recreation will be required in case of default redis chart naming. If you would like to keep your current redis
+naming introduced in version `v8` override redis name to previous alias name like this:
+
+```yaml
+redis-ha:
+  nameOverride: redis
+  enabled: true
+  # ... other redis-ha configuration
+```
+
+With above new chart version won't add extra `-ha` suffix to all redis resources.
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
 
 | Parameter                                             | Description                                                                                                                                                                                                                                                      | Default                                                                                              |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+|-------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `affinity`                                            | node/pod affinities                                                                                                                                                                                                                                              | None                                                                                                 |
 | `alphaConfig.annotations`                             | Configmap annotations                                                                                                                                                                                                                                            | `{}`                                                                                                 |
 | `alphaConfig.configData`                              | Arbitrary configuration data to append                                                                                                                                                                                                                           | `{}`                                                                                                 |
@@ -234,7 +270,7 @@ The following table lists the configurable parameters of the oauth2-proxy chart 
 | `readinessProbe.periodSeconds`                        | number of seconds                                                                                                                                                                                                                                                | 10                                                                                                   |
 | `readinessProbe.successThreshold`                     | number of successes                                                                                                                                                                                                                                              | 1                                                                                                    |
 | `readinessProbe.timeoutSeconds`                       | number of seconds                                                                                                                                                                                                                                                | 5                                                                                                    |
-| `redis.enabled`                                       | Enable the Redis subchart deployment                                                                                                                                                                                                                             | `false`                                                                                              |
+| `redis-ha.enabled`                                    | Enable the Redis subchart deployment                                                                                                                                                                                                                             | `false`                                                                                              |
 | `replicaCount`                                        | desired number of pods                                                                                                                                                                                                                                           | `1`                                                                                                  |
 | `resizePolicy`                                        | Container resize policy for runtime resource updates. See [Kubernetes docs](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/)                                                                                                | `[]`                                                                                                 |
 | `resources`                                           | pod resource requests & limits                                                                                                                                                                                                                                   | `{}`                                                                                                 |
