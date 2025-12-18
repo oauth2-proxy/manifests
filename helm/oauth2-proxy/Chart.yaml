@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 9.0.0
+version: 10.0.0
 apiVersion: v2
 appVersion: 7.13.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -14,10 +14,9 @@ keywords:
   - redis
 dependencies:
   - name: redis-ha
-    version: 4.35.3
+    version: 4.35.5
     repository: https://dandydeveloper.github.io/charts
-    alias: redis
-    condition: redis.enabled
+    condition: redis-ha.enabled
 sources:
   - https://github.com/oauth2-proxy/oauth2-proxy
   - https://github.com/oauth2-proxy/manifests
@@ -32,7 +31,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Breaking change: Separate image.repository into (image.registry / image.repository) and support .global.imageRegistry
+      description: Breaking change: Removed alias for the Redis HA subchart dependency (use redis-ha path to configure redis)
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/367
+          url: https://github.com/oauth2-proxy/manifests/pull/378
