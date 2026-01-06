@@ -13,21 +13,21 @@ metadata:
   namespace: {{ template "oauth2-proxy.namespace" $ }}
 data:
   {{ if .Values.config.configFile }}
-  {{- /* User provided custom configFile - use as-is (unless forceLegacyConfig prevents it) */ -}}
+  {{- /* User provided custom configFile */ -}}
   {{- if and .Values.alphaConfig.enabled (not .Values.config.forceLegacyConfig) }}
   {{- /* AlphaConfig enabled without forceLegacyConfig - skip custom configFile and use minimal config */ -}}
   oauth2_proxy.cfg: {{ printf "email_domains = %s" (.Values.config.emailDomains | toJson) | quote }}
   {{- else }}
-  {{- /* Use custom configFile */ -}}
+  {{- /* Use custom configFile (either alphaConfig disabled or forceLegacyConfig=true) */ -}}
   oauth2_proxy.cfg: {{ tpl .Values.config.configFile $ | quote }}
   {{- end }}
   {{- else }}
   {{- /* Auto-generate configFile from structured config */ -}}
-  {{- if and .Values.alphaConfig.enabled (not .Values.config.forceLegacyConfig) }}
-  {{- /* AlphaConfig enabled - minimal legacy config without upstreams */ -}}
+  {{- if .Values.alphaConfig.enabled }}
+  {{- /* AlphaConfig enabled - minimal legacy config without upstreams (removed option) */ -}}
   oauth2_proxy.cfg: {{ printf "email_domains = %s" (.Values.config.emailDomains | toJson) | quote }}
   {{- else }}
-  {{- /* AlphaConfig disabled or forceLegacyConfig - full legacy config with upstreams */ -}}
+  {{- /* AlphaConfig disabled - full legacy config with upstreams */ -}}
   oauth2_proxy.cfg: {{ printf "email_domains = %s\nupstreams = %s" (.Values.config.emailDomains | toJson) (.Values.config.upstreams | toJson) | quote }}
   {{- end }}
   {{- end }}
