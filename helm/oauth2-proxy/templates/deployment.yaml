@@ -145,9 +145,7 @@ spec:
             {{- toYaml . | nindent 10 }}
           {{- end }}
         {{- end }}
-        {{- if or .Values.config.existingConfig .Values.config.configFile }}
           - --config=/etc/oauth2_proxy/oauth2_proxy.cfg
-        {{- end }}
         {{- if .Values.authenticatedEmailsFile.enabled }}
         {{- if .Values.authenticatedEmailsFile.template }}
           - --authenticated-emails-file=/etc/oauth2-proxy/{{ .Values.authenticatedEmailsFile.template }}
@@ -304,11 +302,9 @@ spec:
           readOnly: true
 {{- end }}
 {{- end }}
-{{- if or .Values.config.existingConfig .Values.config.configFile }}
         - mountPath: /etc/oauth2_proxy/oauth2_proxy.cfg
           name: configmain
           subPath: oauth2_proxy.cfg
-{{- end }}
 {{- if .Values.alphaConfig.enabled }}
         - mountPath: /etc/oauth2_proxy/oauth2_proxy.yml
           name: configalpha
@@ -372,12 +368,10 @@ spec:
           name: {{ template "oauth2-proxy.fullname" . }}-wait-for-redis
           defaultMode: 0775
 {{- end }}
-{{- if or .Values.config.existingConfig .Values.config.configFile }}
       - configMap:
           defaultMode: 420
           name: {{ if .Values.config.existingConfig }}{{ .Values.config.existingConfig }}{{ else }}{{ template "oauth2-proxy.fullname" . }}{{ end }}
         name: configmain
-{{- end }}
 {{- if .Values.alphaConfig.enabled }}
 {{- if .Values.alphaConfig.existingConfig }}
       - configMap:
