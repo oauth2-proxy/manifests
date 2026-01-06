@@ -30,10 +30,28 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Added config.requiredSecretKeys option to selectively include secrets (allows excluding client-secret for federated auth scenarios)
+    - kind: fixed
+      description: Restructured config.configFile generation to support alphaConfig without conflicts
       links:
-        - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/384
         - name: Github Issue
-          url: https://github.com/oauth2-proxy/manifests/issues/376
+          url: https://github.com/oauth2-proxy/manifests/issues/226
+    - kind: added
+      description: Added structured configuration with config.emailDomains and config.upstreams for better flexibility
+      links:
+        - name: Github Issue
+          url: https://github.com/oauth2-proxy/manifests/issues/226
+    - kind: added
+      description: Added config.forceLegacyConfig flag for users with custom configFile when using alphaConfig
+      links:
+        - name: Github Issue
+          url: https://github.com/oauth2-proxy/manifests/issues/226
+    - kind: added
+      description: Added comprehensive alphaConfig examples with upstreamConfig configuration
+      links:
+        - name: Github Issue
+          url: https://github.com/oauth2-proxy/manifests/issues/311
+    - kind: added
+      description: Documented external secrets usage with alphaConfig via extraEnv (Azure Key Vault CSI Driver example)
+      links:
+        - name: Github Issue
+          url: https://github.com/oauth2-proxy/manifests/issues/302
