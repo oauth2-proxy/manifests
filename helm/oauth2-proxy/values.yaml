@@ -23,6 +23,15 @@ config:
   clientID: "XXXXXXX"
   # OAuth client secret
   clientSecret: "XXXXXXXX"
+  # List of secret keys to include in the secret and expose as environment variables
+  # If not set, defaults to all three secrets: ["client-id", "client-secret", "cookie-secret"]
+  # Useful for authentication methods that don't require a client secret
+  # (e.g., Azure Entra ID federated token authentication)
+  # Example to exclude client-secret:
+  # secretKeys:
+  #   - client-id
+  #   - cookie-secret
+  secretKeys: []
   # Create a new secret with the following command
   # openssl rand -base64 32 | head -c 32 | base64
   # Use an existing secret for OAuth2 credentials (see secret.yaml for required fields)

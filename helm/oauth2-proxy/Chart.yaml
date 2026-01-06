@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 10.0.3
+version: 10.1.0
 apiVersion: v2
 appVersion: 7.13.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -30,15 +30,10 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Fix error msg which mentioned the old redis.… subchart values
+    - kind: added
+      description: Added config.secretKeys option to selectively include secrets (allows excluding client-secret for federated auth scenarios)
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/386
-    - kind: fixed
-      description: Fix image registry priority order - local image.registry now takes precedence over global.imageRegistry
-      links:
-        - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/383
+          url: https://github.com/oauth2-proxy/manifests/pull/384
         - name: Github Issue
-          url: https://github.com/oauth2-proxy/manifests/issues/379
+          url: https://github.com/oauth2-proxy/manifests/issues/376
