@@ -492,6 +492,7 @@ redis-ha:
   # Recommended:
   #
   # redisPassword: xxxxx
+  # When using replicas: 1, you MUST also set min-replicas-to-write: 0
   # replicas: 1
   # redis:
   #   config:
