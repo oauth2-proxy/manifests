@@ -35,3 +35,8 @@ annotations:
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/386
+    - kind: changed
+      description: Added explicit warning for redis single replica configuration requirement (min-replicas-to-write must be set to 0)
+      links:
+        - name: Github PR
+          url: https://github.com/oauth2-proxy/manifests/pull/382
