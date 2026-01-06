@@ -164,7 +164,14 @@ metricsServer:
 {{- end -}}
 
 {{- define "oauth2-proxy.secrets" -}}
+{{- $secretKeys := .Values.config.secretKeys | default (list "client-id" "client-secret" "cookie-secret") -}}
+{{- if has "cookie-secret" $secretKeys }}
 cookie-secret: {{ tpl .Values.config.cookieSecret $ | b64enc | quote }}
+{{- end }}
+{{- if has "client-secret" $secretKeys }}
 client-secret: {{ tpl .Values.config.clientSecret $ | b64enc | quote }}
+{{- end }}
+{{- if has "client-id" $secretKeys }}
 client-id: {{ tpl .Values.config.clientID $ | b64enc | quote }}
+{{- end }}
 {{- end -}}
