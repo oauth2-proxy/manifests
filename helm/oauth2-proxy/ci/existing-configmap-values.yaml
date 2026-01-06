@@ -1,0 +1,16 @@
+# Test Case 7: Using an existing external ConfigMap
+# Expected: Chart does NOT generate ConfigMap, uses the external one provided via extraObjects
+
+config:
+  existingConfig: "my-external-configmap"
+
+# Create the external ConfigMap that the chart expects
+extraObjects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: my-external-configmap
+    data:
+      oauth2_proxy.cfg: |
+        email_domains = [ "*" ]
+        upstreams = [ "file:///dev/null" ]
