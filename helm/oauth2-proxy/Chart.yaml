@@ -31,7 +31,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Added config.secretKeys option to selectively include secrets (allows excluding client-secret for federated auth scenarios)
+      description: Added config.requiredSecretKeys option to selectively include secrets (allows excluding client-secret for federated auth scenarios)
       links:
         - name: Github PR
           url: https://github.com/oauth2-proxy/manifests/pull/384
