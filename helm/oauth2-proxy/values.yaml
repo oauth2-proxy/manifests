@@ -75,7 +75,7 @@ alphaConfig:
   existingSecret: ~
 
 image:
-  registry: "quay.io"
+  registry: ""
   repository: "oauth2-proxy/oauth2-proxy"
   # appVersion is used by default
   tag: ""
