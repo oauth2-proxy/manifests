@@ -12,6 +12,50 @@ entries:
               url: https://github.com/oauth2-proxy/manifests/issues/376
     apiVersion: v2
     appVersion: 7.13.0
+    created: "2026-01-24T14:45:39.764272762Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.6
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: eaf0e542f9e8e0c5ea121fef3219a057a87e92a711df3fcb613f627f8e60b1fa
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-10.1.1/oauth2-proxy-10.1.1.tgz
+    version: 10.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Added config.requiredSecretKeys option to selectively include secrets (allows excluding client-secret for federated auth scenarios)
+          links:
+            - name: Github PR
+              url: https://github.com/oauth2-proxy/manifests/pull/384
+            - name: Github Issue
+              url: https://github.com/oauth2-proxy/manifests/issues/376
+    apiVersion: v2
+    appVersion: 7.13.0
     created: "2026-01-15T19:29:19.600625653Z"
     dependencies:
     - condition: redis-ha.enabled
@@ -8944,4 +8988,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2026-01-15T19:29:19.601165752Z"
+generated: "2026-01-24T14:45:39.765334016Z"
