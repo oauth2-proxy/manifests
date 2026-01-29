@@ -34,4 +34,4 @@ annotations:
       description: Updated Oauth2-Proxy image to v7.14.2
       links:
         - name: Github PR
-          url: https://github.com/oauth2-proxy/manifests/pull/386
+          url: https://github.com/oauth2-proxy/manifests/pull/389
