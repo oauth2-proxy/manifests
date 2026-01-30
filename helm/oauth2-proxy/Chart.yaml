@@ -14,7 +14,7 @@ keywords:
   - redis
 dependencies:
   - name: redis-ha
-    version: 4.35.6
+    version: 4.35.7
     repository: https://dandydeveloper.github.io/charts
     condition: redis-ha.enabled
 sources:
