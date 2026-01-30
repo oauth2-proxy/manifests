@@ -1,0 +1,19 @@
+# Test Case 4: alphaConfig enabled with forceLegacyConfig=false
+# Expected: ConfigMap with ONLY email_domains (no upstreams) - FIX for issue #226
+
+alphaConfig:
+  enabled: true
+  configData:
+    providers:
+      - id: google
+        provider: google
+        clientID: fake-client-id
+        clientSecret: fake-client-secret
+    upstreamConfig:
+      upstreams:
+        - id: alpha-service
+          path: /
+          uri: http://alpha-backend:8080
+
+config:
+  forceLegacyConfig: false

@@ -1,0 +1,19 @@
+# Test Case 3: alphaConfig enabled with forceLegacyConfig=true (default)
+# Expected: ConfigMap with email_domains + upstreams (backward compatible)
+
+alphaConfig:
+  enabled: true
+  configData:
+    providers:
+      - id: google
+        provider: google
+        clientID: fake-client-id
+        clientSecret: fake-client-secret
+    upstreamConfig:
+      upstreams:
+        - id: alpha-service
+          path: /
+          uri: http://alpha-backend:8080
+
+config:
+  forceLegacyConfig: true
