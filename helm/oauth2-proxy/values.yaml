@@ -55,12 +55,50 @@ config:
     # Example:
     #  - group1@example.com
     #  - group2@example.com
-  # Default configuration, to be overridden
-  configFile: |-
-    email_domains = [ "*" ]
-    upstreams = [ "file:///dev/null" ]
-  # Custom configuration file: oauth2_proxy.cfg
+  #
+  # Configuration file generation
+  # If configFile is set, it takes precedence over the structured
+  # config below
+  # If configFile is empty/not set, the config is auto-generated
+  # from emailDomains and upstreams
+  configFile: ""
+  # Email domains allowed to authenticate (used when configFile is
+  # empty)
+  emailDomains: ["*"]
+  # Legacy upstream configuration (used when configFile is empty
+  # and alphaConfig is disabled)
+  # When alphaConfig.enabled is true, define upstreams in
+  # alphaConfig.configData.upstreamConfig instead
+  upstreams: ["file:///dev/null"]
+  # Force legacy configFile generation even when alphaConfig is
+  # enabled
+  #
+  # When true (default): Preserves backward compatibility - always
+  # generates full legacy config
+  # When false: Enables alphaConfig-compatible mode - generates
+  # minimal legacy config (no upstreams)
+  #
+  # Set to false if you're using alphaConfig and getting the error:
+  # "failed to load core options: '' has invalid keys: upstreams"
+  #
+  # This happens because alphaConfig removed support for the
+  # 'upstreams' option in the legacy config.
+  # With forceLegacyConfig=false, upstreams are defined in
+  # alphaConfig.configData.upstreamConfig instead.
+  #
+  # IMPORTANT: If you have a custom configFile with 'upstreams',
+  # you MUST:
+  # 1. Remove 'upstreams' from your custom configFile
+  # 2. Define upstreams in alphaConfig.configData.upstreamConfig
+  #    (see examples below)
+  # 3. Set forceLegacyConfig: false
+  forceLegacyConfig: true
+  #
+  # Custom configuration file: oauth2_proxy.cfg (overrides
+  # emailDomains and upstreams)
+  # Example:
   # configFile: |-
+  #   email_domains = [ "*" ]
   #   pass_basic_auth = false
   #   pass_access_token = true
   # Use an existing config map (see configmap.yaml for required fields)
@@ -77,6 +115,34 @@ alphaConfig:
   metricsConfigData: {}
   # Arbitrary configuration data to append
   configData: {}
+  #
+  # Example: Multiple upstreams with path-based routing
+  # configData:
+  #   upstreamConfig:
+  #     upstreams:
+  #       - id: service1
+  #         path: /
+  #         uri: http://service1:8080
+  #         flushInterval: 1s
+  #         passHostHeader: true
+  #         proxyWebSockets: true
+  #       - id: service2
+  #         path: /api/
+  #         uri: http://service2:8081
+  #         rewriteTarget: /v1/
+  #         injectResponseHeaders:
+  #           - name: X-Custom-Header
+  #             values:
+  #               - value: custom-value
+  #   injectResponseHeaders:
+  #     - name: X-Auth-Request-Email
+  #       values:
+  #         - claim: email
+  #
+  # For more information on alpha config options, see:
+  # https://oauth2-proxy.github.io/oauth2-proxy/configuration/
+  # alpha-config
+  #
   # Arbitrary configuration to append
   # This is treated as a Go template and rendered with the root context
   configFile: ""
@@ -84,6 +150,22 @@ alphaConfig:
   existingConfig: ~
   # Use an existing secret
   existingSecret: ~
+  #
+  # NOTE: When using alphaConfig with external secrets (e.g., Azure
+  # Key Vault CSI Driver), you can inject secrets via extraEnv
+  # instead of embedding them in the config:
+  #
+  # extraEnv:
+  #   - name: OAUTH2_PROXY_CLIENT_ID
+  #     valueFrom:
+  #       secretKeyRef:
+  #         name: external-secret
+  #         key: client-id
+  #   - name: OAUTH2_PROXY_CLIENT_SECRET
+  #     valueFrom:
+  #       secretKeyRef:
+  #         name: external-secret
+  #         key: client-secret
 
 image:
   registry: ""
@@ -106,6 +188,24 @@ imagePullSecrets: []
 
 extraArgs: {}
 extraEnv: []
+# Example: Load secrets from an external secret (e.g., Azure Key
+# Vault via CSI Driver)
+# extraEnv:
+#   - name: OAUTH2_PROXY_CLIENT_ID
+#     valueFrom:
+#       secretKeyRef:
+#         name: azure-keyvault-secret
+#         key: client-id
+#   - name: OAUTH2_PROXY_CLIENT_SECRET
+#     valueFrom:
+#       secretKeyRef:
+#         name: azure-keyvault-secret
+#         key: client-secret
+#   - name: OAUTH2_PROXY_COOKIE_SECRET
+#     valueFrom:
+#       secretKeyRef:
+#         name: azure-keyvault-secret
+#         key: cookie-secret
 
 envFrom: []
 # Load environment variables from a ConfigMap(s) and/or Secret(s)
