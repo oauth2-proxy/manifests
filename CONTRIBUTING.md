@@ -12,7 +12,7 @@ We do not enforce the title of your pull request to follow guidelines but we do 
 
 ## Documentation
 
-The documentation in the chart [README.md](charts/oauth2-proxy) and the `values.yaml` should always be kept up to date if you make changes to existing parameters or introduce new ones.
+The documentation in the chart [README.md](helm/oauth2-proxy/README.md) and [values.yaml](helm/oauth2-proxy/values.yaml) should always be kept up to date if you make changes to existing parameters or introduce new ones.
 
 ### Artifact Hub Annotation
 
