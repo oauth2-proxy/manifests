@@ -1,0 +1,9 @@
+# Test Case 2: Custom configFile (alphaConfig disabled)
+# Expected: ConfigMap with custom configFile content
+
+config:
+  configFile: |-
+    email_domains = [ "example.com" ]
+    upstreams = [ "http://backend:8080" ]
+    pass_basic_auth = false
+    pass_access_token = true

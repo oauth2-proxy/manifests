@@ -1,0 +1,21 @@
+# Test Case 6: alphaConfig enabled + custom configFile + forceLegacyConfig=false
+# Expected: ConfigMap with ONLY email_domains (ignores custom configFile)
+
+alphaConfig:
+  enabled: true
+  configData:
+    providers:
+      - id: google
+        provider: google
+        clientID: fake-client-id
+        clientSecret: fake-client-secret
+    upstreamConfig:
+      upstreams:
+        - id: alpha-service
+          path: /
+          uri: http://alpha-backend:8080
+
+config:
+  configFile: |-
+    email_domains = [ "example.com" ]
+  forceLegacyConfig: false
