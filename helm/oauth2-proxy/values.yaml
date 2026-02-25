@@ -235,9 +235,11 @@ gatewayApi:
   # gatewayRef:
   #   name: gateway
   #   namespace: gateway-system
+  #   sectionName: my-gateway-https-listener-name
   gatewayRef:
     name: ""
     namespace: ""
+    sectionName: ""
   # HTTPRoute rule configuration
   # rules:
   # - matches:
