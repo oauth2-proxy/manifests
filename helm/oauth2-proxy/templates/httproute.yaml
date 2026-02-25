@@ -23,6 +23,9 @@ spec:
     {{- if .Values.gatewayApi.gatewayRef.namespace }}
     namespace: {{ .Values.gatewayApi.gatewayRef.namespace }}
     {{- end }}
+    {{- if .Values.gatewayApi.gatewayRef.sectionName }}
+    sectionName: {{ .Values.gatewayApi.gatewayRef.sectionName }}
+    {{- end }}
   {{- end }}
   {{- if .Values.gatewayApi.hostnames }}
   hostnames:
