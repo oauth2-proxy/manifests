@@ -4,6 +4,48 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Bump OAuth2 Proxy image to v7.15.0
+          links:
+            - name: GitHub PR
+              url: https://github.com/oauth2-proxy/manifests/pull/395
+    apiVersion: v2
+    appVersion: 7.15.0
+    created: "2026-03-21T09:32:46.662398112Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.10
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: eb54f5880ab9b7e1b9dec6aca5cc2c552b084e2bea62723c6e3b4db256bc612b
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-10.1.5/oauth2-proxy-10.1.5.tgz
+    version: 10.1.5
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Updated Oauth2-Proxy image to v7.14.2
           links:
             - name: Github PR
@@ -9116,4 +9158,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2026-02-17T08:52:08.180962182Z"
+generated: "2026-03-21T09:32:46.663231608Z"
