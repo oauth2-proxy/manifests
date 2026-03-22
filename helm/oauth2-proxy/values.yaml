@@ -236,10 +236,9 @@ gatewayApi:
   #   name: gateway
   #   namespace: gateway-system
   #   sectionName: my-gateway-https-listener-name
-  gatewayRef:
-    name: ""
-    namespace: ""
-    sectionName: ""
+  #
+  # https://gateway-api.sigs.k8s.io/reference/spec/#parentreference
+  gatewayRef: {}
   # HTTPRoute rule configuration
   # rules:
   # - matches:
