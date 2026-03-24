@@ -4,6 +4,48 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Add tpl support for config.cookieName, config.existingSecret, customLabels, image.registry, imagePullSecrets, and networkPolicy.ingress/egress
+          links:
+            - name: GitHub PR
+              url: https://github.com/oauth2-proxy/manifests/pull/398
+    apiVersion: v2
+    appVersion: 7.15.0
+    created: "2026-03-24T11:21:42.199009071Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.10
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: c91f76d08638d26c61be192e5491d9e83f34238c54bf7f5812a1b4b93f54ce20
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-10.3.0/oauth2-proxy-10.3.0.tgz
+    version: 10.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: feat: full support for ParentRef fields of gateway-api HTTPRoutes
           links:
             - name: GitHub PR
@@ -9200,4 +9242,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2026-03-22T13:50:54.881324197Z"
+generated: "2026-03-24T11:21:42.199881662Z"
