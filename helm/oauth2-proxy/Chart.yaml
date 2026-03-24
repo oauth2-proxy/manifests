@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 10.2.0
+version: 10.2.1
 apiVersion: v2
 appVersion: 7.15.0
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -30,8 +30,8 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: feat: full support for ParentRef fields of gateway-api HTTPRoutes
+    - kind: changed
+      description: feat: support templating in extraInitContainers
       links:
         - name: GitHub PR
-          url: https://github.com/oauth2-proxy/manifests/pull/391
+          url: https://github.com/oauth2-proxy/manifests/pull/399
