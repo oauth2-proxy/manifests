@@ -82,3 +82,7 @@ serviceMonitor:
 
 customLabels:
   test-labels/test: "{{ $.Release.Name }}"
+
+nodeOS: linux
+nodeSelector:
+  kubernetes.io/os: "{{ .Values.nodeOS }}"
