@@ -16,13 +16,13 @@ ingress:
   labels:
     test-annotations/test: "{{ $.Release.Name }}"
   extraPaths:
-  - path: /ping
-    pathType: Prefix
-    backend:
-      service:
-        name: '{{ include "oauth2-proxy.fullname" $ }}'
-        port:
-          name: '{{ $.Values.httpScheme }}'
+    - path: /ping
+      pathType: Prefix
+      backend:
+        service:
+          name: '{{ include "oauth2-proxy.fullname" $ }}'
+          port:
+            name: '{{ $.Values.httpScheme }}'
 oauth2-proxy:
   checkDeprecation: false
   config:
