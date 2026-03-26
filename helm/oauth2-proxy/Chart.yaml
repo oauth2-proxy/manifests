@@ -31,7 +31,10 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Add tpl support for ingress.labels, ingress.extraPaths and nodeSelector
+      description: >
+        Add tpl support for ingress.labels, ingress.extraPaths and nodeSelector. This is a
+        behavior change: any values containing `{{ ... }}` will now be evaluated as templates.
+        To keep literal `{{` sequences, escape them (for example, use `{{"{{"}}`).
       links:
         - name: GitHub PR
           url: https://github.com/oauth2-proxy/manifests/pull/400
