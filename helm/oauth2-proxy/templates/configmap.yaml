@@ -1,4 +1,5 @@
-{{- if ne (include "oauth2-proxy.legacy-config.mode" .) "existing-configmap" }}
+{{- $mode := include "oauth2-proxy.legacy-config.mode" . }}
+{{- if not (has $mode (list "existing-configmap" "no-config")) }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,6 +8,7 @@ metadata:
 {{ tpl ( toYaml . ) $ | indent 4 }}
 {{- end }}
   labels:
+    mode: {{ include "oauth2-proxy.legacy-config.mode" . }}
     app: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.labels" . | indent 4 }}
   name: {{ template "oauth2-proxy.fullname" . }}

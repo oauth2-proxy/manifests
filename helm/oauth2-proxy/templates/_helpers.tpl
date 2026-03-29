@@ -167,6 +167,7 @@ metricsServer:
 If `config.forceLegacyConfig=false`, the chart ignores both the `config.configFile` and `config.existingConfig` overrides and only generates a minimal necessary legacy config.
 If `config.existingConfig` is set and `config.forceLegacyConfig=true`, the external ConfigMap is mounted into the mounted file.
 If `config.configFile` is set and `config.forceLegacyConfig=true`, the chart renders that inline content into the mounted file.
+If `config.forceLegacyConfig=false` and `alphaConfig.enabled=false`, the chart renders no config map and does not mount a file.
 */}}
 {{- define "oauth2-proxy.legacy-config.mode" -}}
 {{- if and .Values.alphaConfig.enabled (not .Values.config.forceLegacyConfig) -}}
@@ -177,6 +178,8 @@ existing-configmap
 inline-custom
 {{- else if .Values.alphaConfig.enabled -}}
 generated-alpha-compatible
+{{- else if and (not .Values.alphaConfig.enabled) (not .Values.config.forceLegacyConfig) -}}
+no-config
 {{- else -}}
 generated-legacy
 {{- end -}}

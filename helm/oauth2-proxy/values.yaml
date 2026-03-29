@@ -64,6 +64,8 @@ config:
   #    generates a minimal legacy config from emailDomains only.
   # 3. If configFile is empty/not set, the config is auto-generated
   #    from emailDomains and, when alphaConfig is disabled, upstreams.
+  # 4. When alphaConfig.enabled=false and forceLegacyConfig=false
+  #    no ConfigMap is generated and mounted
   configFile: ""
   # Email domains allowed to authenticate when the chart generates
   # the main oauth2_proxy.cfg.
@@ -109,6 +111,8 @@ config:
   #      instead (see examples below).
   #    - Move any other relevant settings into alphaConfig and/or
   #      flags rather than relying on a custom legacy configFile.
+  # 3) If forceLegacyConfig and alphaConfig.enabled are false
+  #    no ConfigMap is being mounted.
   forceLegacyConfig: true
   #
   # Custom configuration file: oauth2_proxy.cfg (overrides

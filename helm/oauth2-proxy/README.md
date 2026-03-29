@@ -498,6 +498,7 @@ that are already supported by the Alpha Config will need to be removed from the 
 Keep the following in mind:
 
 - The chart always mounts `/etc/oauth2_proxy/oauth2_proxy.cfg`. (Legacy toml config)
+  Unless both `alphaConfig.enabled` and `forceLegacyConfig` are set to `false`
 - Per default `config.forceLegacyConfig` is `true`
 
 The evaluation happens in the following order:
