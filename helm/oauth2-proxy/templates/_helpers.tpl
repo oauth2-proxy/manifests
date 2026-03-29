@@ -189,7 +189,7 @@ generated
 {{- else if eq $source "existing-secret" -}}
 {{- .Values.alphaConfig.existingSecret -}}
 {{- else if eq $source "generated" -}}
-{{- printf "%s-alpha" (include "oauth2-proxy.fullname" .) -}}
+{{- printf "%s-alpha" (include "oauth2-proxy.fullname" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 
