@@ -69,7 +69,7 @@ spec:
       {{- if or (and $redisEnabled .Values.initContainers.waitForRedis.enabled) .Values.extraInitContainers }}
       initContainers:
         {{- if .Values.extraInitContainers }}
-        {{- toYaml .Values.extraInitContainers | nindent 6 }}
+        {{- tpl (toYaml .Values.extraInitContainers) . | nindent 6 }}
         {{- end }}
       {{- if and $redisEnabled .Values.initContainers.waitForRedis.enabled }}
       - name: wait-for-redis
