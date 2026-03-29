@@ -87,7 +87,7 @@ config:
   #     config.configFile or config.existingConfig, OR
   #   - alphaConfig.enabled is false AND no configFile/existingConfig
   #     is provided (setting forceLegacyConfig=false disables config
-  #     generation entirely — see option 3 below).
+  #     generation entirely — see "no-config mode" below).
   #
   # Auto-generated config when alphaConfig.enabled=true is always a
   # minimal legacy config (no upstreams), regardless of this flag.
@@ -117,10 +117,12 @@ config:
   #      instead (see examples below).
   #    - Move any other relevant settings into alphaConfig and/or
   #      flags rather than relying on a custom legacy configFile.
-  # 3) If forceLegacyConfig and alphaConfig.enabled are both false,
-  #    and no configFile or existingConfig is provided,
-  #    no ConfigMap is generated or mounted. This is useful when
-  #    managing config externally (e.g., CSI SecretStore Driver).
+  #
+  # no-config mode:
+  # If forceLegacyConfig and alphaConfig.enabled are both false,
+  # and no configFile or existingConfig is provided, no ConfigMap
+  # is generated or mounted. This is useful when managing config
+  # externally (e.g., CSI SecretStore Driver).
   forceLegacyConfig: true
   #
   # Custom configuration file: oauth2_proxy.cfg (overrides
