@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 10.6.1
+version: 10.6.2
 apiVersion: v2
 appVersion: 7.15.3
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -30,8 +30,13 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Bump OAuth2 Proxy app version to 7.15.3
+    - kind: added
+      description: Add alpha-config.source and alpha-config.name helpers for centralized alpha config resolution
       links:
         - name: GitHub PR
-          url: https://github.com/oauth2-proxy/manifests/pull/412
+          url: https://github.com/oauth2-proxy/manifests/pull/405
+    - kind: added
+      description: Add deprecation guards for invalid alphaConfig combinations
+      links:
+        - name: GitHub PR
+          url: https://github.com/oauth2-proxy/manifests/pull/405
