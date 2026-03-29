@@ -165,12 +165,18 @@ metricsServer:
 
 {{/*
 Legacy config mode resolution:
-- alphaConfig.enabled=true + forceLegacyConfig=false → generated-alpha-compatible (minimal legacy config)
-- config.existingConfig is set → existing-configmap (external ConfigMap, regardless of forceLegacyConfig)
-- config.configFile is set → inline-custom (user-provided content, regardless of forceLegacyConfig)
-- alphaConfig.enabled=true (with forceLegacyConfig=true) → generated-alpha-compatible
-- alphaConfig.enabled=false + forceLegacyConfig=false + no configFile/existingConfig → no-config (nothing generated/mounted)
-- Default → generated-legacy (full legacy config with emailDomains + upstreams)
+- alphaConfig.enabled=true + forceLegacyConfig=false
+    → generated-alpha-compatible (minimal legacy config; config.existingConfig and config.configFile are ignored)
+- config.existingConfig is set (only when NOT in alphaConfig.enabled + !forceLegacyConfig path)
+    → existing-configmap (external ConfigMap)
+- config.configFile is set (only when NOT in alphaConfig.enabled + !forceLegacyConfig path)
+    → inline-custom (user-provided content)
+- alphaConfig.enabled=true + forceLegacyConfig=true (no existingConfig/configFile)
+    → generated-alpha-compatible
+- alphaConfig.enabled=false + forceLegacyConfig=false + no configFile/existingConfig
+    → no-config (nothing generated/mounted)
+- Default
+    → generated-legacy (full legacy config with emailDomains + upstreams)
 */}}
 {{- define "oauth2-proxy.legacy-config.mode" -}}
 {{- if and .Values.alphaConfig.enabled (not .Values.config.forceLegacyConfig) -}}
