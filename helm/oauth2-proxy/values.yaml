@@ -168,10 +168,16 @@ alphaConfig:
   #
   # Arbitrary configuration to append
   # This is treated as a Go template and rendered with the root context
+  # This may be combined with configData/serverConfigData/metricsConfigData
+  # when the chart generates the alpha config itself.
   configFile: ""
-  # Use an existing config map (see secret-alpha.yaml for required fields)
+  # Use an existing config map (see secret-alpha.yaml for required fields).
+  # Mutually exclusive with existingSecret and all generated alpha config
+  # content options above.
   existingConfig: ~
-  # Use an existing secret
+  # Use an existing secret.
+  # Mutually exclusive with existingConfig and all generated alpha config
+  # content options above.
   existingSecret: ~
   #
   # NOTE: When using alphaConfig with external secrets (e.g., Azure
