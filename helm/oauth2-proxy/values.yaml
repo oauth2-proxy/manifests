@@ -65,6 +65,7 @@ config:
   # 3. If configFile is empty/not set, the config is auto-generated
   #    from emailDomains and, when alphaConfig is disabled, upstreams.
   # 4. When alphaConfig.enabled=false and forceLegacyConfig=false,
+  #    and neither config.configFile nor config.existingConfig are set,
   #    no ConfigMap is generated or mounted. Use this when you manage
   #    oauth2-proxy configuration entirely via external means (e.g.,
   #    CSI SecretStore Driver, extraVolumes, etc.).
@@ -114,6 +115,7 @@ config:
   #    - Move any other relevant settings into alphaConfig and/or
   #      flags rather than relying on a custom legacy configFile.
   # 3) If forceLegacyConfig and alphaConfig.enabled are both false,
+  #    and no configFile or existingConfig is provided,
   #    no ConfigMap is generated or mounted. This is useful when
   #    managing config externally (e.g., CSI SecretStore Driver).
   forceLegacyConfig: true
