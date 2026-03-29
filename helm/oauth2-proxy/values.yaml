@@ -82,9 +82,12 @@ config:
   upstreams: ["file:///dev/null"]
   # Behavior when using alphaConfig together with a custom config file
   #
-  # This flag only has an effect when:
-  #   - alphaConfig.enabled is true, AND
-  #   - you provide a custom config.configFile or config.existingConfig.
+  # This flag has an effect when:
+  #   - alphaConfig.enabled is true AND you provide a custom
+  #     config.configFile or config.existingConfig, OR
+  #   - alphaConfig.enabled is false AND no configFile/existingConfig
+  #     is provided (setting forceLegacyConfig=false disables config
+  #     generation entirely — see option 3 below).
   #
   # Auto-generated config when alphaConfig.enabled=true is always a
   # minimal legacy config (no upstreams), regardless of this flag.
