@@ -1,0 +1,6 @@
+# Test: no legacy config generation (external config management)
+# Expected: No ConfigMap generated, no --config flag, no config volume mount.
+# Use case: config managed externally via CSI SecretStore Driver or similar.
+
+config:
+  forceLegacyConfig: false

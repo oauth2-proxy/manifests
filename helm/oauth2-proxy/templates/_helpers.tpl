@@ -177,6 +177,8 @@ existing-configmap
 inline-custom
 {{- else if .Values.alphaConfig.enabled -}}
 generated-alpha-compatible
+{{- else if not .Values.config.forceLegacyConfig -}}
+no-config
 {{- else -}}
 generated-legacy
 {{- end -}}
