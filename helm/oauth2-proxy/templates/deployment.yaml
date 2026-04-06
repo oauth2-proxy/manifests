@@ -6,6 +6,9 @@ metadata:
   labels:
     app: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.labels" . | indent 4 }}
+  {{- with .Values.deploymentLabels }}
+{{ tpl ( toYaml . ) $ | indent 4 }}
+  {{- end }}
   {{- with .Values.deploymentAnnotations }}
   annotations:
 {{ tpl ( toYaml . ) $ | indent 4 }}

@@ -32,6 +32,7 @@ annotations:
   artifacthub.io/changes: |
     - kind: added
       description: >
+        Add deploymentLabels to allow setting deployment specific labels.
         Add tpl support for ingress.labels, ingress.extraPaths and nodeSelector. This is a
         behavior change: any values containing `{{ ... }}` will now be evaluated as templates.
         To keep literal `{{` sequences, escape them (for example, use `{{"{{"}}`).

@@ -57,6 +57,9 @@ config:
     test-annotations/test: "{{ $.Release.Name }}"
   cookieName: '{{ $.Release.Name }}'
 
+deploymentLabels:
+  test-deployment-label/test: "{{ $.Release.Name }}"
+
 deploymentAnnotations:
   test-annotations/test: "{{ $.Release.Name }}"
 

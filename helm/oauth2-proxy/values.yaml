@@ -475,6 +475,7 @@ securityContext:
   seccompProfile:
     type: RuntimeDefault
 
+deploymentLabels: {}
 deploymentAnnotations: {}
 podAnnotations: {}
 podLabels: {}
