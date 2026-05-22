@@ -361,7 +361,8 @@ gatewayApi:
   hostnames:
     - oauth.example.com
   rules:
-    - matches:
+    - name: oauth2
+      matches:
         - path:
             type: PathPrefix
             value: /oauth2
@@ -379,6 +380,31 @@ gatewayApi:
 
 If you don't specify custom rules, the chart will create a default rule that matches all paths with `PathPrefix: /` and routes to the oauth2-proxy service.
 If you don't specify a sectionName, the rules will be applied to all listeners of the referenced Gateway.
+
+### Targeting Rules with Policies via `sectionName`
+
+The optional `name` field on each rule (e.g. `rules[].name: oauth2`) lets policies such as `SecurityPolicy`, `BackendTrafficPolicy`, or any other Gateway API policy that supports `sectionName` target a specific HTTPRoute rule rather than the entire route. Example:
+
+```yaml
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: oauth2-proxy-policy
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: oauth2-proxy
+      sectionName: oauth2          # matches rules[].name above
+  jwt:
+    providers:
+      - name: example
+        issuer: https://issuer.example.com
+        remoteJWKS:
+          uri: https://issuer.example.com/.well-known/jwks.json
+```
+
+Without a rule `name`, policies cannot target individual rules and must apply to the whole HTTPRoute.
 
 ## TLS Configuration
 
