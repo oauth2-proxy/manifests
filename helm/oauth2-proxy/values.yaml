@@ -417,6 +417,8 @@ extraInitContainers: []
 
 priorityClassName: ""
 
+runtimeClassName: ""
+
 # hostAliases is a list of aliases to be added to /etc/hosts for network name resolution
 hostAliases: []
 # - ip: "10.xxx.xxx.xxx"
