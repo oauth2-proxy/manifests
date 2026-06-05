@@ -1,0 +1,37 @@
+name: Bump Chart Version
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  bump-version:
+    if: "!contains(github.actor, 'oauth2-proxy-bot')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ssh-key: "${{ secrets.PUSH_KEY }}"
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "oauth2-proxy-bot"
+          git config user.email "oauth2-proxy-bot@users.noreply.github.com"
+
+      - name: Bump Chart Version
+        uses: GarnerCorp/build-actions/bump-version@main
+        with:
+          version-type: raw
+          version-file-path: helm/oauth2-proxy/Chart.yaml
+          git-name: "oauth2-proxy-bot"
+          git-email: "oauth2-proxy-bot@users.noreply.github.com"
+          major: changelogs/major
+          minor: changelogs/minor
