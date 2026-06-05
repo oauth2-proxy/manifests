@@ -16,7 +16,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           ssh-key: "${{ secrets.PUSH_KEY }}"
           fetch-depth: 0
@@ -27,10 +27,10 @@ jobs:
           git config user.email "oauth2-proxy-bot@users.noreply.github.com"
 
       - name: Bump Chart Version
-        uses: GarnerCorp/build-actions/bump-version@main
+        uses: GarnerCorp/build-actions/bump-version@ed29b86d30dadb5912f0ec45dc3a0c3ca0148826 # main
         with:
-          version-type: raw
           version-file-path: helm/oauth2-proxy/Chart.yaml
+          version-parser: scripts/chart-version-parser.sh
           git-name: "oauth2-proxy-bot"
           git-email: "oauth2-proxy-bot@users.noreply.github.com"
           major: changelogs/major
