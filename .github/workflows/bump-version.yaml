@@ -30,7 +30,7 @@ jobs:
         uses: GarnerCorp/build-actions/bump-version@ed29b86d30dadb5912f0ec45dc3a0c3ca0148826 # main
         with:
           version-file-path: helm/oauth2-proxy/Chart.yaml
-          version-parser: scripts/chart-version-parser.sh
+          version-parser: scripts/chart-version-parser.py
           git-name: "oauth2-proxy-bot"
           git-email: "oauth2-proxy-bot@users.noreply.github.com"
           major: changelogs/major
