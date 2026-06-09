@@ -22,6 +22,16 @@ jobs:
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.8.0
 
+      - name: Check changelog entry
+        run: |
+          if git diff --name-only origin/main...HEAD | grep -q '^helm/'; then
+            if ! git diff --name-only origin/main...HEAD | grep -qE '^changelogs/(major|minor)/[^.]+$'; then
+              echo "::error::Chart files changed but no changelog entry found."
+              echo "Add a file to changelogs/minor/ (new feature) or changelogs/major/ (breaking change)."
+              exit 1
+            fi
+          fi
+
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
