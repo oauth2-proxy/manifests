@@ -3,6 +3,53 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Add alpha-config.source and alpha-config.name helpers for centralized alpha config resolution
+          links:
+            - name: GitHub PR
+              url: https://github.com/oauth2-proxy/manifests/pull/405
+        - kind: added
+          description: Add deprecation guards for invalid alphaConfig combinations
+          links:
+            - name: GitHub PR
+              url: https://github.com/oauth2-proxy/manifests/pull/405
+    apiVersion: v2
+    appVersion: 7.15.3
+    created: "2026-06-09T15:46:56.694560954Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.10
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 47b44c66fdfc42677d307cf8891f3de29863414bf265f6bef2020c273ff7e839
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-10.7.0/oauth2-proxy-10.7.0.tgz
+    version: 10.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Add no-config legacy mode for external config management
           links:
@@ -9597,4 +9644,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2026-06-09T12:47:29.42017998Z"
+generated: "2026-06-09T15:46:56.695127457Z"
