@@ -1,4 +1,5 @@
 {{- $alphaSource := include "oauth2-proxy.alpha-config.source" . -}}
+{{- $legacyConfigMode := include "oauth2-proxy.legacy-config.mode" . -}}
 {{- $redisEnabled := eq (include "oauth2-proxy.redis.enabled" .) "true" -}}
 {{- $redisValues := index .Values "redis-ha" | default dict -}}
 apiVersion: apps/v1
@@ -31,7 +32,7 @@ spec:
   template:
     metadata:
       annotations:
-        {{- if ne (include "oauth2-proxy.legacy-config.mode" .) "existing-configmap" }}
+        {{- if not (has $legacyConfigMode (list "existing-configmap" "no-config")) }}
         checksum/config: {{ include "oauth2-proxy.legacy-config.content" . | sha256sum }}
         {{- end }}
         {{- if eq $alphaSource "generated" }}
@@ -149,7 +150,9 @@ spec:
             {{- toYaml . | nindent 10 }}
           {{- end }}
         {{- end }}
+        {{- if ne $legacyConfigMode "no-config" }}
           - --config=/etc/oauth2_proxy/oauth2_proxy.cfg
+        {{- end }}
         {{- if .Values.authenticatedEmailsFile.enabled }}
         {{- if .Values.authenticatedEmailsFile.template }}
           - --authenticated-emails-file=/etc/oauth2-proxy/{{ .Values.authenticatedEmailsFile.template }}
@@ -306,9 +309,11 @@ spec:
           readOnly: true
 {{- end }}
 {{- end }}
+{{- if ne $legacyConfigMode "no-config" }}
         - mountPath: /etc/oauth2_proxy/oauth2_proxy.cfg
           name: configmain
           subPath: oauth2_proxy.cfg
+{{- end }}
 {{- if ne $alphaSource "disabled" }}
         - mountPath: /etc/oauth2_proxy/oauth2_proxy.yml
           name: configalpha
@@ -372,10 +377,12 @@ spec:
           name: {{ template "oauth2-proxy.fullname" . }}-wait-for-redis
           defaultMode: 0775
 {{- end }}
+{{- if ne $legacyConfigMode "no-config" }}
       - configMap:
           defaultMode: 420
           name: {{ include "oauth2-proxy.legacy-config.name" . | trim }}
         name: configmain
+{{- end }}
 {{- if eq $alphaSource "existing-configmap" }}
       - configMap:
           defaultMode: 420
