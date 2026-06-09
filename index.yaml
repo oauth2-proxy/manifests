@@ -3,6 +3,48 @@ entries:
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Add no-config legacy mode for external config management
+          links:
+            - name: GitHub PR
+              url: https://github.com/oauth2-proxy/manifests/pull/404
+    apiVersion: v2
+    appVersion: 7.15.3
+    created: "2026-06-09T12:47:29.4195447Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.10
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: 5f4a9ed42e360a11bb0966c635a8c394173741e1f808f0fdd8a71bca7824bf8a
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-10.6.2/oauth2-proxy-10.6.2.tgz
+    version: 10.6.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump OAuth2 Proxy app version to 7.15.3
           links:
@@ -9555,4 +9597,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2026-06-09T12:00:34.293799038Z"
+generated: "2026-06-09T12:47:29.42017998Z"
