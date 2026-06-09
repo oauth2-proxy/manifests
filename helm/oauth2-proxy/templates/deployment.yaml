@@ -217,7 +217,7 @@ spec:
           valueFrom:
             secretKeyRef:
               {{- if .Values.sessionStorage.redis.existingSecret }}
-              name: {{ .Values.sessionStorage.redis.existingSecret }}
+              name: {{ tpl .Values.sessionStorage.redis.existingSecret $ }}
               {{- else if .Values.sessionStorage.redis.password }}
               name: {{ template "oauth2-proxy.fullname" . }}-redis-access
               {{- else }}
@@ -245,7 +245,7 @@ spec:
           valueFrom:
             secretKeyRef:
               {{- if or .Values.sessionStorage.redis.sentinel.existingSecret .Values.sessionStorage.redis.existingSecret }}
-              name: {{ .Values.sessionStorage.redis.sentinel.existingSecret | default .Values.sessionStorage.redis.existingSecret }}
+              name: {{ tpl (.Values.sessionStorage.redis.sentinel.existingSecret | default .Values.sessionStorage.redis.existingSecret) $ }}
               {{- else }}
               name: {{ template "oauth2-proxy.fullname" . }}-redis-access
               {{- end }}
