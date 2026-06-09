@@ -604,6 +604,7 @@ sessionStorage:
   type: cookie
   redis:
     # Name of the Kubernetes secret containing the redis & redis sentinel password values (see also `sessionStorage.redis.passwordKey`)
+    # Supports Helm templating, e.g. '{{ .Release.Name }}-redis' or '{{ include "myapp.redis.secretName" . }}'
     existingSecret: ""
     # Redis password value. Applicable for all Redis configurations. Taken from redis subchart secret if not set. `sessionStorage.redis.existingSecret` takes precedence
     password: ""
