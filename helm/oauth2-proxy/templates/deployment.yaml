@@ -1,3 +1,4 @@
+{{- $alphaSource := include "oauth2-proxy.alpha-config.source" . -}}
 {{- $legacyConfigMode := include "oauth2-proxy.legacy-config.mode" . -}}
 {{- $redisEnabled := eq (include "oauth2-proxy.redis.enabled" .) "true" -}}
 {{- $redisValues := index .Values "redis-ha" | default dict -}}
@@ -34,7 +35,7 @@ spec:
         {{- if not (has $legacyConfigMode (list "existing-configmap" "no-config")) }}
         checksum/config: {{ include "oauth2-proxy.legacy-config.content" . | sha256sum }}
         {{- end }}
-        {{- if .Values.alphaConfig.enabled }}
+        {{- if eq $alphaSource "generated" }}
         checksum/alpha-config: {{ include "oauth2-proxy.alpha-config" . | sha256sum }}
         {{- end }}
         {{- if .Values.authenticatedEmailsFile.enabled }}
@@ -313,7 +314,7 @@ spec:
           name: configmain
           subPath: oauth2_proxy.cfg
 {{- end }}
-{{- if .Values.alphaConfig.enabled }}
+{{- if ne $alphaSource "disabled" }}
         - mountPath: /etc/oauth2_proxy/oauth2_proxy.yml
           name: configalpha
           subPath: oauth2_proxy.yml
@@ -382,18 +383,16 @@ spec:
           name: {{ include "oauth2-proxy.legacy-config.name" . | trim }}
         name: configmain
 {{- end }}
-{{- if .Values.alphaConfig.enabled }}
-{{- if .Values.alphaConfig.existingConfig }}
+{{- if eq $alphaSource "existing-configmap" }}
       - configMap:
           defaultMode: 420
-          name: {{ .Values.alphaConfig.existingConfig }}
+          name: {{ include "oauth2-proxy.alpha-config.name" . }}
         name: configalpha
-{{- else }}
+{{- else if or (eq $alphaSource "existing-secret") (eq $alphaSource "generated") }}
       - secret:
           defaultMode: 420
-          secretName: {{ if .Values.alphaConfig.existingSecret }}{{ .Values.alphaConfig.existingSecret }}{{ else }}{{ template "oauth2-proxy.fullname" . }}-alpha{{ end }}
+          secretName: {{ include "oauth2-proxy.alpha-config.name" . }}
         name: configalpha
-{{- end }}
 {{- end }}
 {{- if ne (len .Values.extraVolumes) 0 }}
 {{ tpl (toYaml .Values.extraVolumes) . | indent 6 }}
