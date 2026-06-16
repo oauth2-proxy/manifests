@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 10.7.0
+version: 10.8.0
 apiVersion: v2
 appVersion: 7.15.3
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,10 +31,10 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Add alpha-config.source and alpha-config.name helpers for centralized alpha config resolution
+      description: Add connectionUrlValueFrom to allow reading redis standalone URL from a ConfigMap or Secret at pod runtime
       links:
-        - name: GitHub PR
-          url: https://github.com/oauth2-proxy/manifests/pull/405
+        - name: GitHub Issue
+          url: https://github.com/oauth2-proxy/manifests/issues/408
     - kind: added
       description: Add deprecation guards for invalid alphaConfig combinations
       links:

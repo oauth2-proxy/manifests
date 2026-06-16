@@ -615,6 +615,16 @@ sessionStorage:
     standalone:
       # URL of redis standalone server for redis session storage (e.g. `redis://HOST[:PORT]`). Automatically generated if not set
       connectionUrl: ""
+      # Raw Kubernetes EnvVarSource for OAUTH2_PROXY_REDIS_CONNECTION_URL.
+      # When set, takes precedence over connectionUrl and reads the value at pod runtime
+      # (e.g. from a ConfigMap or Secret managed by an external operator).
+      # Supports any valueFrom source Kubernetes supports.
+      # Example:
+      # connectionUrlValueFrom:
+      #   configMapKeyRef:
+      #     name: my-redis-config
+      #     key: REDIS_HOST_URI
+      connectionUrlValueFrom: {}
     cluster:
       # List of Redis cluster connection URLs. Array or single string allowed.
       connectionUrls: []

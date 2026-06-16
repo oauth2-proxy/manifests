@@ -85,8 +85,14 @@ spec:
         - name: TOTAL_RETRY_TIME
           value: "{{ .Values.initContainers.waitForRedis.timeout }}"
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
+        {{- if .Values.sessionStorage.redis.standalone.connectionUrlValueFrom }}
+        - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
+          valueFrom:
+            {{- tpl (toYaml .Values.sessionStorage.redis.standalone.connectionUrlValueFrom) $ | nindent 12 }}
+        {{- else }}
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
           value: {{ include "oauth2-proxy.redis.StandaloneUrl" . }}
+        {{- end }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
         - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
           value: "true"
@@ -226,8 +232,14 @@ spec:
               key: {{ .Values.sessionStorage.redis.passwordKey }}
         {{- end }}
         {{- if eq (default "" .Values.sessionStorage.redis.clientType) "standalone" }}
+        {{- if .Values.sessionStorage.redis.standalone.connectionUrlValueFrom }}
+        - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
+          valueFrom:
+            {{- tpl (toYaml .Values.sessionStorage.redis.standalone.connectionUrlValueFrom) $ | nindent 12 }}
+        {{- else }}
         - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
           value: {{ include "oauth2-proxy.redis.StandaloneUrl" . }}
+        {{- end }}
         {{- else if eq (default "" .Values.sessionStorage.redis.clientType) "cluster" }}
         - name: OAUTH2_PROXY_REDIS_USE_CLUSTER
           value: "true"
