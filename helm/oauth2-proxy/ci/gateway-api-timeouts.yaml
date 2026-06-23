@@ -1,0 +1,16 @@
+# Gateway API configuration with custom HTTPRoute rule timeouts
+gatewayApi:
+  enabled: true
+  gatewayRef:
+    name: example-gateway
+    namespace: gateway-system
+  hostnames:
+  - oauth.example.com
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /oauth2
+    timeouts:
+      request: 30s
+      backendRequest: 10s

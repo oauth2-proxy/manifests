@@ -52,6 +52,10 @@ spec:
     filters:
     {{- toYaml .filters | nindent 4 }}
     {{- end }}
+    {{- if .timeouts }}
+    timeouts:
+    {{- toYaml .timeouts | nindent 6 }}
+    {{- end }}
   {{- end }}
   {{- else }}
   - matches:

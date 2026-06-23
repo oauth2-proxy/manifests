@@ -372,6 +372,9 @@ gatewayApi:
             add:
               - name: X-Auth-Request
                 value: "true"
+      timeouts:
+        request: 10s
+        backendRequest: 5s
   labels:
     app: oauth2-proxy
   annotations:
@@ -380,6 +383,8 @@ gatewayApi:
 
 If you don't specify custom rules, the chart will create a default rule that matches all paths with `PathPrefix: /` and routes to the oauth2-proxy service.
 If you don't specify a sectionName, the rules will be applied to all listeners of the referenced Gateway.
+
+Each rule can optionally define `timeouts.request` and `timeouts.backendRequest` strings, e.g. `"10s"`, `"500ms"`). See the [HTTPRoute timeouts](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/#timeouts-optional) reference for details.
 
 ### Targeting Rules with Policies via `sectionName`
 
