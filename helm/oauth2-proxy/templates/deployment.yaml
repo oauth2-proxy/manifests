@@ -47,14 +47,14 @@ spec:
 {{- if .Values.htpasswdFile.enabled }}
         checksum/htpasswd: {{ toYaml .Values.htpasswdFile.entries | sha256sum }}
 {{- end }}
-    {{- if .Values.podAnnotations }}
-{{ toYaml .Values.podAnnotations | indent 8 }}
+    {{- with .Values.podAnnotations }}
+{{ tpl ( toYaml . ) $ | indent 8 }}
     {{- end }}
       labels:
         app: {{ template "oauth2-proxy.name" . }}
         {{- include "oauth2-proxy.labels" . | indent 8 }}
-      {{- if .Values.podLabels }}
-{{ toYaml .Values.podLabels | indent 8 }}
+      {{- with .Values.podLabels }}
+{{ tpl ( toYaml . ) $ | indent 8 }}
       {{- end }}
     spec:
     {{- if .Values.priorityClassName }}

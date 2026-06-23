@@ -23,6 +23,11 @@ config:
   clientID: "XXXXXXX"
   # OAuth client secret
   clientSecret: "XXXXXXXX"
+  # Custom secret name instead of generating one with 'clientID', 'clientSecret' and 'cookieSecret'.
+  # Secret keys must be the one provided with 'requiredSecretKeys' below.
+  # Mutually exclusive with 'clientID', 'clientSecret' and 'cookieSecret'.
+  # Supports Helm templating, e.g. '{{ .Release.Name }}-secret' or '{{ include "myapp.oauth2-proxy.secretName" . }}'
+  existingSecret: ~
   # List of secret keys to include in the secret and expose as environment variables.
   # By default, all three secrets are required. To exclude certain secrets
   # (e.g., when using federated token authentication), remove them from this list.
@@ -135,8 +140,10 @@ config:
   # Use an existing config map (see configmap.yaml for required fields)
   # This is ignored when alphaConfig.enabled=true and
   # forceLegacyConfig=false.
+  # Supports Helm templating, e.g. '{{ .Release.Name }}-config' or '{{ include "myapp.oauth2-proxy.configName" . }}'
   # Example:
   # existingConfig: config
+  # existingConfig: '{{ .Release.Name }}-config'
   existingConfig: ~
 
 alphaConfig:
@@ -182,10 +189,12 @@ alphaConfig:
   # Use an existing config map (see secret-alpha.yaml for required fields).
   # Mutually exclusive with existingSecret and all generated alpha config
   # content options (serverConfigData, metricsConfigData, configData, configFile).
+  # Supports Helm templating, e.g. '{{ .Release.Name }}-config' or '{{ include "myapp.oauth2-proxy.configName" . }}'
   existingConfig: ~
   # Use an existing secret.
   # Mutually exclusive with existingConfig and all generated alpha config
   # content options (serverConfigData, metricsConfigData, configData, configFile).
+  # Supports Helm templating, e.g. '{{ .Release.Name }}-secret' or '{{ include "myapp.oauth2-proxy.secretName" . }}'
   existingSecret: ~
   #
   # NOTE: When using alphaConfig with external secrets (e.g., Azure
