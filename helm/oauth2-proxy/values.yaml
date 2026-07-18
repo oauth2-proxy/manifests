@@ -224,6 +224,8 @@ imagePullSecrets: []
 # This will default to 4443 if this value is not set and the httpScheme set to https
 # containerPort: 4180
 
+# Extra arguments as either a map or a list. Map values may be lists to repeat
+# the same flag, for example: allowed-group: [administrators, maintainers].
 extraArgs: {}
 extraEnv: []
 # Example: Load secrets from an external secret (e.g., Azure Key
