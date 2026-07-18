@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 10.7.0
+version: 10.8.0
 apiVersion: v2
 appVersion: 7.15.3
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -30,6 +30,11 @@ maintainers:
 kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: Allow map-form extraArgs values to repeat a flag with a list
+      links:
+        - name: GitHub issue
+          url: https://github.com/oauth2-proxy/oauth2-proxy/issues/3470
     - kind: added
       description: Add alpha-config.source and alpha-config.name helpers for centralized alpha config resolution
       links:

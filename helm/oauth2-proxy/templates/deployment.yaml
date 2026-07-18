@@ -138,10 +138,16 @@ spec:
         {{- end }}
         {{- if kindIs "map" .Values.extraArgs }}
           {{- range $key, $value := .Values.extraArgs }}
+          {{- if kindIs "slice" $value }}
+            {{- range $item := $value }}
+          - --{{ $key }}={{ tpl ($item | toString) $ }}
+            {{- end }}
+          {{- else }}
           {{- if not (kindIs "invalid" $value) }}
           - --{{ $key }}={{ tpl ($value | toString) $ }}
           {{- else }}
           - --{{ $key }}
+          {{- end }}
           {{- end }}
           {{- end }}
         {{- end }}
