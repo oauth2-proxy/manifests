@@ -1,0 +1,9 @@
+# Minimal Gateway API configuration with default rule with ListenerSet
+gatewayApi:
+  enabled: true
+  parentRefs:
+  - kind: ListenerSet
+    name: oauth2-proxy
+    namespace: my-namespace
+  hostnames:
+  - minimal.example.com

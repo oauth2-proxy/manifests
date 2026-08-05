@@ -1,7 +1,8 @@
 # Minimal Gateway API configuration with default rule
 gatewayApi:
   enabled: true
-  gatewayRef:
+  parentRefs:
+  - kind: Gateway
     name: minimal-gateway
   hostnames:
   - minimal.example.com

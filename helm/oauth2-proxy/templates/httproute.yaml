@@ -17,9 +17,9 @@ metadata:
 {{ tpl ( toYaml . ) $ | indent 4 }}
 {{- end }}
 spec:
-  {{- with .Values.gatewayApi.gatewayRef }}
+  {{- with .Values.gatewayApi.parentRefs }}
   parentRefs:
-  - {{ toYaml . | nindent 4 | trim }}
+  {{- toYaml . | nindent 2 }}
   {{- end }}
   {{- if .Values.gatewayApi.hostnames }}
   hostnames:

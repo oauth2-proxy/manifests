@@ -1,10 +1,11 @@
-# Test values for Gateway API HTTPRoute configuration
+# Test values for Gateway API HTTPRoute configuration with ListenerSet
 gatewayApi:
   enabled: true
   parentRefs:
-  - kind: Gateway
-    name: example-gateway
-    namespace: gateway-system
+  - group: gateway.networking.k8s.io
+    kind: ListenerSet
+    name: oauth2-proxy
+    namespace: my-namespace
   hostnames:
   - oauth.example.com
   rules:

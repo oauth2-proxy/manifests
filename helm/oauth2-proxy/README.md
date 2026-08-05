@@ -143,6 +143,51 @@ redis-ha:
 
 With above new chart version won't add extra `-ha` suffix to all redis resources.
 
+### To 11.0.0
+
+Version 11.0.0 use `gatewayAPI.parentRefs` instead of `gatewayAPI.gatewayRef`.
+
+**Breaking Change**: If you were previously using the gatewayAPI options, you must now use `gatewayAPI.parentRefs` instead of `gatewayAPI.gatewayRef` to configure the HTTPRoute's parent. It can be a `Gateway` or/and one or several `ListenerSet`.
+
+Before:
+
+```yaml
+gatewayApi:
+  enabled: true
+  gatewayRef:
+    name: gateway
+    namespace: gateway-system
+    sectionName: my-gateway-https-listener-name
+  # ... other gatewayApi configuration
+```
+
+After (Gateway version):
+
+```yaml
+gatewayApi:
+  enabled: true
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: gateway
+    namespace: gateway-system
+    sectionName: my-gateway-https-listener-name
+  # ... other gatewayApi configuration
+```
+
+After (listernerSet version):
+
+```yaml
+gatewayApi:
+  enabled: true
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: ListenerSet
+    name: oauth2-proxy
+    namespace: my-namespace
+  # ... other gatewayApi configuration
+```
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
@@ -203,7 +248,7 @@ The following table lists the configurable parameters of the oauth2-proxy chart 
 | `extraVolumes`                                        | list of extra volumes                                                                                                                                                                                                                                            | `[]`                                                                                                 |
 | `gatewayApi.annotations`                              | Additional annotations to add to the HTTPRoute                                                                                                                                                                                                                   | `{}`                                                                                                 |
 | `gatewayApi.enabled`                                  | Enable Gateway API HTTPRoute                                                                                                                                                                                                                                     | `false`                                                                                              |
-| `gatewayApi.gatewayRef`                               | The ParentRef of the HTTPRoute according to: https://gateway-api.sigs.k8s.io/reference/spec/#parentreference                                                                                                                                                     | `{}`                                                                                                 |
+| `gatewayApi.parentRefs`                               | The ParentRefs of the HTTPRoute according to: https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#parentreference and https://gateway-api.sigs.k8s.io/reference/api-types/listenerset/#route-attachment                                                                                                                                                    | `{}`                                                                                                 |
 | `gatewayApi.hostnames`                                | Hostnames to match in the HTTPRoute                                                                                                                                                                                                                              | `[]`                                                                                                 |
 | `gatewayApi.labels`                                   | Additional labels to add to the HTTPRoute                                                                                                                                                                                                                        | `{}`                                                                                                 |
 | `gatewayApi.rules`                                    | HTTPRoute rule configuration. If not specified, a default rule with PathPrefix `/` will be created                                                                                                                                                               | `[]`                                                                                                 |
@@ -335,15 +380,16 @@ This chart supports using [Kubernetes Gateway API](https://gateway-api.sigs.k8s.
 
 1. Ensure the Gateway API CRDs are installed in your cluster
 2. Create a Gateway resource (or use an existing one)
-3. Configure the chart to create an HTTPRoute
+3. (Optionnal) Create a ListenerSet resource (or use an existing one)
+4. Configure the chart to create an HTTPRoute
 
 ### Basic Gateway API Configuration
 
 ```yaml
 gatewayApi:
   enabled: true
-  gatewayRef:
-    name: my-gateway
+  parentRefs:
+  - name: my-gateway
     namespace: gateway-system
   hostnames:
     - oauth.example.com
@@ -354,8 +400,8 @@ gatewayApi:
 ```yaml
 gatewayApi:
   enabled: true
-  gatewayRef:
-    name: my-gateway
+  parentRefs:
+  - name: my-gateway
     namespace: gateway-system
     sectionName: my-gateway-https-listener-name
   hostnames:

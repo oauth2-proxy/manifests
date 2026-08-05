@@ -365,18 +365,30 @@ ingress:
   #     - chart-example.local
 
 # Gateway API HTTPRoute configuration
-# Ref: https://gateway-api.sigs.k8s.io/api-types/httproute/
+# Ref: https://gateway-api.sigs.k8s.io/reference/api-types/httproute/
 gatewayApi:
   enabled: false
-  # The name of the Gateway resource to attach the HTTPRoute to
-  # Example:
-  # gatewayRef:
+  # The list of the parentRef resources to attach the HTTPRoute to
+  # Can either be a Gateway or one or several ListenerSet
+  # Example :
+  # Gateway version
+  # parentRefs:
+  # - group: gateway.networking.k8s.io
+  #   kind: Gateway
   #   name: gateway
   #   namespace: gateway-system
   #   sectionName: my-gateway-https-listener-name
   #
-  # https://gateway-api.sigs.k8s.io/reference/spec/#parentreference
-  gatewayRef: {}
+  # ListenerSet version
+  # parentRefs:
+  # - group: gateway.networking.k8s.io
+  #   kind: ListenerSet
+  #   name: oauth2-proxy
+  #   namespace: my-namespace
+  #
+  # https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#parentreference
+  # https://gateway-api.sigs.k8s.io/reference/api-types/listenerset/#route-attachment
+  parentRefs: []
   # HTTPRoute rule configuration
   # rules:
   # - name: service        # optional: enables targeting by sectionName in policies
