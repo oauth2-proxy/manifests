@@ -40,3 +40,10 @@ annotations:
       links:
         - name: GitHub PR
           url: https://github.com/oauth2-proxy/manifests/pull/418
+    - kind: added
+      description: Add 'tpl' usage for sessionStorage.redis.existingSecret and sessionStorage.redis.sentinel.existingSecret
+      links:
+        - name: GitHub Issue
+          url: https://github.com/oauth2-proxy/manifests/issues/409
+        - name: GitHub PR
+          url: https://github.com/oauth2-proxy/manifests/pull/418
