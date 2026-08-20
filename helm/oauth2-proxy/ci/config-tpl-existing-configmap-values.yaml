@@ -1,0 +1,17 @@
+# Test Case: config + existingConfig TPL
+# Expected: Chart mounts the external config ConfigMap instead of generating one.
+
+tplValue: prefix
+
+config:
+  existingConfig: '{{ .Values.tplValue }}-config'
+
+extraObjects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: '{{ .Values.tplValue }}-config'
+    data:
+      oauth2_proxy.cfg: |
+        email_domains = [ "*" ]
+        upstreams = [ "file:///dev/null" ]

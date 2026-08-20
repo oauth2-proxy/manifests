@@ -300,11 +300,11 @@ The following table lists the configurable parameters of the oauth2-proxy chart 
 | `serviceAccount.name`                                 | the service account name                                                                                                                                                                                                                                         | ``                                                                                                   |
 | `sessionStorage.redis.clientType`                     | Allows the user to select which type of client will be used for the Redis instance. Possible options are: `sentinel`, `cluster` or `standalone`                                                                                                                  | `standalone`                                                                                         |
 | `sessionStorage.redis.cluster.connectionUrls`         | List of Redis cluster connection URLs (e.g., `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`)                                                                                                                                                             | `[]`                                                                                                 |
-| `sessionStorage.redis.existingSecret`                 | Name of the Kubernetes secret containing the Redis & Redis sentinel password values (see also `sessionStorage.redis.passwordKey`)                                                                                                                                | `""`                                                                                                 |
+| `sessionStorage.redis.existingSecret`                 | Name of the Kubernetes secret containing the Redis & Redis sentinel password values (see also `sessionStorage.redis.passwordKey`). Treated as a Go template and rendered with the root context                                                                   | `""`                                                                                                 |
 | `sessionStorage.redis.passwordKey`                    | Key of the Kubernetes secret data containing the Redis password value                                                                                                                                                                                            | `redis-password`                                                                                     |
 | `sessionStorage.redis.password`                       | Redis password. Applicable for all Redis configurations. Taken from Redis subchart secret if not set. `sessionStorage.redis.existingSecret` takes precedence                                                                                                     | `nil`                                                                                                |
 | `sessionStorage.redis.sentinel.connectionUrls`        | List of Redis sentinel connection URLs (e.g. `["redis://127.0.0.1:8000", "redis://127.0.0.1:8000"]`)                                                                                                                                                             | `[]`                                                                                                 |
-| `sessionStorage.redis.sentinel.existingSecret`        | Name of the Kubernetes secret containing the Redis sentinel password value (see also `sessionStorage.redis.sentinel.passwordKey`). Default: `sessionStorage.redis.existingSecret`                                                                                | `""`                                                                                                 |
+| `sessionStorage.redis.sentinel.existingSecret`        | Name of the Kubernetes secret containing the Redis sentinel password value (see also `sessionStorage.redis.sentinel.passwordKey`). Default: `sessionStorage.redis.existingSecret`. Treated as a Go template and rendered with the root context                   | `""`                                                                                                 |
 | `sessionStorage.redis.sentinel.masterName`            | Redis sentinel master name                                                                                                                                                                                                                                       | `nil`                                                                                                |
 | `sessionStorage.redis.sentinel.passwordKey`           | Key of the Kubernetes secret data containing the Redis sentinel password value                                                                                                                                                                                   | `redis-sentinel-password`                                                                            |
 | `sessionStorage.redis.sentinel.password`              | Redis sentinel password. Used only for sentinel connection; any Redis node passwords need to use `sessionStorage.redis.password`                                                                                                                                 | `nil`                                                                                                |
@@ -449,6 +449,28 @@ extraEnv:
     value: test_value_1
   - name: TEST_ENV_VAR_2
     value: '{{ .Values.tplValue }}'
+```
+
+## External resource name templating
+
+Values pointing at resources managed outside of the chart are treated as Go templates and rendered with the root context.
+This is useful when the chart runs as a subchart and the resource name is derived from the parent release or generated by an operator.
+
+Supported values:
+
+- `alphaConfig.existingConfig`
+- `alphaConfig.existingSecret`
+- `config.existingConfig`
+- `config.existingSecret`
+- `sessionStorage.redis.existingSecret`
+- `sessionStorage.redis.sentinel.existingSecret`
+
+```yaml
+...
+sessionStorage:
+  type: redis
+  redis:
+    existingSecret: '{{ .Release.Name }}-redis'
 ```
 
 ## Custom templates configuration

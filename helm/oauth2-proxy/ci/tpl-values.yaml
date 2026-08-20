@@ -63,6 +63,12 @@ deploymentLabels:
 deploymentAnnotations:
   test-annotations/test: "{{ $.Release.Name }}"
 
+podAnnotations:
+  test-annotations/test: "{{ $.Release.Name }}"
+
+podLabels:
+  test-pod-label/test: "{{ $.Release.Name }}"
+
 autoscaling:
   annotations:
     test-annotations/test: "{{ $.Release.Name }}"

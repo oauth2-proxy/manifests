@@ -185,9 +185,9 @@ generated
 {{- define "oauth2-proxy.alpha-config.name" -}}
 {{- $source := include "oauth2-proxy.alpha-config.source" . -}}
 {{- if eq $source "existing-configmap" -}}
-{{- .Values.alphaConfig.existingConfig -}}
+{{- printf "%s" (tpl .Values.alphaConfig.existingConfig $) -}}
 {{- else if eq $source "existing-secret" -}}
-{{- .Values.alphaConfig.existingSecret -}}
+{{- printf "%s" (tpl .Values.alphaConfig.existingSecret $) -}}
 {{- else if eq $source "generated" -}}
 {{- printf "%s-alpha" (include "oauth2-proxy.fullname" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
@@ -226,7 +226,7 @@ generated-legacy
 
 {{- define "oauth2-proxy.legacy-config.name" -}}
 {{- if eq (include "oauth2-proxy.legacy-config.mode" .) "existing-configmap" -}}
-{{- .Values.config.existingConfig -}}
+{{- printf "%s" (tpl .Values.config.existingConfig $) -}}
 {{- else -}}
 {{- template "oauth2-proxy.fullname" . -}}
 {{- end -}}
