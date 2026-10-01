@@ -36,6 +36,46 @@
       groupName: 'all-major-updates',
       bumpVersion: 'patch',
     },
+    {
+      description: 'Bump chart version alongside appVersion; bumpVersion does not apply to custom managers',
+      matchManagers: [
+        'custom.regex',
+      ],
+      matchDepNames: [
+        'quay.io/oauth2-proxy/oauth2-proxy',
+      ],
+      // Own group so the chart version is not bumped twice when grouped with helmv3 updates.
+      groupName: 'oauth2-proxy',
+      bumpVersions: [
+        {
+          filePatterns: [
+            'helm/oauth2-proxy/Chart.yaml',
+          ],
+          matchStrings: [
+            '(?:^|\\n)version:\\s*(?<version>\\S+)',
+          ],
+          bumpType: 'patch',
+        },
+      ],
+    },
+  ],
+  customManagers: [
+    {
+      description: 'Bump appVersion in Chart.yaml when a new oauth2-proxy image is released',
+      customType: 'regex',
+      managerFilePatterns: [
+        '/(^|/)helm/oauth2-proxy/Chart\\.yaml$/',
+      ],
+      matchStrings: [
+        '(?:^|\\n)appVersion:\\s*[\'"]?(?<currentValue>[^\'"\\s]+)',
+      ],
+      depNameTemplate: 'quay.io/oauth2-proxy/oauth2-proxy',
+      datasourceTemplate: 'docker',
+      // Image tags are prefixed with "v" (e.g. v7.15.3) while appVersion is not.
+      // Only plain release tags are considered, so variants like -alpine are ignored.
+      extractVersionTemplate: '^v(?<version>\\d+\\.\\d+\\.\\d+)$',
+      versioningTemplate: 'semver',
+    },
   ],
   platformAutomerge: true,
   lockFileMaintenance: {
