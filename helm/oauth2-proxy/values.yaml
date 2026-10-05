@@ -384,6 +384,12 @@ gatewayApi:
   #   - path:
   #       type: PathPrefix
   #       value: /
+  #   # Request timeouts for this rule (Gateway API Duration strings, e.g. "10s", "500ms")
+  #   # backendRequest must not be greater than request.
+  #   # https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httproutetimeouts
+  #   timeouts:
+  #     request: 10s
+  #     backendRequest: 5s
   rules: []
   # Hostnames to match in the HTTPRoute
   # hostnames:
