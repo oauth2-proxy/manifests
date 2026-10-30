@@ -78,7 +78,7 @@ spec:
         {{- end }}
       {{- if and $redisEnabled .Values.initContainers.waitForRedis.enabled }}
       - name: wait-for-redis
-        image: "{{ .Values.initContainers.waitForRedis.image.repository }}:{{ .Values.initContainers.waitForRedis.image.tag }}"
+        image: "{{ with .Values.global.imageRegistry }}{{ tpl . $ }}/{{ end }}{{ .Values.initContainers.waitForRedis.image.repository }}:{{ .Values.initContainers.waitForRedis.image.tag }}"
         imagePullPolicy: {{ .Values.initContainers.waitForRedis.image.pullPolicy }}
         command: ["/bin/sh", "-c", "/scripts/check-redis.sh"]
         env:
