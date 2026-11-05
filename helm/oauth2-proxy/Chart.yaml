@@ -1,7 +1,7 @@
 name: oauth2-proxy
-version: 10.7.1
+version: 10.7.2
 apiVersion: v2
-appVersion: 7.15.5
+appVersion: 7.15.6
 home: https://oauth2-proxy.github.io/oauth2-proxy/
 description: A reverse proxy that provides authentication with Google, Github or other providers
 keywords:
@@ -31,7 +31,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Bump OAuth2 Proxy app version to 7.15.5
+      description: Bump OAuth2 Proxy app version to 7.15.6
       links:
         - name: GitHub PR
-          url: https://github.com/oauth2-proxy/manifests/pull/424
+          url: https://github.com/oauth2-proxy/manifests/pull/428
