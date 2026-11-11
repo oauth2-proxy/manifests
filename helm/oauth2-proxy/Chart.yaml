@@ -35,8 +35,3 @@ annotations:
       links:
         - name: GitHub Issue
           url: https://github.com/oauth2-proxy/manifests/issues/419
-    - kind: fixed
-      description: Compare the image version semantically when choosing the readiness probe path, so image tags without a "v" prefix (e.g. 7.15.5) use /ready
-      links:
-        - name: GitHub PR
-          url: https://github.com/oauth2-proxy/manifests/pull/427
