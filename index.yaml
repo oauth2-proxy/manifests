@@ -4,6 +4,48 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: Prepend global.imageRegistry to the wait-for-redis init container image
+          links:
+            - name: GitHub Issue
+              url: https://github.com/oauth2-proxy/manifests/issues/419
+    apiVersion: v2
+    appVersion: 7.15.6
+    created: "2026-11-11T08:10:59.239163169Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts
+      version: 4.35.10
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: e860a4d4e758a584120d62c00363f15c5067f09167d19846be6034b696e1f19c
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    - redis
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pierluigi.lenoci@gmail.com
+      name: pierluigilenoci
+    - email: jan@larwig.com
+      name: tuunit
+    - email: joel.speed@hotmail.co.uk
+      name: JoelSpeed
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    - https://github.com/oauth2-proxy/manifests
+    urls:
+    - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-10.7.4/oauth2-proxy-10.7.4.tgz
+    version: 10.7.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: Compare the image version semantically when choosing the readiness probe path, so image tags without a "v" prefix (e.g. 7.15.5) use /ready
           links:
             - name: GitHub PR
@@ -9770,4 +9812,4 @@ entries:
     urls:
     - https://github.com/oauth2-proxy/manifests/releases/download/oauth2-proxy-3.2.6/oauth2-proxy-3.2.6.tgz
     version: 3.2.6
-generated: "2026-11-10T14:58:01.955478567Z"
+generated: "2026-11-11T08:10:59.239768414Z"
