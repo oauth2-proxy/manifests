@@ -1,5 +1,5 @@
 name: oauth2-proxy
-version: 10.7.3
+version: 10.7.4
 apiVersion: v2
 appVersion: 7.15.6
 home: https://oauth2-proxy.github.io/oauth2-proxy/
@@ -31,7 +31,7 @@ kubeVersion: ">=1.16.0-0"
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: Compare the image version semantically when choosing the readiness probe path, so image tags without a "v" prefix (e.g. 7.15.5) use /ready
+      description: Prepend global.imageRegistry to the wait-for-redis init container image
       links:
-        - name: GitHub PR
-          url: https://github.com/oauth2-proxy/manifests/pull/427
+        - name: GitHub Issue
+          url: https://github.com/oauth2-proxy/manifests/issues/419
